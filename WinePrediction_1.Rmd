@@ -35,6 +35,38 @@ indicies <- as.numeric(rownames(df.test))
 df.data <- df[-(indicies),]
 ```
 
+## Descriptive Statitics
+We first will complete some initial plots to gain familiarity with the data. This will include boxplots, histograms, and qqplots.
+
+### Histograms
+```{r}
+par(mfrow=c(2,2))
+hist(df.data$fixed.acidity)
+hist(df.data$volatile.acidity)
+hist(df.data$citric.acid)
+hist(df.data$residual.sugar)
+```
+
+```{r}
+par(mfrow=c(2,2))
+hist(df.data$chlorides)
+hist(df.data$free.sulfur.dioxide)
+hist(df.data$total.sulfur.dioxide)
+hist(df.data$density)
+```
+
+```{r}
+par(mfrow=c(2,2))
+hist(df.data$pH)
+hist(df.data$sulphates)
+hist(df.data$alcohol)
+hist(df.data$quality)
+```
+
+
+
+
+
 
 
 
