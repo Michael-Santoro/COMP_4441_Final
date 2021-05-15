@@ -17,8 +17,25 @@ library(boot)
 The project presented below will explore the relationship between the outcome of two dependent variables of wine, value and quality, and their chemical composition: including measures such as acidity, residual sugar, and alcohol percentage. A predictive model for pricing and quality of wine can provide guidance to small wineries and vineyards, especially those from less established wine regions, so that they can more accurately price their inventory and ensure a better return on investment. It will explore different regression techniques and compare their effectiveness.
 
 ## The Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
 ```{r}
-df<-read.table("data/precip.csv",stringsAsFactors = FALSE,
+df<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
                 sep=",",header = TRUE)
+head(df)
 ```
+
+## Test Data-Frame and Working Data-Frame
+Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
+
+```{r}
+df.test <- df[sample(1:nrow(df),80, replace=FALSE),]
+indicies <- as.numeric(rownames(df.test))
+df.data <- df[-(indicies),]
+```
+
+
+
+
 
