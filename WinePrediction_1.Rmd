@@ -63,9 +63,32 @@ hist(df.data$alcohol)
 hist(df.data$quality)
 ```
 
+### Line Plots
+```{r}
+par(mfrow=c(2,2))
+plot(df.data$pH,df.data$quality)
+plot(df.data$sulphates, df.data$quality)
+plot(df.data$alcohol, df.data$quality)
+plot(df.data$quality, df.data$quality)
+```
+
+
+### Box Plots
+```{r}
+boxplot(df.data$pH)
+```
 
 
 
+### QQPlots
+
+```{r}
+par(mfrow=c(2,2))
+qqplot(df.data$pH,df.data$quality)
+qqplot(df.data$sulphates, df.data$quality)
+qqplot(df.data$alcohol, df.data$quality)
+qqplot(df.data$quality, df.data$quality)
+```
 
 
 
