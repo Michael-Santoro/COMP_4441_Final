@@ -1,0 +1,111 @@
+---
+title: "KMeans_Testing"
+author: "Emma Bright"
+date: "5/14/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+library(ggpubr)
+library(boot)
+library(class)
+library(caret)
+```
+
+## Introduction
+Just planning to use this file to walk through some tutorials of k-means clustering I found. 
+
+## Load Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+head(wine)
+```
+
+
+
+## Clean and Normalize the data. 
+Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
+```{r}
+
+#Normalization
+normalize <- function(x) {
+return ((x - min(x)) / (max(x) - min(x))) }
+
+wine.normal <- as.data.frame(lapply(wine[,1:11], normalize))
+
+head(wine.normal)
+
+```
+
+
+## Data Splice
+Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
+
+```{r}
+set.seed(123)
+dat.d <- sample(1:nrow(wine.normal),size=nrow(wine.normal)*0.8,replace = FALSE) #random selection of 90% data.
+ 
+train.wine <- wine.normal[dat.d,] # 90% training data
+test.wine <- wine.normal[-dat.d,] # remaining 10% test data
+
+
+#Creating seperate dataframe for 'Quality' feature which is our target.
+train.quality_label <- wine[dat.d,12]
+test.quality_label <-wine[-dat.d,12]
+```
+
+Next, we’re going to calculate the number of observations in the training data set. The reason we’re doing this is that we want to initialize the value of ‘K’ in the KNN model. One of the ways to find the optimal K value is to calculate the square root of the total number of observations in the data set. This square root will give you the ‘K’ value.
+
+```{r}
+NROW(train.quality_label) 
+sqrt(NROW(train.quality_label) )
+
+```
+The square root of 1493 is around 35.7 we'll create a model with a ‘K’ value as 36.
+
+```{r}
+
+knn.36 <- knn(train=train.wine, test=test.wine, cl=train.quality_label, k=36)
+
+```
+
+
+## Model Evaluation 
+
+```{r}
+#Calculate the proportion of correct classification for k =37
+
+ACC.36 <- 100 * sum(test.quality_label == knn.36)/NROW(test.quality_label)
+ACC.36
+
+```
+As shown above, the accuracy for K = 37 is 57.5 
+
+## Optimization
+
+```{r}
+i=1
+k.optm=1
+for (i in 1:37){
+  knn.mod <- knn(train=train.wine, test=test.wine, cl=train.quality_label, k=i)
+  k.optm[i] <- 100 * sum(test.quality_label == knn.mod)/NROW(test.quality_label)
+  k=i
+  cat(k,'=',k.optm[i],'')
+}
+```
+
+
+```{r}
+#Accuracy plot
+plot(k.optm, type="b", xlab="K- Value",ylab="Accuracy level")
+```
+
+
