@@ -1,0 +1,109 @@
+---
+title: "Descriptive Statistics"
+author: "Emma Bright"
+date: "5/25/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(ggpubr)
+library(boot)
+library("Hmisc")
+library(corrplot)
+library("PerformanceAnalytics")
+library(pastecs)
+```
+
+
+## The Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+df<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+head(df)
+```
+
+
+
+## Data Exploration and Descr Statistics
+
+
+```{r}
+
+stat.desc(df)
+```
+
+# Univariate Exploration
+
+# Bivariate Exploration
+
+# Multivariate Exploration
+Correlations between the variables
+
+
+```{r}
+# ++++++++++++++++++++++++++++
+# flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat : matrix of the correlation coefficients
+# pmat : matrix of the correlation p-values
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  =(cormat)[ut],
+    p = pmat[ut]
+    )
+}
+
+
+res2 <- rcorr(as.matrix(df))
+cor.m <- flattenCorrMatrix(res2$r, res2$P)
+cor.m[order(cor.m[,3],decreasing=TRUE),]
+
+```
+
+## Visualize Correlations
+
+```{r}
+
+# Insignificant correlations are leaved blank
+corrplot(res2$r, type="upper", order="hclust", 
+         p.mat = res2$P, sig.level = 0.01, insig = "blank")
+```
+
+```{r}
+#Visualization of a Correlation Matrix. On top the (absolute) value of the correlation plus the result of the cor.test as stars. On bottom, the bivariate scatterplots, with a fitted line
+chart.Correlation(df, histogram=TRUE, pch=19)
+
+```
+
+
+
+
+```{r}
+
+ggplot(df, 
+       aes(x = fixed.acidity, 
+           y = pH, 
+           color = quality)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by fixed acidity, citric acid, and quality")
+```
+```{r}
+
+ggplot(df, 
+       aes(x = fixed.acidity, 
+           y = density, 
+           color = quality)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by fixed acidity, density, and quality")
+```
