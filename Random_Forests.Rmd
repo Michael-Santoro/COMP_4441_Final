@@ -1,0 +1,66 @@
+---
+title: "RandomForests"
+author: "Mike Santoro"
+date: "5/25/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(caret)
+library(dplyr)
+library(randomForest)
+library(e1071)
+```
+
+## Load Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+glimpse(wine)
+```
+
+
+## Reference Website
+https://www.guru99.com/r-random-forest-tutorial.html
+
+## Data Partitioning
+
+The below code takes 70% of the data for training and 30% of the code for testing.
+
+```{r}
+set.seed(100) 
+
+index = sample(1:nrow(wine), 0.7*nrow(wine)) 
+
+train = wine[index,] # Create the training data 
+test = wine[-index,] # Create the test data
+
+dim(train)
+dim(test)
+```
+
+
+## Train Settings
+```{r}
+trControl <- trainControl(method = "cv",
+    number = 10,
+    search = "grid")
+```
+
+```{r}
+set.seed(1234)
+# Run the model
+rf_default <- train(quality~.,
+    data = train,
+    method = "rf",
+    metric = "Accuracy",
+    trControl = trControl)
+# Print the results
+print(rf_default)
+```
+
