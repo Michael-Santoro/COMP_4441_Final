@@ -1,0 +1,22 @@
+---
+title: "Lasso Regression"
+author: "Mike Santoro"
+date: "5/25/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(quantreg)
+library(glmnet)
+```
+
+## Lasso Regression
+
+### Features of the 'glmnet' Package
+
+$\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and ridge penalty is scaled by $(1-\alpha$).
+
+
+
