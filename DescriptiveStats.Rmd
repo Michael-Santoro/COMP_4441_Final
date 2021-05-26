@@ -30,34 +30,7 @@ head(df)
 
 
 
-## Clean and Normalize the data. 
-Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
-```{r}
-
-#Normalization
-normalize <- function(x) {
-return ((x - min(x)) / (max(x) - min(x))) }
-
-wine.normal <- as.data.frame(lapply(df[,1:11], normalize))
-
-head(wine.normal)
-
-```
-
-
-## Test Data-Frame and Working Data-Frame
-Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
-
-```{r}
-set.seed(123)
-dat.d <- sample(1:nrow(wine.normal),size=nrow(wine.normal)*0.8,replace = FALSE) #random selection of 90% data.
- 
-train.wine <- wine.normal[dat.d,] # 90% training data
-test.wine <- wine.normal[-dat.d,] # remaining 10% test data
-
-```
-
-## Data Exploration and Statistics
+## Data Exploration and Descr Statistics
 
 
 ```{r}
