@@ -10,13 +10,182 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(quantreg)
 library(glmnet)
+library(caret)
 ```
 
+## Load Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+glimpse(wine)
+```
+
+## Process Reference
+
+The process was followed from this site: https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r
+
+## Data Partitioning
+
+The below code takes 70% of the data for training and 30% of the code for testing.
+
+```{r}
+set.seed(100) 
+
+index = sample(1:nrow(wine), 0.7*nrow(wine)) 
+
+train = wine[index,] # Create the training data 
+test = wine[-index,] # Create the test data
+
+dim(train)
+dim(test)
+```
+
+## Scaling the Numeric Features
+
+```{r}
+cols <- colnames(wine)
+pre_proc_val <- preProcess(train[,cols], method = c("center", "scale"))
+
+train[,cols] = predict(pre_proc_val, train[,cols])
+test[,cols] = predict(pre_proc_val, test[,cols])
+
+summary(train)
+```
+
+## Linear Regression
+```{r}
+cols
+```
+
+
+```{r}
+lr <- lm(quality~fixed.acidity + volatile.acidity + citric.acid + residual.sugar + chlorides + free.sulfur.dioxide + density + pH + sulphates + alcohol, data = train)
+summary(lr)
+
+
+```
+
+## Regularization
+
+```{r}
+head(wine[,cols_reg])
+```
+
+
+```{r}
+
+
+dummies <- dummyVars(quality~., data = wine)
+
+train_dummies = predict(dummies, newdata = train)
+
+test_dummies = predict(dummies, newdata = test)
+
+print(dim(train_dummies)); print(dim(test_dummies))
+```
+
+## Ridge Regression
+
+```{r}
+eval_results <- function(true, predicted, df) {
+  SSE <- sum((predicted - true)^2)
+  SST <- sum((true - mean(true))^2)
+  R_square <- 1 - SSE / SST
+  RMSE = sqrt(SSE/nrow(df))
+
+  
+  # Model performance metrics
+data.frame(
+  RMSE = RMSE,
+  Rsquare = R_square
+)
+  
+}
+```
+
+
+```{r}
+x = as.matrix(train_dummies)
+y_train = train$quality
+
+x_test = as.matrix(test_dummies)
+y_test = test$unemploy
+
+lambdas <- 10^seq(2, -3, by = -.1)
+ridge_reg = glmnet(x, y_train, nlambda = 25, alpha = 0, family = 'gaussian', lambda = lambdas)
+
+summary(ridge_reg)
+```
+
+```{r}
+cv_ridge <- cv.glmnet(x, y_train, alpha = 0, lambda = lambdas)
+optimal_lambda <- cv_ridge$lambda.min
+optimal_lambda
+```
+
+
 ## Lasso Regression
+
+```{r}
+lambdas <- 10^seq(2, -3, by = -.1)
+
+# Setting alpha = 1 implements lasso regression
+lasso_reg <- cv.glmnet(x, y_train, alpha = 1, lambda = lambdas, standardize = TRUE, nfolds = 5)
+
+# Best 
+lambda_best <- lasso_reg$lambda.min 
+lambda_best
+```
+
+```{r}
+lasso_model <- glmnet(x, y_train, alpha = 1, lambda = lambda_best, standardize = TRUE)
+
+predictions_train <- predict(lasso_model, s = lambda_best, newx = x)
+eval_results(y_train, predictions_train, train)
+
+predictions_test <- predict(lasso_model, s = lambda_best, newx = x_test)
+eval_results(y_test, predictions_test, test)
+```
+
 
 ### Features of the 'glmnet' Package
 
 $\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and ridge penalty is scaled by $(1-\alpha$).
 
+### Elastic Net Regression
+Elastic net regression combines the properties of ridge and lasso regression
 
+
+```{r}
+# Set training control
+train_cont <- trainControl(method = "repeatedcv",
+                              number = 10,
+                              repeats = 5,
+                              search = "random",
+                              verboseIter = TRUE)
+
+# Train the model
+elastic_reg <- train(quality ~ .,
+                           data = train,
+                           method = "glmnet",
+                           preProcess = c("center", "scale"),
+                           tuneLength = 10,
+                           trControl = train_cont)
+
+
+# Best tuning parameter
+elastic_reg$bestTune
+```
+```{r}
+# Make predictions on training set
+predictions_train <- predict(elastic_reg, x)
+eval_results(y_train, predictions_train, train) 
+
+# Make predictions on test set
+predictions_test <- predict(elastic_reg, x_test)
+eval_results(y_test, predictions_test, test)
+```
 
