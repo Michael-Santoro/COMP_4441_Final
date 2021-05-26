@@ -26,13 +26,32 @@ df<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
 head(df)
 ```
 
+## Clean and Normalize the data. 
+Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
+```{r}
+
+#Normalization
+normalize <- function(x) {
+return ((x - min(x)) / (max(x) - min(x))) }
+
+wine.normal <- as.data.frame(lapply(df[,1:11], normalize))
+
+head(wine.normal)
+
+```
+
+
+
 ## Test Data-Frame and Working Data-Frame
 Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
 
 ```{r}
-df.test <- df[sample(1:nrow(df),80, replace=FALSE),]
-indicies <- as.numeric(rownames(df.test))
-df.data <- df[-(indicies),]
+set.seed(123)
+dat.d <- sample(1:nrow(wine.normal),size=nrow(wine.normal)*0.8,replace = FALSE) #random selection of 90% data.
+ 
+train.wine <- wine.normal[dat.d,] # 90% training data
+test.wine <- wine.normal[-dat.d,] # remaining 10% test data
+
 ```
 
 ## Descriptive Statitics
@@ -41,41 +60,41 @@ We first will complete some initial plots to gain familiarity with the data. Thi
 ### Histograms
 ```{r}
 par(mfrow=c(2,2))
-hist(df.data$fixed.acidity)
-hist(df.data$volatile.acidity)
-hist(df.data$citric.acid)
-hist(df.data$residual.sugar)
+hist(train.wine$fixed.acidity)
+hist(train.wine$volatile.acidity)
+hist(train.wine$citric.acid)
+hist(train.wine$residual.sugar)
 ```
 
 ```{r}
 par(mfrow=c(2,2))
-hist(df.data$chlorides)
-hist(df.data$free.sulfur.dioxide)
-hist(df.data$total.sulfur.dioxide)
-hist(df.data$density)
+hist(train.wine$chlorides)
+hist(train.wine$free.sulfur.dioxide)
+hist(train.wine$total.sulfur.dioxide)
+hist(train.wine$density)
 ```
 
 ```{r}
 par(mfrow=c(2,2))
-hist(df.data$pH)
-hist(df.data$sulphates)
-hist(df.data$alcohol)
-hist(df.data$quality)
+hist(train.wine$pH)
+hist(train.wine$sulphates)
+hist(train.wine$alcohol)
+hist(train.wine$quality)
 ```
 
 ### Line Plots
 ```{r}
 par(mfrow=c(2,2))
-plot(df.data$pH,df.data$quality)
-plot(df.data$sulphates, df.data$quality)
-plot(df.data$alcohol, df.data$quality)
-plot(df.data$quality, df.data$quality)
+plot(train.wine$pH,df.data$quality)
+plot(train.wine$sulphates, df.data$quality)
+plot(train.wine$alcohol, df.data$quality)
+plot(train.wine$quality, df.data$quality)
 ```
 
 
 ### Box Plots
 ```{r}
-boxplot(df.data$pH)
+boxplot(train.wine$pH)
 ```
 
 
@@ -84,10 +103,10 @@ boxplot(df.data$pH)
 
 ```{r}
 par(mfrow=c(2,2))
-qqplot(df.data$pH,df.data$quality)
-qqplot(df.data$sulphates, df.data$quality)
-qqplot(df.data$alcohol, df.data$quality)
-qqplot(df.data$quality, df.data$quality)
+qqplot(train.wine$pH,train.wine$quality)
+qqplot(train.wine$sulphates, train.wine$quality)
+qqplot(train.wine$alcohol, train.wine$quality)
+qqplot(train.wine$quality, train.wine$quality)
 ```
 
 

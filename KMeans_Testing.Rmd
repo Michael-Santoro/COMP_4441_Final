@@ -87,7 +87,7 @@ ACC.36 <- 100 * sum(test.quality_label == knn.36)/NROW(test.quality_label)
 ACC.36
 
 ```
-As shown above, the accuracy for K = 37 is 57.5 
+As shown above, the accuracy for K = 36 is 58.435
 
 ## Optimization
 
