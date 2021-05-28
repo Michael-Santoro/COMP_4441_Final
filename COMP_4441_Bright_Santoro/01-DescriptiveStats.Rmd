@@ -17,7 +17,7 @@ library("PerformanceAnalytics")
 library(pastecs)
 ```
 
-
+#Descriptive Statistics
 ## The Data
 We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
 This data-set inlcudes the measurements from the wine along with its quality rating.
