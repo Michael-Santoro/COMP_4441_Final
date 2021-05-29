@@ -10,36 +10,103 @@ library("Hmisc")
 library(corrplot)
 library("PerformanceAnalytics")
 library(pastecs)
+library(ggplot2)
+library(class)
+library(caret)
+library(randomForest)
+library(plyr)
 ```
 
 
-## The Data
-We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
-This data-set inlcudes the measurements from the wine along with its quality rating.
+## Dataset
+
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository (see References). The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
+
+
+**Read in Data**
 
 ```{r}
-df<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+redWine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
                 sep=",",header = TRUE)
-head(df)
+whiteWine<-read.table("data/winequality-white.csv",stringsAsFactors = FALSE,
+                sep=";",header = TRUE)
+
+redWine$type='red'
+whiteWine$type='white'
+
+# create a field that shows whether a wine is red or white based on initial 
+# datasets
+wine <- rbind(redWine, whiteWine)
+
+str(wine)
 ```
 
 
+## Exploratory Analysis
 
-## Data Exploration and Descr Statistics
+### Descriptive Statistics
+
+In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)
+
+The table below shows descriptive statistic measurements for each of the variables in our dataset. 
+
+```{r}
+
+stat.desc(wine)
+```
+
+***Univariate Exploration***
+We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
+
+The variables for the three plots below were selected judgmentally from the dataset. 
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(alcohol))
+
+p<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(volatile.acidity))
+
+p<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
 
 
 ```{r}
 
-stat.desc(df)
+mu <- ddply(wine, "type", summarise, grp.mean=mean(density))
+
+p<-ggplot(wine, aes(x=density, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
 ```
 
-## Univariate Exploration
+***Bivariate Exploration***
+Bivariate exploration allows us to explore the relationship between two descriptive statistics in a dataset. 
 
-## Bivariate Exploration
-
-## Multivariate Exploration
-Correlations between the variables
-
+To better determine which variable relationships we should explore, we ran correlation analysis.  
 
 ```{r}
 # ++++++++++++++++++++++++++++
@@ -57,14 +124,14 @@ flattenCorrMatrix <- function(cormat, pmat) {
     )
 }
 
-
-res2 <- rcorr(as.matrix(df))
+# exclude the type of wine from the correlation variables 
+res2 <- rcorr(as.matrix(wine[,1:12]))
 cor.m <- flattenCorrMatrix(res2$r, res2$P)
 cor.m[order(cor.m[,3],decreasing=TRUE),]
 
 ```
 
-### Visualize Correlations
+***Visualize Correlations***
 
 ```{r}
 
@@ -73,32 +140,26 @@ corrplot(res2$r, type="upper", order="hclust",
          p.mat = res2$P, sig.level = 0.01, insig = "blank")
 ```
 
-```{r}
-#Visualization of a Correlation Matrix. On top the (absolute) value of the correlation plus the result of the cor.test as stars. On bottom, the bivariate scatterplots, with a fitted line
-chart.Correlation(df, histogram=TRUE, pch=19)
-
-```
-
-
+Based on the correlation matrix and the correlation plots it appears that there is a strong negative correlation between alcohol and density and a strong positive correlation between residual sugar and density.  These are plotted below. 
 
 
 ```{r}
 
-ggplot(df, 
-       aes(x = fixed.acidity, 
-           y = pH, 
-           color = quality)) +
-  geom_point(size = 3, 
-             alpha = .6) +
-  labs(title = "Wine Composition by fixed acidity, citric acid, and quality")
-```
-```{r}
-
-ggplot(df, 
-       aes(x = fixed.acidity, 
+ggplot(wine, 
+       aes(x = alcohol, 
            y = density, 
-           color = quality)) +
+           color = type)) +
   geom_point(size = 3, 
              alpha = .6) +
-  labs(title = "Wine Composition by fixed acidity, density, and quality")
+  labs(title = "Wine Composition by alcohol, density, and type")
+```
+```{r}
+
+ggplot(wine, 
+       aes(x = residual.sugar, 
+           y = density, 
+           color = type)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by residual.sugar, density, and type")
 ```

@@ -4,34 +4,35 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Random Forest | KMeans_Testing</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <title>Chapter 4 Random Forest | COMP 4441 Final Project</title>
+  <meta name="description" content="This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Random Forest | KMeans_Testing" />
+  <meta property="og:title" content="Chapter 4 Random Forest | COMP 4441 Final Project" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Random Forest | KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 4 Random Forest | COMP 4441 Final Project" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright." />
   
 
-<meta name="author" content="Emma Bright" />
+<meta name="author" content="Emma Bright and Michael Santoro" />
 
 
+<meta name="date" content="2021-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="partitition-data-into-training-and-test-data.html"/>
-<link rel="next" href="predicition-and-confusion-matrix-train-data.html"/>
+<link rel="prev" href="data-cleaning-and-partitioning.html"/>
+<link rel="next" href="k-nearest-neighbor.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,78 +137,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">COMP 4441 Final Project - Bright, Santoro</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Index</a></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#the-research-question"><i class="fa fa-check"></i><b>2.1</b> The Research Question</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#statistical-or-analytical-method"><i class="fa fa-check"></i><b>2.2</b> Statistical or Analytical Method</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#variables-in-the-data-that-will-be-used-for-analysis"><i class="fa fa-check"></i><b>2.3</b> Variables in the Data that will be used for Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#dataset"><i class="fa fa-check"></i><b>2.1</b> Dataset</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exploratory-analysis"><i class="fa fa-check"></i><b>2.2</b> Exploratory Analysis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-data"><i class="fa fa-check"></i><b>3.1</b> The Data</a></li>
-<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-exploration-and-descr-statistics"><i class="fa fa-check"></i><b>3.2</b> Data Exploration and Descr Statistics</a></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#univariate-exploration"><i class="fa fa-check"></i><b>3.3</b> Univariate Exploration</a></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#bivariate-exploration"><i class="fa fa-check"></i><b>3.4</b> Bivariate Exploration</a></li>
-<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multivariate-exploration"><i class="fa fa-check"></i><b>3.5</b> Multivariate Exploration</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#visualize-correlations"><i class="fa fa-check"></i><b>3.5.1</b> Visualize Correlations</a></li>
+<li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>4</b> Introduction</a>
+<li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="introduction-1.html"><a href="introduction-1.html#the-research-question-1"><i class="fa fa-check"></i><b>4.1</b> The Research Question</a></li>
-<li class="chapter" data-level="4.2" data-path="introduction-1.html"><a href="introduction-1.html#statistical-or-analytical-method-1"><i class="fa fa-check"></i><b>4.2</b> Statistical or Analytical Method</a></li>
-<li class="chapter" data-level="4.3" data-path="introduction-1.html"><a href="introduction-1.html#variables-in-the-data-that-will-be-used-for-analysis-1"><i class="fa fa-check"></i><b>4.3</b> Variables in the Data that will be used for Analysis</a></li>
+<li class="chapter" data-level="3.1" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html#data-normalization"><i class="fa fa-check"></i><b>3.1</b> Data Normalization</a></li>
+<li class="chapter" data-level="3.2" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html#data-partitioning"><i class="fa fa-check"></i><b>3.2</b> Data Partitioning</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html"><i class="fa fa-check"></i><b>5</b> Descriptive Statistics</a>
+<li class="chapter" data-level="4" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>4</b> Random Forest</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#the-data-1"><i class="fa fa-check"></i><b>5.1</b> The Data</a></li>
-<li class="chapter" data-level="5.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#data-exploration-and-descr-statistics-1"><i class="fa fa-check"></i><b>5.2</b> Data Exploration and Descr Statistics</a></li>
-<li class="chapter" data-level="5.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#univariate-exploration-1"><i class="fa fa-check"></i><b>5.3</b> Univariate Exploration</a></li>
-<li class="chapter" data-level="5.4" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#bivariate-exploration-1"><i class="fa fa-check"></i><b>5.4</b> Bivariate Exploration</a></li>
-<li class="chapter" data-level="5.5" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#multivariate-exploration-1"><i class="fa fa-check"></i><b>5.5</b> Multivariate Exploration</a>
+<li class="chapter" data-level="4.1" data-path="random-forest.html"><a href="random-forest.html#run-random-forest-function"><i class="fa fa-check"></i><b>4.1</b> Run random forest function</a></li>
+<li class="chapter" data-level="4.2" data-path="random-forest.html"><a href="random-forest.html#predicition-and-confusion-matrix---train-data"><i class="fa fa-check"></i><b>4.2</b> Predicition and COnfusion matrix - train data</a></li>
+<li class="chapter" data-level="4.3" data-path="random-forest.html"><a href="random-forest.html#predicition-and-confusion-matrix---test-data"><i class="fa fa-check"></i><b>4.3</b> Predicition and COnfusion matrix - test data</a></li>
+<li class="chapter" data-level="4.4" data-path="random-forest.html"><a href="random-forest.html#error-rate-in-random-forest-model"><i class="fa fa-check"></i><b>4.4</b> Error Rate in Random Forest Model</a></li>
+<li class="chapter" data-level="4.5" data-path="random-forest.html"><a href="random-forest.html#tune-mtry"><i class="fa fa-check"></i><b>4.5</b> Tune mtry</a></li>
+<li class="chapter" data-level="4.6" data-path="random-forest.html"><a href="random-forest.html#random-forest-1"><i class="fa fa-check"></i><b>4.6</b> Random Forest</a></li>
+<li class="chapter" data-level="4.7" data-path="random-forest.html"><a href="random-forest.html#rerun-predicition-and-confusion-matrix---train-data"><i class="fa fa-check"></i><b>4.7</b> Rerun Predicition and Confusion matrix - train data</a></li>
+<li class="chapter" data-level="4.8" data-path="random-forest.html"><a href="random-forest.html#rerun-predicition-and-confusion-matrix---test-data"><i class="fa fa-check"></i><b>4.8</b> Rerun Predicition and COnfusion matrix - test data</a></li>
+<li class="chapter" data-level="4.9" data-path="random-forest.html"><a href="random-forest.html#number-of-nodes-on-the-trees"><i class="fa fa-check"></i><b>4.9</b> Number of Nodes on the trees</a></li>
+<li class="chapter" data-level="4.10" data-path="random-forest.html"><a href="random-forest.html#partial-dependence-plots"><i class="fa fa-check"></i><b>4.10</b> Partial Dependence Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html"><i class="fa fa-check"></i><b>5</b> K-Nearest Neighbor</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#visualize-correlations-1"><i class="fa fa-check"></i><b>5.5.1</b> Visualize Correlations</a></li>
+<li class="chapter" data-level="5.1" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#load-data"><i class="fa fa-check"></i><b>5.2</b> Load Data</a></li>
+<li class="chapter" data-level="5.3" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#clean-and-normalize-the-data."><i class="fa fa-check"></i><b>5.3</b> Clean and Normalize the data.</a></li>
+<li class="chapter" data-level="5.4" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#data-splice"><i class="fa fa-check"></i><b>5.4</b> Data Splice</a></li>
+<li class="chapter" data-level="5.5" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#model-evaluation"><i class="fa fa-check"></i><b>5.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="5.6" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#optimization"><i class="fa fa-check"></i><b>5.6</b> Optimization</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#load-data"><i class="fa fa-check"></i><b>5.6</b> Load Data</a></li>
-<li class="chapter" data-level="5.7" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#process-reference"><i class="fa fa-check"></i><b>5.7</b> Process Reference</a></li>
-<li class="chapter" data-level="5.8" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#data-partitioning"><i class="fa fa-check"></i><b>5.8</b> Data Partitioning</a></li>
-<li class="chapter" data-level="5.9" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#scaling-the-numeric-features"><i class="fa fa-check"></i><b>5.9</b> Scaling the Numeric Features</a></li>
-<li class="chapter" data-level="5.10" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#linear-regression"><i class="fa fa-check"></i><b>5.10</b> Linear Regression</a>
+<li class="chapter" data-level="6" data-path="lasso-regression.html"><a href="lasso-regression.html"><i class="fa fa-check"></i><b>6</b> Lasso Regression</a>
 <ul>
-<li class="chapter" data-level="5.10.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#what-is-it"><i class="fa fa-check"></i><b>5.10.1</b> What is it?</a></li>
-<li class="chapter" data-level="5.10.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#single-variable"><i class="fa fa-check"></i><b>5.10.2</b> Single Variable</a></li>
-<li class="chapter" data-level="5.10.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#multiple-variables"><i class="fa fa-check"></i><b>5.10.3</b> Multiple Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="5.11" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#regularization"><i class="fa fa-check"></i><b>5.11</b> Regularization</a></li>
-<li class="chapter" data-level="5.12" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#ridge-regression"><i class="fa fa-check"></i><b>5.12</b> Ridge Regression</a></li>
-<li class="chapter" data-level="5.13" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#lasso-regression"><i class="fa fa-check"></i><b>5.13</b> Lasso Regression</a>
+<li class="chapter" data-level="6.1" data-path="lasso-regression.html"><a href="lasso-regression.html#load-data-1"><i class="fa fa-check"></i><b>6.1</b> Load Data</a></li>
+<li class="chapter" data-level="6.2" data-path="lasso-regression.html"><a href="lasso-regression.html#process-reference"><i class="fa fa-check"></i><b>6.2</b> Process Reference</a></li>
+<li class="chapter" data-level="6.3" data-path="lasso-regression.html"><a href="lasso-regression.html#data-partitioning-1"><i class="fa fa-check"></i><b>6.3</b> Data Partitioning</a></li>
+<li class="chapter" data-level="6.4" data-path="lasso-regression.html"><a href="lasso-regression.html#scaling-the-numeric-features"><i class="fa fa-check"></i><b>6.4</b> Scaling the Numeric Features</a></li>
+<li class="chapter" data-level="6.5" data-path="lasso-regression.html"><a href="lasso-regression.html#linear-regression"><i class="fa fa-check"></i><b>6.5</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.13.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>5.13.1</b> Features of the ‘glmnet’ Package</a></li>
-<li class="chapter" data-level="5.13.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#elastic-net-regression"><i class="fa fa-check"></i><b>5.13.2</b> Elastic Net Regression</a></li>
+<li class="chapter" data-level="6.5.1" data-path="lasso-regression.html"><a href="lasso-regression.html#what-is-it"><i class="fa fa-check"></i><b>6.5.1</b> What is it?</a></li>
+<li class="chapter" data-level="6.5.2" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.5.2</b> Single Variable</a></li>
+<li class="chapter" data-level="6.5.3" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.5.3</b> Multiple Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="5.14" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#load-data-1"><i class="fa fa-check"></i><b>5.14</b> Load Data</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="partitition-data-into-training-and-test-data.html"><a href="partitition-data-into-training-and-test-data.html"><i class="fa fa-check"></i><b>6</b> Partitition Data into training and test data</a></li>
-<li class="chapter" data-level="7" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>7</b> Random Forest</a></li>
-<li class="chapter" data-level="8" data-path="predicition-and-confusion-matrix-train-data.html"><a href="predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>8</b> Predicition and COnfusion matrix - train data</a></li>
-<li class="chapter" data-level="9" data-path="predicition-and-confusion-matrix-test-data.html"><a href="predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>9</b> Predicition and COnfusion matrix - test data</a></li>
-<li class="chapter" data-level="10" data-path="error-rate-in-random-forest-model.html"><a href="error-rate-in-random-forest-model.html"><i class="fa fa-check"></i><b>10</b> Error Rate in Random Forest Model</a></li>
-<li class="chapter" data-level="11" data-path="tune-mtry.html"><a href="tune-mtry.html"><i class="fa fa-check"></i><b>11</b> Tune mtry</a></li>
-<li class="chapter" data-level="12" data-path="random-forest-1.html"><a href="random-forest-1.html"><i class="fa fa-check"></i><b>12</b> Random Forest</a></li>
-<li class="chapter" data-level="13" data-path="rerun-predicition-and-confusion-matrix-train-data.html"><a href="rerun-predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>13</b> Rerun Predicition and Confusion matrix - train data</a></li>
-<li class="chapter" data-level="14" data-path="rerun-predicition-and-confusion-matrix-test-data.html"><a href="rerun-predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>14</b> Rerun Predicition and COnfusion matrix - test data</a></li>
-<li class="chapter" data-level="15" data-path="number-of-nodes-on-the-trees.html"><a href="number-of-nodes-on-the-trees.html"><i class="fa fa-check"></i><b>15</b> Number of Nodes on the trees</a></li>
-<li class="chapter" data-level="16" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html"><i class="fa fa-check"></i><b>16</b> Partial Dependence Plots</a>
+<li class="chapter" data-level="6.6" data-path="lasso-regression.html"><a href="lasso-regression.html#regularization"><i class="fa fa-check"></i><b>6.6</b> Regularization</a></li>
+<li class="chapter" data-level="6.7" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.7</b> Ridge Regression</a></li>
+<li class="chapter" data-level="6.8" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.8</b> Lasso Regression</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#introduction-2"><i class="fa fa-check"></i><b>16.1</b> Introduction</a></li>
-<li class="chapter" data-level="16.2" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load Data</a></li>
-<li class="chapter" data-level="16.3" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#clean-and-normalize-the-data."><i class="fa fa-check"></i><b>16.3</b> Clean and Normalize the data.</a></li>
-<li class="chapter" data-level="16.4" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#data-splice"><i class="fa fa-check"></i><b>16.4</b> Data Splice</a></li>
-<li class="chapter" data-level="16.5" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#model-evaluation"><i class="fa fa-check"></i><b>16.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="16.6" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#optimization"><i class="fa fa-check"></i><b>16.6</b> Optimization</a></li>
+<li class="chapter" data-level="6.8.1" data-path="lasso-regression.html"><a href="lasso-regression.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>6.8.1</b> Features of the ‘glmnet’ Package</a></li>
+<li class="chapter" data-level="6.8.2" data-path="lasso-regression.html"><a href="lasso-regression.html#elastic-net-regression"><i class="fa fa-check"></i><b>6.8.2</b> Elastic Net Regression</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -220,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">KMeans_Testing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COMP 4441 Final Project</a>
           </h1>
         </div>
 
@@ -228,13 +214,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="random-forest" class="section level1" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Random Forest</h1>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="random-forest.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
-<span id="cb61-2"><a href="random-forest.html#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="random-forest.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
-<span id="cb61-4"><a href="random-forest.html#cb61-4" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>train)</span>
-<span id="cb61-5"><a href="random-forest.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
+<div id="random-forest" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Random Forest</h1>
+<div id="run-random-forest-function" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Run random forest function</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="random-forest.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb19-2"><a href="random-forest.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="random-forest.html#cb19-3" aria-hidden="true" tabindex="-1"></a>train<span class="sc">$</span>quality<span class="ot">&lt;-</span><span class="fu">as.factor</span>(train<span class="sc">$</span>quality) </span>
+<span id="cb19-4"><a href="random-forest.html#cb19-4" aria-hidden="true" tabindex="-1"></a>test<span class="sc">$</span>quality<span class="ot">&lt;-</span><span class="fu">as.factor</span>(test<span class="sc">$</span>quality) </span>
+<span id="cb19-5"><a href="random-forest.html#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="random-forest.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
+<span id="cb19-7"><a href="random-forest.html#cb19-7" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>train)</span>
+<span id="cb19-8"><a href="random-forest.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ##  randomForest(formula = quality ~ ., data = train) 
@@ -242,24 +233,301 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 3
 ## 
-##         OOB estimate of  error rate: 33.27%
+##         OOB estimate of  error rate: 32.91%
 ## Confusion matrix:
-##   3 4   5   6  7 8 class.error
-## 3 0 0   5   2  0 0   1.0000000
-## 4 0 0  24  13  0 0   1.0000000
-## 5 0 0 386  95  1 0   0.1991701
-## 6 0 1 114 296 31 0   0.3303167
-## 7 0 0   7  72 70 0   0.5302013
-## 8 0 0   0   7  3 0   1.0000000</code></pre>
-<p>THe reults show that the out of bag error rate is 33.27%. The model was most inaccurate when predicting wines with a quality values of 3, 4, and 8 with a 100% error rate. It was most accurate when predicting wines with a quality of 5, 19% error rate.</p>
+##   3  4    5    6   7  8 9 class.error
+## 3 0  0   11    8   0  0 0   1.0000000
+## 4 0 24   82   43   2  0 0   0.8410596
+## 5 0  4 1086  421   7  0 0   0.2845850
+## 6 0  1  335 1526 112  1 0   0.2273418
+## 7 0  0   21  354 379  6 0   0.5013158
+## 8 0  0    3   52  34 47 0   0.6544118
+## 9 0  0    0    1   4  0 0   1.0000000</code></pre>
+<p>The reults show that the out of bag error rate is 33.27%. The model was most inaccurate when predicting wines with a quality values of 3, 4, and 8 with a 100% error rate. It was most accurate when predicting wines with a quality of 5, 19% error rate.</p>
+</div>
+<div id="predicition-and-confusion-matrix---train-data" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Predicition and COnfusion matrix - train data</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="random-forest.html#cb21-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, train)</span>
+<span id="cb21-2"><a href="random-forest.html#cb21-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co">#drop any unused levels</span></span>
+<span id="cb21-3"><a href="random-forest.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
+<pre><code>##  1  3  6  7  9 10 
+##  5  5  5  5  7  5 
+## Levels: 3 4 5 6 7 8 9</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="random-forest.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<pre><code>## [1] 5 5 5 5 7 5
+## Levels: 3 4 5 6 7 8 9</code></pre>
+<p>Coincidentally, all of the first 6 predictions were 100% accurate.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="random-forest.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;caret&#39;, dependencies = TRUE)</span></span>
+<span id="cb25-2"><a href="random-forest.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="random-forest.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, train<span class="sc">$</span>quality )</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    3    4    5    6    7    8    9
+##          3   19    0    0    0    0    0    0
+##          4    0  151    0    0    0    0    0
+##          5    0    0 1518    0    0    0    0
+##          6    0    0    0 1975    0    0    0
+##          7    0    0    0    0  760    0    0
+##          8    0    0    0    0    0  136    0
+##          9    0    0    0    0    0    0    5
+## 
+## Overall Statistics
+##                                      
+##                Accuracy : 1          
+##                  95% CI : (0.9992, 1)
+##     No Information Rate : 0.4327     
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
+##                                      
+##                   Kappa : 1          
+##                                      
+##  Mcnemar&#39;s Test P-Value : NA         
+## 
+## Statistics by Class:
+## 
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
+<p>There were no misclassifications of our training data, our model was 100% accurate. THe reason for the large discrepancy between accuracy markers for the OOB and the confusion matrix is that the confusion matrix for p1 is base on the training data random forest model…so it has already “seen” the training data data points.</p>
+</div>
+<div id="predicition-and-confusion-matrix---test-data" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Predicition and COnfusion matrix - test data</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="random-forest.html#cb27-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, test)</span>
+<span id="cb27-2"><a href="random-forest.html#cb27-2" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">&lt;-</span><span class="fu">droplevels</span>(p2) <span class="co"># drop unused levels</span></span>
+<span id="cb27-3"><a href="random-forest.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
+<pre><code>##  2  4  5  8 11 16 
+##  5  5  5  5  5  5 
+## Levels: 3 4 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="random-forest.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<pre><code>## [1] 5 6 5 7 5 5
+## Levels: 3 4 5 6 7 8</code></pre>
+<p>This model was able to predict 4 out of 6 of the first values accurately.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="random-forest.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, test<span class="sc">$</span>quality )</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   3   4   5   6   7   8
+##          3   0   1   0   0   0   0
+##          4   0   8   1   1   0   0
+##          5   3  31 448 136   9   0
+##          6   7  24 169 680 128  24
+##          7   1   1   2  44 178  15
+##          8   0   0   0   0   4  18
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.6891          
+##                  95% CI : (0.6679, 0.7097)
+##     No Information Rate : 0.4454          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.512           
+##                                           
+##  Mcnemar&#39;s Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                       Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          0.0000000 0.123077   0.7226   0.7898  0.55799 0.315789
+## Specificity          0.9994797 0.998929   0.8637   0.6716  0.96097 0.997868
+## Pos Pred Value       0.0000000 0.800000   0.7145   0.6589  0.73859 0.818182
+## Neg Pred Value       0.9943064 0.970359   0.8683   0.7991  0.91667 0.979592
+## Prevalence           0.0056906 0.033626   0.3207   0.4454  0.16503 0.029488
+## Detection Rate       0.0000000 0.004139   0.2318   0.3518  0.09208 0.009312
+## Detection Prevalence 0.0005173 0.005173   0.3244   0.5339  0.12468 0.011381
+## Balanced Accuracy    0.4997399 0.561003   0.7931   0.7307  0.75948 0.656829</code></pre>
+</div>
+<div id="error-rate-in-random-forest-model" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Error Rate in Random Forest Model</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="random-forest.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rf)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+THe model has a drop off after about 300 trees and then is more or less constant, therefore, we can adjust tune our model.</p>
+</div>
+<div id="tune-mtry" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Tune mtry</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="random-forest.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2222</span>)</span>
+<span id="cb34-2"><a href="random-forest.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="random-forest.html#cb34-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">tuneRF</span>(train[,<span class="sc">-</span><span class="dv">12</span>], train[,<span class="dv">12</span>], </span>
+<span id="cb34-4"><a href="random-forest.html#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">stepFactor =</span> <span class="fl">0.5</span>, </span>
+<span id="cb34-5"><a href="random-forest.html#cb34-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot=</span><span class="cn">TRUE</span>,</span>
+<span id="cb34-6"><a href="random-forest.html#cb34-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ntreeTry =</span> <span class="dv">100</span>,</span>
+<span id="cb34-7"><a href="random-forest.html#cb34-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">trace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb34-8"><a href="random-forest.html#cb34-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">improve=</span><span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## mtry = 3  OOB error = 33.26% 
+## Searching left ...
+## mtry = 6     OOB error = 34.36% 
+## -0.03293808 0.05 
+## Searching right ...
+## mtry = 1     OOB error = 33.46% 
+## -0.005928854 0.05</code></pre>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+So this means that the model hits its lowest error rate when mtry=3, so we can then go back and adjust our model to reflect this new mtry value.</p>
+</div>
+<div id="random-forest-1" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Random Forest</h2>
+<p>Rerun random forest with new tuning factors</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="random-forest.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb36-2"><a href="random-forest.html#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="random-forest.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
+<span id="cb36-4"><a href="random-forest.html#cb36-4" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>train,</span>
+<span id="cb36-5"><a href="random-forest.html#cb36-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ntree=</span><span class="dv">300</span>,</span>
+<span id="cb36-6"><a href="random-forest.html#cb36-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">mTry=</span><span class="dv">3</span>, </span>
+<span id="cb36-7"><a href="random-forest.html#cb36-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">importance=</span><span class="cn">TRUE</span>,</span>
+<span id="cb36-8"><a href="random-forest.html#cb36-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">proximity=</span><span class="cn">TRUE</span>)</span>
+<span id="cb36-9"><a href="random-forest.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = quality ~ ., data = train, ntree = 300,      mTry = 3, importance = TRUE, proximity = TRUE) 
+##                Type of random forest: classification
+##                      Number of trees: 300
+## No. of variables tried at each split: 3
+## 
+##         OOB estimate of  error rate: 32.23%
+## Confusion matrix:
+##   3  4    5    6   7  8 9 class.error
+## 3 0  1   10    8   0  0 0   1.0000000
+## 4 0 21   85   45   0  0 0   0.8609272
+## 5 0  5 1100  407   6  0 0   0.2753623
+## 6 0  1  321 1537 115  1 0   0.2217722
+## 7 0  0   22  343 388  7 0   0.4894737
+## 8 0  0    4   55  30 47 0   0.6544118
+## 9 0  0    0    1   4  0 0   1.0000000</code></pre>
+<p>Our original OOB estimate of error rate was 33.27% and now it is 32.65%, so it was improved by about 0.5%.</p>
+</div>
+<div id="rerun-predicition-and-confusion-matrix---train-data" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Rerun Predicition and Confusion matrix - train data</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="random-forest.html#cb38-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, train)</span>
+<span id="cb38-2"><a href="random-forest.html#cb38-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co"># drop any unused levels</span></span>
+<span id="cb38-3"><a href="random-forest.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
+<pre><code>##  1  3  6  7  9 10 
+##  5  5  5  5  7  5 
+## Levels: 3 4 5 6 7 8 9</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="random-forest.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<pre><code>## [1] 5 5 5 5 7 5
+## Levels: 3 4 5 6 7 8 9</code></pre>
+<p>Coincidentally, all of the first 6 predictions were 100% accurate.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="random-forest.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, train<span class="sc">$</span>quality )</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    3    4    5    6    7    8    9
+##          3   19    0    0    0    0    0    0
+##          4    0  151    0    0    0    0    0
+##          5    0    0 1518    0    0    0    0
+##          6    0    0    0 1975    0    0    0
+##          7    0    0    0    0  760    0    0
+##          8    0    0    0    0    0  136    0
+##          9    0    0    0    0    0    0    5
+## 
+## Overall Statistics
+##                                      
+##                Accuracy : 1          
+##                  95% CI : (0.9992, 1)
+##     No Information Rate : 0.4327     
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
+##                                      
+##                   Kappa : 1          
+##                                      
+##  Mcnemar&#39;s Test P-Value : NA         
+## 
+## Statistics by Class:
+## 
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
+<p>Again the accuracy is 100% but this is due to the training data already being seen by the model.</p>
+</div>
+<div id="rerun-predicition-and-confusion-matrix---test-data" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Rerun Predicition and COnfusion matrix - test data</h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="random-forest.html#cb44-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, test)</span>
+<span id="cb44-2"><a href="random-forest.html#cb44-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p2) <span class="co"># drop any unuused levels </span></span>
+<span id="cb44-3"><a href="random-forest.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
+<pre><code>##  2  4  5  8 11 16 
+##  5  5  5  5  5  5 
+## Levels: 3 4 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="random-forest.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<pre><code>## [1] 5 6 5 7 5 5
+## Levels: 3 4 5 6 7 8</code></pre>
+<p>This model was able to predict 4 out of 6 of the first values accurately.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="random-forest.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, test<span class="sc">$</span>quality )</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   3   4   5   6   7   8
+##          3   0   1   0   0   0   0
+##          4   0   8   1   2   0   0
+##          5   3  32 447 139  10   0
+##          6   7  23 170 675 130  25
+##          7   1   1   2  45 175  14
+##          8   0   0   0   0   4  18
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.6844          
+##                  95% CI : (0.6632, 0.7051)
+##     No Information Rate : 0.4454          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.5047          
+##                                           
+##  Mcnemar&#39;s Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                       Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          0.0000000 0.123077   0.7210   0.7840  0.54859 0.315789
+## Specificity          0.9994797 0.998394   0.8599   0.6688  0.96097 0.997868
+## Pos Pred Value       0.0000000 0.727273   0.7084   0.6553  0.73529 0.818182
+## Neg Pred Value       0.9943064 0.970343   0.8671   0.7940  0.91504 0.979592
+## Prevalence           0.0056906 0.033626   0.3207   0.4454  0.16503 0.029488
+## Detection Rate       0.0000000 0.004139   0.2312   0.3492  0.09053 0.009312
+## Detection Prevalence 0.0005173 0.005691   0.3264   0.5329  0.12312 0.011381
+## Balanced Accuracy    0.4997399 0.560735   0.7904   0.7264  0.75478 0.656829</code></pre>
+<p>Overall, there was only a 0.5% increase in accuracy for the test data. However, there were improvements in sensitify for Class 5 and Class 7.</p>
+</div>
+<div id="number-of-nodes-on-the-trees" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Number of Nodes on the trees</h2>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="random-forest.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">treesize</span>(rf),</span>
+<span id="cb50-2"><a href="random-forest.html#cb50-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;No. of nodes for the trees&quot;</span>, </span>
+<span id="cb50-3"><a href="random-forest.html#cb50-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+## Variable Importance</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="random-forest.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf, </span>
+<span id="cb51-2"><a href="random-forest.html#cb51-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 30% mean decrease in accuracy. On the opposite end of the spectrum the pH has almost no affect in the model’s accuracy.</p>
+</div>
+<div id="partial-dependence-plots" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Partial Dependence Plots</h2>
+<p>Produces partial plot for alcohol in training set data/rf model for classication 5 aka quality =5.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="random-forest.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">partialPlot</span>(rf, train, alcohol, <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>This plot tells u that when alcohol is less than 11% it predicts classification 5 more strongly than when it is greater than 11%.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="random-forest.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">partialPlot</span>(rf, train, alcohol, <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>This plot tells us that when alcohol is greater than 10% it predicts classification 7 more strongly than when it is less than 10%.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="partitition-data-into-training-and-test-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="predicition-and-confusion-matrix-train-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-cleaning-and-partitioning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="k-nearest-neighbor.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +570,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["COMP 4441 Final Project Bright Santoro.pdf", "COMP 4441 Final Project Bright Santoro.epub"],
+"download": ["Final Project - Bright Santoro.pdf", "Final Project - Bright Santoro.epub"],
 "toc": {
 "collapse": "subsection"
 }

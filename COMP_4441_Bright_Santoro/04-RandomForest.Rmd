@@ -1,60 +1,27 @@
----
-title: "RandomForest_EB"
-author: "Emma Bright"
-date: "5/27/2021"
-output: word_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(randomForest)
-library(caret)
-```
-
-
-## Load Data
-We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
-This data-set inlcudes the measurements from the wine along with its quality rating.
-
-```{r}
-wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
-                sep=",",header = TRUE)
-
-wine$quality<-as.factor(wine$quality) 
-```
-
-
-# Partitition Data into training and test data 
-
-```{r}
-
-set.seed(123)
-ind <- sample(2, nrow(wine), replace=TRUE, prob=c(0.7, 0.3))
-
-train <- wine[ind==1, ]
-test <- wine[ind==2,]
-
-```
-
-
 # Random Forest 
 
+
+## Run random forest function
 ```{r}
 set.seed(444)
+
+train$quality<-as.factor(train$quality) 
+test$quality<-as.factor(test$quality) 
 
 # quality is a function of all other variables 
 rf <- randomForest(quality~., data=train)
 print(rf)
 
 ```
-THe reults show that the out of bag error rate is 33.27%.  The model was most inaccurate when predicting wines with a quality values of 3, 4, and 8 with a 100% error rate. It was most accurate when predicting wines with a quality of 5, 19% error rate. 
+The reults show that the out of bag error rate is 33.27%.  The model was most inaccurate when predicting wines with a quality values of 3, 4, and 8 with a 100% error rate. It was most accurate when predicting wines with a quality of 5, 19% error rate. 
 
 
 
-# Predicition and COnfusion matrix - train data
+## Predicition and COnfusion matrix - train data
 ```{r}
 
 p1 <- predict(rf, train)
+p1<- droplevels(p1) #drop any unused levels
 head(p1) # predicted values
 head(train$quality) # actual values
 ```
@@ -68,10 +35,11 @@ confusionMatrix(p1, train$quality )
 ```
 There were no misclassifications of our training data, our model was 100% accurate. THe reason for the large discrepancy between accuracy markers for the OOB and the confusion matrix is that the confusion matrix for p1 is base on the training data random forest model...so it has already "seen" the training data data points. 
 
-# Predicition and COnfusion matrix - test data
+## Predicition and COnfusion matrix - test data
 ```{r}
 
 p2 <- predict(rf, test)
+p2<-droplevels(p2) # drop unused levels
 head(p2) # predicted values
 head(test$quality) # actual values
 ```
@@ -83,16 +51,18 @@ confusionMatrix(p2, test$quality )
 ```
 
 
-# Error Rate in Random Forest Model 
+## Error Rate in Random Forest Model 
 
 ```{r}
 plot(rf)
 ```
-THe model has a drop off after about 200 trees and then is more or less constant, therefore, we can adjust tune our model. 
+THe model has a drop off after about 300 trees and then is more or less constant, therefore, we can adjust tune our model. 
 
-# Tune mtry
+## Tune mtry
 
 ```{r}
+
+set.seed(2222)
 
 t <- tuneRF(train[,-12], train[,12], 
        stepFactor = 0.5, 
@@ -105,14 +75,16 @@ t <- tuneRF(train[,-12], train[,12],
 So this means that the model hits its lowest error rate when mtry=3, so we can then go back and adjust our model to reflect this new mtry value. 
 
 
-# Random Forest 
+## Random Forest
+
+Rerun random forest with new tuning factors 
 
 ```{r}
 set.seed(444)
 
 # quality is a function of all other variables 
 rf <- randomForest(quality~., data=train,
-                   ntree=200,
+                   ntree=300,
                    mTry=3, 
                    importance=TRUE,
                    proximity=TRUE)
@@ -122,10 +94,11 @@ print(rf)
 Our original OOB estimate of error rate was 33.27% and now it is 32.65%, so it was improved by about 0.5%.
 
 
-# Rerun Predicition and Confusion matrix - train data
+## Rerun Predicition and Confusion matrix - train data
 ```{r}
 
 p1 <- predict(rf, train)
+p1<- droplevels(p1) # drop any unused levels
 head(p1) # predicted values
 head(train$quality) # actual values
 ```
@@ -140,10 +113,11 @@ confusionMatrix(p1, train$quality )
 Again the accuracy is 100% but this is due to the training data already being seen by the model. 
 
 
-# Rerun Predicition and COnfusion matrix - test data
+## Rerun Predicition and COnfusion matrix - test data
 ```{r}
 
 p2 <- predict(rf, test)
+p2 <- droplevels(p2) # drop any unuused levels 
 head(p2) # predicted values
 head(test$quality) # actual values
 ```
@@ -155,7 +129,7 @@ confusionMatrix(p2, test$quality )
 ```
 Overall, there was only a 0.5% increase in accuracy for the test data. However, there were improvements in sensitify for Class 5 and Class 7. 
 
-# Number of Nodes on the trees
+## Number of Nodes on the trees
 
 ```{r}
 
@@ -164,7 +138,7 @@ hist(treesize(rf),
      col="blue")
 
 ```
-# Variable Importance 
+## Variable Importance 
 
 ```{r}
 varImpPlot(rf, 
@@ -172,7 +146,7 @@ varImpPlot(rf,
 ```
 This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 30% mean decrease in accuracy. On the opposite end of the spectrum the pH has almost no affect in the model's accuracy. 
 
-# Partial Dependence Plots 
+## Partial Dependence Plots 
 
 Produces partial plot for alcohol in training set data/rf model for classication 5 aka quality =5. 
 

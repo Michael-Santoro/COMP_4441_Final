@@ -2,12 +2,24 @@
 
 # Introduction
 
-## The Research Question
-Our final project will explore the relationship between the outcome of two dependent variables of wine, value and quality, and their chemical composition: including measures such as acidity, residual sugar, and alcohol percentage. A predictive model for pricing and quality of wine can provide guidance to small wineries and vineyards, especially those from less established wine regions, so that they can more accurately price their inventory and ensure a better return on investment.   What is the quality of wine based on its quantitative characteristics (Fixed Acidity, Volatile Acidity, Citric Acid, Residual Sugar, Chlorides, Free Sulfur Dioxide, Total Sulfur Dioxide, Density, pH, Sulphates, and Alcohol)?
+**Purpose**
 
-## Statistical or Analytical Method
-LASSO Regression, Random Forests, and K-Nearest
+Wine is an alcoholic beverage made from fermented grape juice. (Puckette) Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma.  Though these tests are subjective, there is overlap between the observation of these characteristics and a wine's physiochemical properties.  For example, a wine's perceived acidity or tartness is based upon the pH of the wine and a wine's perceived sweetness is based upon the residual sugar of the wine.  
 
-## Variables in the Data that will be used for Analysis
-Our analysis will include the following x-variables, output, or outcome variables: Fixed Acidity, Volatile Acidity, Citric Acid, Residual Sugar, Chlorides, Free Sulfur Dioxide, Total Sulfur Dioxide, Density, pH, Sulphates, and Alcohol.
-The dependent, y-variables of our analysis will be: Quality, Price (Value).
+The goal of our research is to determine:
+
+Can we predict the subjective quality rating of wine based solely on its physiochemical properties?
+
+An accurate predictive model for determining an objective quality of wine would enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.   
+
+**Statistical or Analytical Method**
+
+We will be using the the following statistical methods to create predictive models for quality of wine:
+
+- LASSO Regression, 
+- Random Forest, and 
+- K-Nearest Neighbor.
+
+
+
+  

@@ -1,8 +1,8 @@
-book_filename: "COMP 4441 Final Project Bright Santoro"
+book_filename: "Final Project - Bright Santoro"
 language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
 rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-DescriptiveStats.Rmd", 
-"03-LassoRegression.Rmd", "04-RandomForest.Rmd", "05-KMeans_Testing.Rmd"]
+"03-DataCleaning.Rmd", "04-RandomForest.Rmd", "05-KMeans_Testing.Rmd", "03-LassoRegression.Rmd","07-References.Rmd"]
 

@@ -1,0 +1,38 @@
+# Data Cleaning and Partitioning
+
+## Data Normalization
+Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
+```{r}
+set.seed(123)
+
+# do not include wine type in partitioned data.
+wine <-wine[,1:12]
+#Normalization
+normalize <- function(x) {
+return ((x - min(x)) / (max(x) - min(x))) }
+
+#only normalize variables
+wine.normal <- as.data.frame(lapply(wine[,1:11], normalize))
+
+# add quality back 
+wine.normal$quality = wine$quality
+
+head(wine.normal)
+
+```
+
+
+## Data Partitioning
+
+In order to determine whether our models are effective we must partition our dataset into a training and test set. 
+
+```{r}
+
+
+ind <- sample(2, nrow(wine.normal), replace=TRUE, prob=c(0.7, 0.3))
+
+train <- wine.normal[ind==1, ]
+test <- wine.normal[ind==2,]
+
+```
+

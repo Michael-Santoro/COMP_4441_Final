@@ -1,0 +1,8 @@
+# References
+
+P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
+Modeling wine preferences by data mining from physiochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
+
+Puckette, Madeline. “What Is Wine Exactly?” Wine Folly, 5 Oct. 2015, winefolly.com/deep-dive/what-is-wine.
+
+“Descriptive Statistics.” Wikipedia, en.wikipedia.org/wiki/Descriptive_statistics. Accessed 29 May 2021.

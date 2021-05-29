@@ -1,20 +1,4 @@
----
-title: "KMeans_Testing"
-author: "Emma Bright"
-date: "5/14/2021"
-output: word_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(ggplot2)
-library(knitr)
-library(ggpubr)
-library(boot)
-library(class)
-library(caret)
-```
+# K-Nearest Neighbor
 
 ## Introduction
 Just planning to use this file to walk through some tutorials of k-means clustering I found. 

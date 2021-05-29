@@ -4,26 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Rerun Predicition and Confusion matrix - train data | KMeans_Testing</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <title>Chapter 10 Rerun Predicition and Confusion matrix - train data | COMP 4441 Final Project</title>
+  <meta name="description" content="This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Rerun Predicition and Confusion matrix - train data | KMeans_Testing" />
+  <meta property="og:title" content="Chapter 10 Rerun Predicition and Confusion matrix - train data | COMP 4441 Final Project" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Rerun Predicition and Confusion matrix - train data | KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 10 Rerun Predicition and Confusion matrix - train data | COMP 4441 Final Project" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright." />
   
 
-<meta name="author" content="Emma Bright" />
+<meta name="author" content="Emma Bright and Michael Santoro" />
 
 
+<meta name="date" content="2021-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,78 +137,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">COMP 4441 Final Project - Bright, Santoro</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Index</a></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#the-research-question"><i class="fa fa-check"></i><b>2.1</b> The Research Question</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#statistical-or-analytical-method"><i class="fa fa-check"></i><b>2.2</b> Statistical or Analytical Method</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#variables-in-the-data-that-will-be-used-for-analysis"><i class="fa fa-check"></i><b>2.3</b> Variables in the Data that will be used for Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#dataset"><i class="fa fa-check"></i><b>2.1</b> Dataset</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#exploratory-analysis"><i class="fa fa-check"></i><b>2.2</b> Exploratory Analysis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#the-data"><i class="fa fa-check"></i><b>3.1</b> The Data</a></li>
-<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-exploration-and-descr-statistics"><i class="fa fa-check"></i><b>3.2</b> Data Exploration and Descr Statistics</a></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#univariate-exploration"><i class="fa fa-check"></i><b>3.3</b> Univariate Exploration</a></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#bivariate-exploration"><i class="fa fa-check"></i><b>3.4</b> Bivariate Exploration</a></li>
-<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multivariate-exploration"><i class="fa fa-check"></i><b>3.5</b> Multivariate Exploration</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#visualize-correlations"><i class="fa fa-check"></i><b>3.5.1</b> Visualize Correlations</a></li>
+<li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>4</b> Introduction</a>
+<li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="introduction-1.html"><a href="introduction-1.html#the-research-question-1"><i class="fa fa-check"></i><b>4.1</b> The Research Question</a></li>
-<li class="chapter" data-level="4.2" data-path="introduction-1.html"><a href="introduction-1.html#statistical-or-analytical-method-1"><i class="fa fa-check"></i><b>4.2</b> Statistical or Analytical Method</a></li>
-<li class="chapter" data-level="4.3" data-path="introduction-1.html"><a href="introduction-1.html#variables-in-the-data-that-will-be-used-for-analysis-1"><i class="fa fa-check"></i><b>4.3</b> Variables in the Data that will be used for Analysis</a></li>
+<li class="chapter" data-level="3.1" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html#data-normalization"><i class="fa fa-check"></i><b>3.1</b> Data Normalization</a></li>
+<li class="chapter" data-level="3.2" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html#data-partitioning"><i class="fa fa-check"></i><b>3.2</b> Data Partitioning</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html"><i class="fa fa-check"></i><b>5</b> Descriptive Statistics</a>
+<li class="chapter" data-level="4" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>4</b> Random Forest</a></li>
+<li class="chapter" data-level="5" data-path="predicition-and-confusion-matrix-train-data.html"><a href="predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>5</b> Predicition and COnfusion matrix - train data</a></li>
+<li class="chapter" data-level="6" data-path="predicition-and-confusion-matrix-test-data.html"><a href="predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>6</b> Predicition and COnfusion matrix - test data</a></li>
+<li class="chapter" data-level="7" data-path="error-rate-in-random-forest-model.html"><a href="error-rate-in-random-forest-model.html"><i class="fa fa-check"></i><b>7</b> Error Rate in Random Forest Model</a></li>
+<li class="chapter" data-level="8" data-path="tune-mtry.html"><a href="tune-mtry.html"><i class="fa fa-check"></i><b>8</b> Tune mtry</a></li>
+<li class="chapter" data-level="9" data-path="random-forest-1.html"><a href="random-forest-1.html"><i class="fa fa-check"></i><b>9</b> Random Forest</a></li>
+<li class="chapter" data-level="10" data-path="rerun-predicition-and-confusion-matrix-train-data.html"><a href="rerun-predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>10</b> Rerun Predicition and Confusion matrix - train data</a></li>
+<li class="chapter" data-level="11" data-path="rerun-predicition-and-confusion-matrix-test-data.html"><a href="rerun-predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>11</b> Rerun Predicition and COnfusion matrix - test data</a></li>
+<li class="chapter" data-level="12" data-path="number-of-nodes-on-the-trees.html"><a href="number-of-nodes-on-the-trees.html"><i class="fa fa-check"></i><b>12</b> Number of Nodes on the trees</a></li>
+<li class="chapter" data-level="13" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html"><i class="fa fa-check"></i><b>13</b> Partial Dependence Plots</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#the-data-1"><i class="fa fa-check"></i><b>5.1</b> The Data</a></li>
-<li class="chapter" data-level="5.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#data-exploration-and-descr-statistics-1"><i class="fa fa-check"></i><b>5.2</b> Data Exploration and Descr Statistics</a></li>
-<li class="chapter" data-level="5.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#univariate-exploration-1"><i class="fa fa-check"></i><b>5.3</b> Univariate Exploration</a></li>
-<li class="chapter" data-level="5.4" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#bivariate-exploration-1"><i class="fa fa-check"></i><b>5.4</b> Bivariate Exploration</a></li>
-<li class="chapter" data-level="5.5" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#multivariate-exploration-1"><i class="fa fa-check"></i><b>5.5</b> Multivariate Exploration</a>
+<li class="chapter" data-level="13.1" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#introduction-1"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#load-data"><i class="fa fa-check"></i><b>13.2</b> Load Data</a></li>
+<li class="chapter" data-level="13.3" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#clean-and-normalize-the-data."><i class="fa fa-check"></i><b>13.3</b> Clean and Normalize the data.</a></li>
+<li class="chapter" data-level="13.4" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#data-splice"><i class="fa fa-check"></i><b>13.4</b> Data Splice</a></li>
+<li class="chapter" data-level="13.5" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#model-evaluation"><i class="fa fa-check"></i><b>13.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="13.6" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#optimization"><i class="fa fa-check"></i><b>13.6</b> Optimization</a></li>
+<li class="chapter" data-level="13.7" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#load-data-1"><i class="fa fa-check"></i><b>13.7</b> Load Data</a></li>
+<li class="chapter" data-level="13.8" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#process-reference"><i class="fa fa-check"></i><b>13.8</b> Process Reference</a></li>
+<li class="chapter" data-level="13.9" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#data-partitioning-1"><i class="fa fa-check"></i><b>13.9</b> Data Partitioning</a></li>
+<li class="chapter" data-level="13.10" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#scaling-the-numeric-features"><i class="fa fa-check"></i><b>13.10</b> Scaling the Numeric Features</a></li>
+<li class="chapter" data-level="13.11" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#linear-regression"><i class="fa fa-check"></i><b>13.11</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#visualize-correlations-1"><i class="fa fa-check"></i><b>5.5.1</b> Visualize Correlations</a></li>
+<li class="chapter" data-level="13.11.1" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#what-is-it"><i class="fa fa-check"></i><b>13.11.1</b> What is it?</a></li>
+<li class="chapter" data-level="13.11.2" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#single-variable"><i class="fa fa-check"></i><b>13.11.2</b> Single Variable</a></li>
+<li class="chapter" data-level="13.11.3" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#multiple-variables"><i class="fa fa-check"></i><b>13.11.3</b> Multiple Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#load-data"><i class="fa fa-check"></i><b>5.6</b> Load Data</a></li>
-<li class="chapter" data-level="5.7" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#process-reference"><i class="fa fa-check"></i><b>5.7</b> Process Reference</a></li>
-<li class="chapter" data-level="5.8" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#data-partitioning"><i class="fa fa-check"></i><b>5.8</b> Data Partitioning</a></li>
-<li class="chapter" data-level="5.9" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#scaling-the-numeric-features"><i class="fa fa-check"></i><b>5.9</b> Scaling the Numeric Features</a></li>
-<li class="chapter" data-level="5.10" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#linear-regression"><i class="fa fa-check"></i><b>5.10</b> Linear Regression</a>
+<li class="chapter" data-level="13.12" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#regularization"><i class="fa fa-check"></i><b>13.12</b> Regularization</a></li>
+<li class="chapter" data-level="13.13" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#ridge-regression"><i class="fa fa-check"></i><b>13.13</b> Ridge Regression</a></li>
+<li class="chapter" data-level="13.14" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#lasso-regression"><i class="fa fa-check"></i><b>13.14</b> Lasso Regression</a>
 <ul>
-<li class="chapter" data-level="5.10.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#what-is-it"><i class="fa fa-check"></i><b>5.10.1</b> What is it?</a></li>
-<li class="chapter" data-level="5.10.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#single-variable"><i class="fa fa-check"></i><b>5.10.2</b> Single Variable</a></li>
-<li class="chapter" data-level="5.10.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#multiple-variables"><i class="fa fa-check"></i><b>5.10.3</b> Multiple Variables</a></li>
+<li class="chapter" data-level="13.14.1" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>13.14.1</b> Features of the ‘glmnet’ Package</a></li>
+<li class="chapter" data-level="13.14.2" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#elastic-net-regression"><i class="fa fa-check"></i><b>13.14.2</b> Elastic Net Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="5.11" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#regularization"><i class="fa fa-check"></i><b>5.11</b> Regularization</a></li>
-<li class="chapter" data-level="5.12" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#ridge-regression"><i class="fa fa-check"></i><b>5.12</b> Ridge Regression</a></li>
-<li class="chapter" data-level="5.13" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#lasso-regression"><i class="fa fa-check"></i><b>5.13</b> Lasso Regression</a>
-<ul>
-<li class="chapter" data-level="5.13.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>5.13.1</b> Features of the ‘glmnet’ Package</a></li>
-<li class="chapter" data-level="5.13.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#elastic-net-regression"><i class="fa fa-check"></i><b>5.13.2</b> Elastic Net Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="5.14" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#load-data-1"><i class="fa fa-check"></i><b>5.14</b> Load Data</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="partitition-data-into-training-and-test-data.html"><a href="partitition-data-into-training-and-test-data.html"><i class="fa fa-check"></i><b>6</b> Partitition Data into training and test data</a></li>
-<li class="chapter" data-level="7" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>7</b> Random Forest</a></li>
-<li class="chapter" data-level="8" data-path="predicition-and-confusion-matrix-train-data.html"><a href="predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>8</b> Predicition and COnfusion matrix - train data</a></li>
-<li class="chapter" data-level="9" data-path="predicition-and-confusion-matrix-test-data.html"><a href="predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>9</b> Predicition and COnfusion matrix - test data</a></li>
-<li class="chapter" data-level="10" data-path="error-rate-in-random-forest-model.html"><a href="error-rate-in-random-forest-model.html"><i class="fa fa-check"></i><b>10</b> Error Rate in Random Forest Model</a></li>
-<li class="chapter" data-level="11" data-path="tune-mtry.html"><a href="tune-mtry.html"><i class="fa fa-check"></i><b>11</b> Tune mtry</a></li>
-<li class="chapter" data-level="12" data-path="random-forest-1.html"><a href="random-forest-1.html"><i class="fa fa-check"></i><b>12</b> Random Forest</a></li>
-<li class="chapter" data-level="13" data-path="rerun-predicition-and-confusion-matrix-train-data.html"><a href="rerun-predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>13</b> Rerun Predicition and Confusion matrix - train data</a></li>
-<li class="chapter" data-level="14" data-path="rerun-predicition-and-confusion-matrix-test-data.html"><a href="rerun-predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>14</b> Rerun Predicition and COnfusion matrix - test data</a></li>
-<li class="chapter" data-level="15" data-path="number-of-nodes-on-the-trees.html"><a href="number-of-nodes-on-the-trees.html"><i class="fa fa-check"></i><b>15</b> Number of Nodes on the trees</a></li>
-<li class="chapter" data-level="16" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html"><i class="fa fa-check"></i><b>16</b> Partial Dependence Plots</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#introduction-2"><i class="fa fa-check"></i><b>16.1</b> Introduction</a></li>
-<li class="chapter" data-level="16.2" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load Data</a></li>
-<li class="chapter" data-level="16.3" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#clean-and-normalize-the-data."><i class="fa fa-check"></i><b>16.3</b> Clean and Normalize the data.</a></li>
-<li class="chapter" data-level="16.4" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#data-splice"><i class="fa fa-check"></i><b>16.4</b> Data Splice</a></li>
-<li class="chapter" data-level="16.5" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#model-evaluation"><i class="fa fa-check"></i><b>16.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="16.6" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#optimization"><i class="fa fa-check"></i><b>16.6</b> Optimization</a></li>
-</ul></li>
+<li class="chapter" data-level="14" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>14</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -220,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">KMeans_Testing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COMP 4441 Final Project</a>
           </h1>
         </div>
 
@@ -228,34 +207,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rerun-predicition-and-confusion-matrix---train-data" class="section level1" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Rerun Predicition and Confusion matrix - train data</h1>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb80-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, train)</span>
-<span id="cb80-2"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
+<div id="rerun-predicition-and-confusion-matrix---train-data" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Rerun Predicition and Confusion matrix - train data</h1>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb38-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, train)</span>
+<span id="cb38-2"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb38-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co"># drop any unused levels</span></span>
+<span id="cb38-3"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
 <pre><code>##  1  3  6  7  9 10 
 ##  5  5  5  5  7  5 
-## Levels: 3 4 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+## Levels: 3 4 5 6 7 8 9</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
 <pre><code>## [1] 5 5 5 5 7 5
-## Levels: 3 4 5 6 7 8</code></pre>
+## Levels: 3 4 5 6 7 8 9</code></pre>
 <p>Coincidentally, all of the first 6 predictions were 100% accurate.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, train<span class="sc">$</span>quality )</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="rerun-predicition-and-confusion-matrix-train-data.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, train<span class="sc">$</span>quality )</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
-## Prediction   3   4   5   6   7   8
-##          3   7   0   0   0   0   0
-##          4   0  37   0   0   0   0
-##          5   0   0 482   0   0   0
-##          6   0   0   0 442   0   0
-##          7   0   0   0   0 149   0
-##          8   0   0   0   0   0  10
+## Prediction    3    4    5    6    7    8    9
+##          3   19    0    0    0    0    0    0
+##          4    0  151    0    0    0    0    0
+##          5    0    0 1518    0    0    0    0
+##          6    0    0    0 1975    0    0    0
+##          7    0    0    0    0  760    0    0
+##          8    0    0    0    0    0  136    0
+##          9    0    0    0    0    0    0    5
 ## 
 ## Overall Statistics
 ##                                      
 ##                Accuracy : 1          
-##                  95% CI : (0.9967, 1)
-##     No Information Rate : 0.4277     
+##                  95% CI : (0.9992, 1)
+##     No Information Rate : 0.4327     
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
 ##                                      
 ##                   Kappa : 1          
@@ -264,15 +245,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000 1.000000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000 1.000000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000 1.000000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000 1.000000
-## Prevalence           0.006211  0.03283   0.4277   0.3922   0.1322 0.008873
-## Detection Rate       0.006211  0.03283   0.4277   0.3922   0.1322 0.008873
-## Detection Prevalence 0.006211  0.03283   0.4277   0.3922   0.1322 0.008873
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000 1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
 <p>Again the accuracy is 100% but this is due to the training data already being seen by the model.</p>
 </div>
             </section>
@@ -324,7 +305,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["COMP 4441 Final Project Bright Santoro.pdf", "COMP 4441 Final Project Bright Santoro.epub"],
+"download": ["Final Project - Bright Santoro.pdf", "Final Project - Bright Santoro.epub"],
 "toc": {
 "collapse": "subsection"
 }
