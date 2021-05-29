@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>KMeans_Testing</title>
+  <title>Chapter 15 Number of Nodes on the trees | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="KMeans_Testing" />
+  <meta property="og:title" content="Chapter 15 Number of Nodes on the trees | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 15 Number of Nodes on the trees | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="rerun-predicition-and-confusion-matrix-test-data.html"/>
+<link rel="next" href="partial-dependence-plots.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,22 +228,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">KMeans_Testing</h1>
-<p class="author"><em>Emma Bright</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>5/14/2021</em></p>
-</div>
-<div id="index" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Index</h1>
-
+<div id="number-of-nodes-on-the-trees" class="section level1" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Number of Nodes on the trees</h1>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="number-of-nodes-on-the-trees.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">treesize</span>(rf),</span>
+<span id="cb92-2"><a href="number-of-nodes-on-the-trees.html#cb92-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;No. of nodes for the trees&quot;</span>, </span>
+<span id="cb92-3"><a href="number-of-nodes-on-the-trees.html#cb92-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+# Variable Importance</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="number-of-nodes-on-the-trees.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf, </span>
+<span id="cb93-2"><a href="number-of-nodes-on-the-trees.html#cb93-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
+<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-47-1.png" width="672" />
+This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 30% mean decrease in accuracy. On the opposite end of the spectrum the pH has almost no affect in the model’s accuracy.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rerun-predicition-and-confusion-matrix-test-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="partial-dependence-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +278,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-RandomForest.Rmd",
 "text": "Edit"
 },
 "history": {
