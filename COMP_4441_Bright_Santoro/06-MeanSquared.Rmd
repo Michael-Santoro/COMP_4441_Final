@@ -1,24 +1,7 @@
-# Mean Squared Error Evaluation
+# Accuracy Evaluation
 
+For each of the different methods we have calculated the accuracy.
 ```{r}
-#Step 1 - create the evaluation metrics function
-
-eval_metrics = function(model, df, predictions, target){
-    resids = df[,target] - predictions
-    resids2 = resids**2
-    N = length(predictions)
-    r2 = as.character(round(summary(model)$r.squared, 2))
-    adj_r2 = as.character(round(summary(model)$adj.r.squared, 2))
-    output <- as.character(round(sqrt(sum(resids2)/N), 2)) #RMSE
-    sprintf("Adjusted R-squared: %s; Root Mean Squared Error: %s ", adj_r2,output)
-}
-
-# Step 2 - predicting and evaluating the model on train data
-predictions = predict(lr, newdata = train)
-eval_metrics(lr, train, predictions, target = 'quality')
-
-# Step 3 - predicting and evaluating the model on test data
-predictions = predict(lr, newdata = test)
-eval_metrics(lr, test, predictions, target = 'quality')
+# DataFrame will be call accuracy
 ```
 
