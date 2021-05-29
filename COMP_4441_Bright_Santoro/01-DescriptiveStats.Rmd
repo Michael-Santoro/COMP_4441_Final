@@ -1,9 +1,4 @@
----
-title: "Descriptive Statistics"
-author: "Emma Bright"
-date: "5/25/2021"
-output: word_document
----
+# Descriptive Statistics
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -17,7 +12,7 @@ library("PerformanceAnalytics")
 library(pastecs)
 ```
 
-#Descriptive Statistics
+
 ## The Data
 We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
 This data-set inlcudes the measurements from the wine along with its quality rating.
@@ -38,11 +33,11 @@ head(df)
 stat.desc(df)
 ```
 
-# Univariate Exploration
+## Univariate Exploration
 
-# Bivariate Exploration
+## Bivariate Exploration
 
-# Multivariate Exploration
+## Multivariate Exploration
 Correlations between the variables
 
 
@@ -69,7 +64,7 @@ cor.m[order(cor.m[,3],decreasing=TRUE),]
 
 ```
 
-## Visualize Correlations
+### Visualize Correlations
 
 ```{r}
 

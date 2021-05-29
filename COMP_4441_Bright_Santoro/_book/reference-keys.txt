@@ -1,0 +1,8 @@
+index
+descriptive-statistics
+the-data
+data-exploration-and-descr-statistics
+univariate-exploration
+bivariate-exploration
+multivariate-exploration
+visualize-correlations
