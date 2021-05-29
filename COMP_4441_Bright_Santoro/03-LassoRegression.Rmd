@@ -84,11 +84,13 @@ Reviewing the output we find that the inputs: 'volatile.acidity', 'sulphates', a
 
 ## Regularization
 
+Linear regression algorithm works by selecting coefficients for each independent variable that minimizes a loss function. However, if the coefficients are large, they can lead to over-fitting on the training dataset, and such a model will not generalize well on the unseen test data. To overcome this shortcoming, we'll do regularization, which penalizes large coefficients. The following sections of the guide will discuss various regularization algorithms.
 
+We will be using the glmnet() package to build the regularized regression models. The glmnet function does not work with dataframes, so we need to create a numeric matrix for the training features and a vector of target values.
+
+The lines of code below perform the task of creating model matrix using the dummyVars function from the caret package. The predict function is then applied to create numeric model matrices for training and test.
 
 ```{r}
-
-
 dummies <- dummyVars(quality~., data = wine)
 
 train_dummies = predict(dummies, newdata = train)
@@ -99,6 +101,8 @@ print(dim(train_dummies)); print(dim(test_dummies))
 ```
 
 ## Ridge Regression
+
+Ridge regression is an extension of linear regression where the loss function is modified to minimize the complexity of the model. This modification is done by adding a penalty parameter that is equivalent to the square of the magnitude of the coefficients.
 
 ```{r}
 eval_results <- function(true, predicted, df) {
