@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>KMeans_Testing</title>
+  <title>Chapter 9 Predicition and COnfusion matrix - test data | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="KMeans_Testing" />
+  <meta property="og:title" content="Chapter 9 Predicition and COnfusion matrix - test data | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 9 Predicition and COnfusion matrix - test data | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="predicition-and-confusion-matrix-train-data.html"/>
+<link rel="next" href="error-rate-in-random-forest-model.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,22 +228,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">KMeans_Testing</h1>
-<p class="author"><em>Emma Bright</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>5/14/2021</em></p>
-</div>
-<div id="index" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Index</h1>
-
+<div id="predicition-and-confusion-matrix---test-data" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Predicition and COnfusion matrix - test data</h1>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="predicition-and-confusion-matrix-test-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, test)</span>
+<span id="cb69-2"><a href="predicition-and-confusion-matrix-test-data.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
+<pre><code>##  2  4  5  8 11 16 
+##  5  5  5  5  5  5 
+## Levels: 3 4 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="predicition-and-confusion-matrix-test-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<pre><code>## [1] 5 6 5 7 5 5
+## Levels: 3 4 5 6 7 8</code></pre>
+<p>This model was able to predict 4 out of 6 of the first values accurately.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="predicition-and-confusion-matrix-test-data.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, test<span class="sc">$</span>quality )</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   3   4   5   6   7   8
+##          3   0   1   0   0   0   0
+##          4   0   0   0   0   0   0
+##          5   2   8 161  51   3   0
+##          6   1   6  36 132  15   4
+##          7   0   1   2  13  32   3
+##          8   0   0   0   0   0   1
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.6907          
+##                  95% CI : (0.6468, 0.7321)
+##     No Information Rate : 0.4216          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.4985          
+##                                           
+##  Mcnemar&#39;s Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          0.000000   0.0000   0.8090   0.6735   0.6400 0.125000
+## Specificity          0.997868   1.0000   0.7656   0.7754   0.9550 1.000000
+## Pos Pred Value       0.000000      NaN   0.7156   0.6804   0.6275 1.000000
+## Neg Pred Value       0.993631   0.9661   0.8462   0.7698   0.9572 0.985138
+## Prevalence           0.006356   0.0339   0.4216   0.4153   0.1059 0.016949
+## Detection Rate       0.000000   0.0000   0.3411   0.2797   0.0678 0.002119
+## Detection Prevalence 0.002119   0.0000   0.4767   0.4110   0.1081 0.002119
+## Balanced Accuracy    0.498934   0.5000   0.7873   0.7244   0.7975 0.562500</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="predicition-and-confusion-matrix-train-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="error-rate-in-random-forest-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +312,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-RandomForest.Rmd",
 "text": "Edit"
 },
 "history": {

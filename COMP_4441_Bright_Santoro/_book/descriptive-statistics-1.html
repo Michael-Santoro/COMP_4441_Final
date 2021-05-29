@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Descriptive Statistics | 01-Introduction</title>
+  <title>Chapter 5 Descriptive Statistics | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Descriptive Statistics | 01-Introduction" />
+  <meta property="og:title" content="Chapter 5 Descriptive Statistics | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Descriptive Statistics | 01-Introduction" />
+  <meta name="twitter:title" content="Chapter 5 Descriptive Statistics | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
 
-<meta name="author" content="Mike Santoro" />
+<meta name="author" content="Emma Bright" />
 
 
 
@@ -31,8 +31,8 @@
   
   
 <link rel="prev" href="introduction-1.html"/>
-
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<link rel="next" href="partitition-data-into-training-and-test-data.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">COMP 4441 Final Project - Bright, Santoro</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Index</a></li>
@@ -170,6 +170,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#visualize-correlations-1"><i class="fa fa-check"></i><b>5.5.1</b> Visualize Correlations</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#load-data"><i class="fa fa-check"></i><b>5.6</b> Load Data</a></li>
+<li class="chapter" data-level="5.7" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#process-reference"><i class="fa fa-check"></i><b>5.7</b> Process Reference</a></li>
+<li class="chapter" data-level="5.8" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#data-partitioning"><i class="fa fa-check"></i><b>5.8</b> Data Partitioning</a></li>
+<li class="chapter" data-level="5.9" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#scaling-the-numeric-features"><i class="fa fa-check"></i><b>5.9</b> Scaling the Numeric Features</a></li>
+<li class="chapter" data-level="5.10" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#linear-regression"><i class="fa fa-check"></i><b>5.10</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#what-is-it"><i class="fa fa-check"></i><b>5.10.1</b> What is it?</a></li>
+<li class="chapter" data-level="5.10.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#single-variable"><i class="fa fa-check"></i><b>5.10.2</b> Single Variable</a></li>
+<li class="chapter" data-level="5.10.3" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#multiple-variables"><i class="fa fa-check"></i><b>5.10.3</b> Multiple Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#regularization"><i class="fa fa-check"></i><b>5.11</b> Regularization</a></li>
+<li class="chapter" data-level="5.12" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#ridge-regression"><i class="fa fa-check"></i><b>5.12</b> Ridge Regression</a></li>
+<li class="chapter" data-level="5.13" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#lasso-regression"><i class="fa fa-check"></i><b>5.13</b> Lasso Regression</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>5.13.1</b> Features of the ‘glmnet’ Package</a></li>
+<li class="chapter" data-level="5.13.2" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#elastic-net-regression"><i class="fa fa-check"></i><b>5.13.2</b> Elastic Net Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="descriptive-statistics-1.html"><a href="descriptive-statistics-1.html#load-data-1"><i class="fa fa-check"></i><b>5.14</b> Load Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="partitition-data-into-training-and-test-data.html"><a href="partitition-data-into-training-and-test-data.html"><i class="fa fa-check"></i><b>6</b> Partitition Data into training and test data</a></li>
+<li class="chapter" data-level="7" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>7</b> Random Forest</a></li>
+<li class="chapter" data-level="8" data-path="predicition-and-confusion-matrix-train-data.html"><a href="predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>8</b> Predicition and COnfusion matrix - train data</a></li>
+<li class="chapter" data-level="9" data-path="predicition-and-confusion-matrix-test-data.html"><a href="predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>9</b> Predicition and COnfusion matrix - test data</a></li>
+<li class="chapter" data-level="10" data-path="error-rate-in-random-forest-model.html"><a href="error-rate-in-random-forest-model.html"><i class="fa fa-check"></i><b>10</b> Error Rate in Random Forest Model</a></li>
+<li class="chapter" data-level="11" data-path="tune-mtry.html"><a href="tune-mtry.html"><i class="fa fa-check"></i><b>11</b> Tune mtry</a></li>
+<li class="chapter" data-level="12" data-path="random-forest-1.html"><a href="random-forest-1.html"><i class="fa fa-check"></i><b>12</b> Random Forest</a></li>
+<li class="chapter" data-level="13" data-path="rerun-predicition-and-confusion-matrix-train-data.html"><a href="rerun-predicition-and-confusion-matrix-train-data.html"><i class="fa fa-check"></i><b>13</b> Rerun Predicition and Confusion matrix - train data</a></li>
+<li class="chapter" data-level="14" data-path="rerun-predicition-and-confusion-matrix-test-data.html"><a href="rerun-predicition-and-confusion-matrix-test-data.html"><i class="fa fa-check"></i><b>14</b> Rerun Predicition and COnfusion matrix - test data</a></li>
+<li class="chapter" data-level="15" data-path="number-of-nodes-on-the-trees.html"><a href="number-of-nodes-on-the-trees.html"><i class="fa fa-check"></i><b>15</b> Number of Nodes on the trees</a></li>
+<li class="chapter" data-level="16" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html"><i class="fa fa-check"></i><b>16</b> Partial Dependence Plots</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#introduction-2"><i class="fa fa-check"></i><b>16.1</b> Introduction</a></li>
+<li class="chapter" data-level="16.2" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#load-data-2"><i class="fa fa-check"></i><b>16.2</b> Load Data</a></li>
+<li class="chapter" data-level="16.3" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#clean-and-normalize-the-data."><i class="fa fa-check"></i><b>16.3</b> Clean and Normalize the data.</a></li>
+<li class="chapter" data-level="16.4" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#data-splice"><i class="fa fa-check"></i><b>16.4</b> Data Splice</a></li>
+<li class="chapter" data-level="16.5" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#model-evaluation"><i class="fa fa-check"></i><b>16.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="16.6" data-path="partial-dependence-plots.html"><a href="partial-dependence-plots.html#optimization"><i class="fa fa-check"></i><b>16.6</b> Optimization</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -183,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">01-Introduction</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">KMeans_Testing</a>
           </h1>
         </div>
 
@@ -200,69 +237,54 @@ This data-set inlcudes the measurements from the wine along with its quality rat
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics-1.html#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/winequality-red.csv&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb11-2"><a href="descriptive-statistics-1.html#cb11-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb11-3"><a href="descriptive-statistics-1.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>##   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
-## 1           7.4             0.70        0.00            1.9     0.076
-## 2           7.8             0.88        0.00            2.6     0.098
-## 3           7.8             0.76        0.04            2.3     0.092
-## 4          11.2             0.28        0.56            1.9     0.075
-## 5           7.4             0.70        0.00            1.9     0.076
-## 6           7.4             0.66        0.00            1.8     0.075
-##   free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates alcohol quality
-## 1                  11                   34  0.9978 3.51      0.56     9.4       5
-## 2                  25                   67  0.9968 3.20      0.68     9.8       5
-## 3                  15                   54  0.9970 3.26      0.65     9.8       5
-## 4                  17                   60  0.9980 3.16      0.58     9.8       6
-## 5                  11                   34  0.9978 3.51      0.56     9.4       5
-## 6                  13                   40  0.9978 3.51      0.56     9.4       5</code></pre>
+<pre><code>##   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates alcohol
+## 1           7.4             0.70        0.00            1.9     0.076                  11                   34  0.9978 3.51      0.56     9.4
+## 2           7.8             0.88        0.00            2.6     0.098                  25                   67  0.9968 3.20      0.68     9.8
+## 3           7.8             0.76        0.04            2.3     0.092                  15                   54  0.9970 3.26      0.65     9.8
+## 4          11.2             0.28        0.56            1.9     0.075                  17                   60  0.9980 3.16      0.58     9.8
+## 5           7.4             0.70        0.00            1.9     0.076                  11                   34  0.9978 3.51      0.56     9.4
+## 6           7.4             0.66        0.00            1.8     0.075                  13                   40  0.9978 3.51      0.56     9.4
+##   quality
+## 1       5
+## 2       5
+## 3       5
+## 4       6
+## 5       5
+## 6       5</code></pre>
 </div>
 <div id="data-exploration-and-descr-statistics-1" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Data Exploration and Descr Statistics</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="descriptive-statistics-1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat.desc</span>(df)</span></code></pre></div>
-<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar    chlorides
-## nbr.val       1.599000e+03     1.599000e+03 1.599000e+03   1.599000e+03 1.599000e+03
-## nbr.null      0.000000e+00     0.000000e+00 1.320000e+02   0.000000e+00 0.000000e+00
-## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00 0.000000e+00
-## min           4.600000e+00     1.200000e-01 0.000000e+00   9.000000e-01 1.200000e-02
-## max           1.590000e+01     1.580000e+00 1.000000e+00   1.550000e+01 6.110000e-01
-## range         1.130000e+01     1.460000e+00 1.000000e+00   1.460000e+01 5.990000e-01
-## sum           1.330310e+04     8.439850e+02 4.332900e+02   4.059550e+03 1.398590e+02
-## median        7.900000e+00     5.200000e-01 2.600000e-01   2.200000e+00 7.900000e-02
-## mean          8.319637e+00     5.278205e-01 2.709756e-01   2.538806e+00 8.746654e-02
-## SE.mean       4.354102e-02     4.477892e-03 4.871551e-03   3.525922e-02 1.177000e-03
-## CI.mean.0.95  8.540351e-02     8.783160e-03 9.555302e-03   6.915919e-02 2.308627e-03
-## var           3.031416e+00     3.206238e-02 3.794748e-02   1.987897e+00 2.215143e-03
-## std.dev       1.741096e+00     1.790597e-01 1.948011e-01   1.409928e+00 4.706530e-02
-## coef.var      2.092755e-01     3.392435e-01 7.188881e-01   5.553510e-01 5.380949e-01
-##              free.sulfur.dioxide total.sulfur.dioxide      density           pH
-## nbr.val             1.599000e+03         1.599000e+03 1.599000e+03 1.599000e+03
-## nbr.null            0.000000e+00         0.000000e+00 0.000000e+00 0.000000e+00
-## nbr.na              0.000000e+00         0.000000e+00 0.000000e+00 0.000000e+00
-## min                 1.000000e+00         6.000000e+00 9.900700e-01 2.740000e+00
-## max                 7.200000e+01         2.890000e+02 1.003690e+00 4.010000e+00
-## range               7.100000e+01         2.830000e+02 1.362000e-02 1.270000e+00
-## sum                 2.538400e+04         7.430200e+04 1.593798e+03 5.294470e+03
-## median              1.400000e+01         3.800000e+01 9.967500e-01 3.310000e+00
-## mean                1.587492e+01         4.646779e+01 9.967467e-01 3.311113e+00
-## SE.mean             2.615857e-01         8.226402e-01 4.719810e-05 3.860868e-03
-## CI.mean.0.95        5.130871e-01         1.613567e+00 9.257670e-05 7.572899e-03
-## var                 1.094149e+02         1.082102e+03 3.562029e-06 2.383518e-02
-## std.dev             1.046016e+01         3.289532e+01 1.887334e-03 1.543865e-01
-## coef.var            6.589108e-01         7.079167e-01 1.893494e-03 4.662676e-02
-##                 sulphates      alcohol      quality
-## nbr.val      1.599000e+03 1.599000e+03 1.599000e+03
-## nbr.null     0.000000e+00 0.000000e+00 0.000000e+00
-## nbr.na       0.000000e+00 0.000000e+00 0.000000e+00
-## min          3.300000e-01 8.400000e+00 3.000000e+00
-## max          2.000000e+00 1.490000e+01 8.000000e+00
-## range        1.670000e+00 6.500000e+00 5.000000e+00
-## sum          1.052380e+03 1.666635e+04 9.012000e+03
-## median       6.200000e-01 1.020000e+01 6.000000e+00
-## mean         6.581488e-01 1.042298e+01 5.636023e+00
-## SE.mean      4.238999e-03 2.665002e-02 2.019555e-02
-## CI.mean.0.95 8.314584e-03 5.227267e-02 3.961255e-02
-## var          2.873262e-02 1.135647e+00 6.521684e-01
-## std.dev      1.695070e-01 1.065668e+00 8.075694e-01
-## coef.var     2.575511e-01 1.022421e-01 1.432871e-01</code></pre>
+<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar    chlorides free.sulfur.dioxide total.sulfur.dioxide      density
+## nbr.val       1.599000e+03     1.599000e+03 1.599000e+03   1.599000e+03 1.599000e+03        1.599000e+03         1.599000e+03 1.599000e+03
+## nbr.null      0.000000e+00     0.000000e+00 1.320000e+02   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
+## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
+## min           4.600000e+00     1.200000e-01 0.000000e+00   9.000000e-01 1.200000e-02        1.000000e+00         6.000000e+00 9.900700e-01
+## max           1.590000e+01     1.580000e+00 1.000000e+00   1.550000e+01 6.110000e-01        7.200000e+01         2.890000e+02 1.003690e+00
+## range         1.130000e+01     1.460000e+00 1.000000e+00   1.460000e+01 5.990000e-01        7.100000e+01         2.830000e+02 1.362000e-02
+## sum           1.330310e+04     8.439850e+02 4.332900e+02   4.059550e+03 1.398590e+02        2.538400e+04         7.430200e+04 1.593798e+03
+## median        7.900000e+00     5.200000e-01 2.600000e-01   2.200000e+00 7.900000e-02        1.400000e+01         3.800000e+01 9.967500e-01
+## mean          8.319637e+00     5.278205e-01 2.709756e-01   2.538806e+00 8.746654e-02        1.587492e+01         4.646779e+01 9.967467e-01
+## SE.mean       4.354102e-02     4.477892e-03 4.871551e-03   3.525922e-02 1.177000e-03        2.615857e-01         8.226402e-01 4.719810e-05
+## CI.mean.0.95  8.540351e-02     8.783160e-03 9.555302e-03   6.915919e-02 2.308627e-03        5.130871e-01         1.613567e+00 9.257670e-05
+## var           3.031416e+00     3.206238e-02 3.794748e-02   1.987897e+00 2.215143e-03        1.094149e+02         1.082102e+03 3.562029e-06
+## std.dev       1.741096e+00     1.790597e-01 1.948011e-01   1.409928e+00 4.706530e-02        1.046016e+01         3.289532e+01 1.887334e-03
+## coef.var      2.092755e-01     3.392435e-01 7.188881e-01   5.553510e-01 5.380949e-01        6.589108e-01         7.079167e-01 1.893494e-03
+##                        pH    sulphates      alcohol      quality
+## nbr.val      1.599000e+03 1.599000e+03 1.599000e+03 1.599000e+03
+## nbr.null     0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+## nbr.na       0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+## min          2.740000e+00 3.300000e-01 8.400000e+00 3.000000e+00
+## max          4.010000e+00 2.000000e+00 1.490000e+01 8.000000e+00
+## range        1.270000e+00 1.670000e+00 6.500000e+00 5.000000e+00
+## sum          5.294470e+03 1.052380e+03 1.666635e+04 9.012000e+03
+## median       3.310000e+00 6.200000e-01 1.020000e+01 6.000000e+00
+## mean         3.311113e+00 6.581488e-01 1.042298e+01 5.636023e+00
+## SE.mean      3.860868e-03 4.238999e-03 2.665002e-02 2.019555e-02
+## CI.mean.0.95 7.572899e-03 8.314584e-03 5.227267e-02 3.961255e-02
+## var          2.383518e-02 2.873262e-02 1.135647e+00 6.521684e-01
+## std.dev      1.543865e-01 1.695070e-01 1.065668e+00 8.075694e-01
+## coef.var     4.662676e-02 2.575511e-01 1.022421e-01 1.432871e-01</code></pre>
 </div>
 <div id="univariate-exploration-1" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Univariate Exploration</h2>
@@ -387,14 +409,1286 @@ This data-set inlcudes the measurements from the wine along with its quality rat
 
 </div>
 </div>
+<div id="load-data" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> Load Data</h2>
+<p>We have taken a data-set from Kaggle: <a href="https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009" class="uri">https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009</a>
+This data-set inlcudes the measurements from the wine along with its quality rating.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="descriptive-statistics-1.html#cb21-1" aria-hidden="true" tabindex="-1"></a>wine<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/winequality-red.csv&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-2"><a href="descriptive-statistics-1.html#cb21-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-3"><a href="descriptive-statistics-1.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(wine)</span></code></pre></div>
+<pre><code>## Rows: 1,599
+## Columns: 12
+## $ fixed.acidity        &lt;dbl&gt; 7.4, 7.8, 7.8, 11.2, 7.4, 7.4, 7.9, 7.3, 7.8, 7.5, 6.7, 7.5, 5.6, 7.8, 8.9, 8.9, 8.5, 8.1, 7.4, 7.9, 8.9, 7.6, 7.9, ~
+## $ volatile.acidity     &lt;dbl&gt; 0.700, 0.880, 0.760, 0.280, 0.700, 0.660, 0.600, 0.650, 0.580, 0.500, 0.580, 0.500, 0.615, 0.610, 0.620, 0.620, 0.28~
+## $ citric.acid          &lt;dbl&gt; 0.00, 0.00, 0.04, 0.56, 0.00, 0.00, 0.06, 0.00, 0.02, 0.36, 0.08, 0.36, 0.00, 0.29, 0.18, 0.19, 0.56, 0.28, 0.08, 0.~
+## $ residual.sugar       &lt;dbl&gt; 1.9, 2.6, 2.3, 1.9, 1.9, 1.8, 1.6, 1.2, 2.0, 6.1, 1.8, 6.1, 1.6, 1.6, 3.8, 3.9, 1.8, 1.7, 4.4, 1.8, 1.8, 2.3, 1.6, 2~
+## $ chlorides            &lt;dbl&gt; 0.076, 0.098, 0.092, 0.075, 0.076, 0.075, 0.069, 0.065, 0.073, 0.071, 0.097, 0.071, 0.089, 0.114, 0.176, 0.170, 0.09~
+## $ free.sulfur.dioxide  &lt;dbl&gt; 11, 25, 15, 17, 11, 13, 15, 15, 9, 17, 15, 17, 16, 9, 52, 51, 35, 16, 6, 17, 29, 23, 10, 9, 21, 11, 4, 10, 14, 8, 17~
+## $ total.sulfur.dioxide &lt;dbl&gt; 34, 67, 54, 60, 34, 40, 59, 21, 18, 102, 65, 102, 59, 29, 145, 148, 103, 56, 29, 56, 60, 71, 37, 67, 40, 23, 11, 37,~
+## $ density              &lt;dbl&gt; 0.9978, 0.9968, 0.9970, 0.9980, 0.9978, 0.9978, 0.9964, 0.9946, 0.9968, 0.9978, 0.9959, 0.9978, 0.9943, 0.9974, 0.99~
+## $ pH                   &lt;dbl&gt; 3.51, 3.20, 3.26, 3.16, 3.51, 3.51, 3.30, 3.39, 3.36, 3.35, 3.28, 3.35, 3.58, 3.26, 3.16, 3.17, 3.30, 3.11, 3.38, 3.~
+## $ sulphates            &lt;dbl&gt; 0.56, 0.68, 0.65, 0.58, 0.56, 0.56, 0.46, 0.47, 0.57, 0.80, 0.54, 0.80, 0.52, 1.56, 0.88, 0.93, 0.75, 1.28, 0.50, 1.~
+## $ alcohol              &lt;dbl&gt; 9.4, 9.8, 9.8, 9.8, 9.4, 9.4, 9.4, 10.0, 9.5, 10.5, 9.2, 10.5, 9.9, 9.1, 9.2, 9.2, 10.5, 9.3, 9.0, 9.2, 9.4, 9.7, 9.~
+## $ quality              &lt;int&gt; 5, 5, 5, 6, 5, 5, 5, 7, 7, 5, 5, 5, 5, 5, 5, 5, 7, 5, 4, 6, 6, 5, 5, 5, 6, 5, 5, 5, 5, 6, 5, 6, 5, 6, 5, 6, 6, 7, 4,~</code></pre>
+</div>
+<div id="process-reference" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> Process Reference</h2>
+<p>The process was followed from this site: <a href="https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r" class="uri">https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r</a></p>
+</div>
+<div id="data-partitioning" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> Data Partitioning</h2>
+<p>The below code takes 70% of the data for training and 30% of the code for testing.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="descriptive-statistics-1.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) </span>
+<span id="cb23-2"><a href="descriptive-statistics-1.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="descriptive-statistics-1.html#cb23-3" aria-hidden="true" tabindex="-1"></a>index <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(wine), <span class="fl">0.7</span><span class="sc">*</span><span class="fu">nrow</span>(wine)) </span>
+<span id="cb23-4"><a href="descriptive-statistics-1.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="descriptive-statistics-1.html#cb23-5" aria-hidden="true" tabindex="-1"></a>train <span class="ot">=</span> wine[index,] <span class="co"># Create the training data </span></span>
+<span id="cb23-6"><a href="descriptive-statistics-1.html#cb23-6" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> wine[<span class="sc">-</span>index,] <span class="co"># Create the test data</span></span>
+<span id="cb23-7"><a href="descriptive-statistics-1.html#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="descriptive-statistics-1.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(train)</span></code></pre></div>
+<pre><code>## [1] 1119   12</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="descriptive-statistics-1.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(test)</span></code></pre></div>
+<pre><code>## [1] 480  12</code></pre>
+</div>
+<div id="scaling-the-numeric-features" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> Scaling the Numeric Features</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics-1.html#cb27-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(wine)</span>
+<span id="cb27-2"><a href="descriptive-statistics-1.html#cb27-2" aria-hidden="true" tabindex="-1"></a>pre_proc_val <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(train[,cols], <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>))</span>
+<span id="cb27-3"><a href="descriptive-statistics-1.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="descriptive-statistics-1.html#cb27-4" aria-hidden="true" tabindex="-1"></a>train[,cols] <span class="ot">=</span> <span class="fu">predict</span>(pre_proc_val, train[,cols])</span>
+<span id="cb27-5"><a href="descriptive-statistics-1.html#cb27-5" aria-hidden="true" tabindex="-1"></a>test[,cols] <span class="ot">=</span> <span class="fu">predict</span>(pre_proc_val, test[,cols])</span>
+<span id="cb27-6"><a href="descriptive-statistics-1.html#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="descriptive-statistics-1.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train)</span></code></pre></div>
+<pre><code>##  fixed.acidity     volatile.acidity    citric.acid       residual.sugar       chlorides        free.sulfur.dioxide total.sulfur.dioxide
+##  Min.   :-2.0802   Min.   :-2.26583   Min.   :-1.37809   Min.   :-1.18596   Min.   :-1.58727   Min.   :-1.4109     Min.   :-1.2446     
+##  1st Qu.:-0.6928   1st Qu.:-0.76458   1st Qu.:-0.92192   1st Qu.:-0.45565   1st Qu.:-0.36546   1st Qu.:-0.8446     1st Qu.:-0.7471     
+##  Median :-0.2304   Median :-0.04176   Median :-0.06029   Median :-0.23655   Median :-0.15480   Median :-0.1840     Median :-0.2496     
+##  Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.0000     Mean   : 0.0000     
+##  3rd Qu.: 0.5790   3rd Qu.: 0.62546   3rd Qu.: 0.80135   3rd Qu.: 0.05557   3rd Qu.: 0.05586   3rd Qu.: 0.5710     3rd Qu.: 0.4656     
+##  Max.   : 4.1630   Max.   : 5.85201   Max.   : 3.69037   Max.   : 9.47663   Max.   :11.03109   Max.   : 5.2899     Max.   : 7.5552     
+##     density               pH             sulphates          alcohol           quality       
+##  Min.   :-3.57012   Min.   :-3.68218   Min.   :-1.8820   Min.   :-1.9054   Min.   :-3.3046  
+##  1st Qu.:-0.61381   1st Qu.:-0.66652   1st Qu.:-0.6199   1st Qu.:-0.8694   1st Qu.:-0.7831  
+##  Median :-0.01507   Median :-0.02489   Median :-0.2183   Median :-0.2101   Median : 0.4777  
+##  Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+##  3rd Qu.: 0.57566   3rd Qu.: 0.55258   3rd Qu.: 0.4127   3rd Qu.: 0.5747   3rd Qu.: 0.4777  
+##  Max.   : 3.71106   Max.   : 4.46653   Max.   : 7.6982   Max.   : 3.3687   Max.   : 2.9993</code></pre>
+</div>
+<div id="linear-regression" class="section level2" number="5.10">
+<h2><span class="header-section-number">5.10</span> Linear Regression</h2>
+<div id="what-is-it" class="section level3" number="5.10.1">
+<h3><span class="header-section-number">5.10.1</span> What is it?</h3>
+<p>The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable.
+### Assumptions
+* Input is assumed to have a Normal distribution and are not correlated with each other.</p>
+<p>We saw in the Descriptive Stats section <em>that this was not the case</em></p>
+<p>With these assumptions being true we can model quality witht the following equation.</p>
+<p><span class="math display">\[ q = a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_2nx_n + b\]</span>
+Where <span class="math inline">\(a_1, a_2, \dots, a_n\)</span> are coefficients from the model. <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> are the input variables to the model. <span class="math inline">\(b\)</span> is a factor of the model and <span class="math inline">\(q\)</span> is equal to the quality output.</p>
+</div>
+<div id="single-variable" class="section level3" number="5.10.2">
+<h3><span class="header-section-number">5.10.2</span> Single Variable</h3>
+<p>In the code-block below we output the summary of just the measurement alchol into the linear model.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics-1.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(quality<span class="sc">~</span>alcohol, <span class="at">data =</span> train))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = quality ~ alcohol, data = train)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.5773 -0.4885 -0.2049  0.6305  3.2938 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 5.845e-16  2.587e-02     0.0        1    
+## alcohol     5.019e-01  2.588e-02    19.4   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8653 on 1117 degrees of freedom
+## Multiple R-squared:  0.252,  Adjusted R-squared:  0.2513 
+## F-statistic: 376.2 on 1 and 1117 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Focusing on the p-value above we can tell that it is unlikely that by chance we will observe a relationship between alcohol and quality.</p>
+</div>
+<div id="multiple-variables" class="section level3" number="5.10.3">
+<h3><span class="header-section-number">5.10.3</span> Multiple Variables</h3>
+<p>In the code block below we will input all of the variables and examine the output.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a>lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(quality<span class="sc">~</span>fixed.acidity <span class="sc">+</span> volatile.acidity <span class="sc">+</span> citric.acid <span class="sc">+</span> residual.sugar <span class="sc">+</span> chlorides <span class="sc">+</span> free.sulfur.dioxide <span class="sc">+</span> density <span class="sc">+</span> pH <span class="sc">+</span> sulphates <span class="sc">+</span> alcohol, <span class="at">data =</span> train)</span>
+<span id="cb31-2"><a href="descriptive-statistics-1.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lr)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = quality ~ fixed.acidity + volatile.acidity + citric.acid + 
+##     residual.sugar + chlorides + free.sulfur.dioxide + density + 
+##     pH + sulphates + alcohol, data = train)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.2099 -0.4497 -0.0791  0.5241  2.5651 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         -1.898e-15  2.383e-02   0.000  1.00000    
+## fixed.acidity        1.248e-01  6.537e-02   1.910  0.05645 .  
+## volatile.acidity    -2.657e-01  3.093e-02  -8.589  &lt; 2e-16 ***
+## citric.acid         -9.537e-02  4.006e-02  -2.381  0.01744 *  
+## residual.sugar       5.473e-02  3.099e-02   1.766  0.07761 .  
+## chlorides           -9.002e-02  2.936e-02  -3.066  0.00222 ** 
+## free.sulfur.dioxide -4.450e-02  2.517e-02  -1.768  0.07737 .  
+## density             -9.071e-02  5.979e-02  -1.517  0.12948    
+## pH                  -4.245e-02  4.281e-02  -0.992  0.32162    
+## sulphates            1.813e-01  2.888e-02   6.279 4.87e-10 ***
+## alcohol              3.934e-01  4.120e-02   9.548  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7972 on 1108 degrees of freedom
+## Multiple R-squared:  0.3701, Adjusted R-squared:  0.3644 
+## F-statistic:  65.1 on 10 and 1108 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Reviewing the output we find that the inputs: ‘volatile.acidity,’ ‘sulphates,’ and ‘alcohol.’</p>
+</div>
+</div>
+<div id="regularization" class="section level2" number="5.11">
+<h2><span class="header-section-number">5.11</span> Regularization</h2>
+<p>Linear regression algorithm works by selecting coefficients for each independent variable that minimizes a loss function. However, if the coefficients are large, they can lead to over-fitting on the training dataset, and such a model will not generalize well on the unseen test data. To overcome this shortcoming, we’ll do regularization, which penalizes large coefficients. The following sections of the guide will discuss various regularization algorithms.</p>
+<p>We will be using the glmnet() package to build the regularized regression models. The glmnet function does not work with dataframes, so we need to create a numeric matrix for the training features and a vector of target values.</p>
+<p>The lines of code below perform the task of creating model matrix using the dummyVars function from the caret package. The predict function is then applied to create numeric model matrices for training and test.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="descriptive-statistics-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a>dummies <span class="ot">&lt;-</span> <span class="fu">dummyVars</span>(quality<span class="sc">~</span>., <span class="at">data =</span> wine)</span>
+<span id="cb33-2"><a href="descriptive-statistics-1.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="descriptive-statistics-1.html#cb33-3" aria-hidden="true" tabindex="-1"></a>train_dummies <span class="ot">=</span> <span class="fu">predict</span>(dummies, <span class="at">newdata =</span> train)</span>
+<span id="cb33-4"><a href="descriptive-statistics-1.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="descriptive-statistics-1.html#cb33-5" aria-hidden="true" tabindex="-1"></a>test_dummies <span class="ot">=</span> <span class="fu">predict</span>(dummies, <span class="at">newdata =</span> test)</span>
+<span id="cb33-6"><a href="descriptive-statistics-1.html#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="descriptive-statistics-1.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(train_dummies)); <span class="fu">print</span>(<span class="fu">dim</span>(test_dummies))</span></code></pre></div>
+<pre><code>## [1] 1119   11</code></pre>
+<pre><code>## [1] 480  11</code></pre>
+</div>
+<div id="ridge-regression" class="section level2" number="5.12">
+<h2><span class="header-section-number">5.12</span> Ridge Regression</h2>
+<p>Ridge regression is an extension of linear regression where the loss function is modified to minimize the complexity of the model. This modification is done by adding a penalty parameter that is equivalent to the square of the magnitude of the coefficients.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="descriptive-statistics-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>eval_results <span class="ot">&lt;-</span> <span class="cf">function</span>(true, predicted, df) {</span>
+<span id="cb36-2"><a href="descriptive-statistics-1.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((predicted <span class="sc">-</span> true)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="descriptive-statistics-1.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((true <span class="sc">-</span> <span class="fu">mean</span>(true))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-4"><a href="descriptive-statistics-1.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  R_square <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> SSE <span class="sc">/</span> SST</span>
+<span id="cb36-5"><a href="descriptive-statistics-1.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">=</span> <span class="fu">sqrt</span>(SSE<span class="sc">/</span><span class="fu">nrow</span>(df))</span>
+<span id="cb36-6"><a href="descriptive-statistics-1.html#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="descriptive-statistics-1.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-8"><a href="descriptive-statistics-1.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Model performance metrics</span></span>
+<span id="cb36-9"><a href="descriptive-statistics-1.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb36-10"><a href="descriptive-statistics-1.html#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">RMSE =</span> RMSE,</span>
+<span id="cb36-11"><a href="descriptive-statistics-1.html#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Rsquare =</span> R_square</span>
+<span id="cb36-12"><a href="descriptive-statistics-1.html#cb36-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-13"><a href="descriptive-statistics-1.html#cb36-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-14"><a href="descriptive-statistics-1.html#cb36-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="descriptive-statistics-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">as.matrix</span>(train_dummies)</span>
+<span id="cb37-2"><a href="descriptive-statistics-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a>y_train <span class="ot">=</span> train<span class="sc">$</span>quality</span>
+<span id="cb37-3"><a href="descriptive-statistics-1.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="descriptive-statistics-1.html#cb37-4" aria-hidden="true" tabindex="-1"></a>x_test <span class="ot">=</span> <span class="fu">as.matrix</span>(test_dummies)</span>
+<span id="cb37-5"><a href="descriptive-statistics-1.html#cb37-5" aria-hidden="true" tabindex="-1"></a>y_test <span class="ot">=</span> test<span class="sc">$</span>unemploy</span>
+<span id="cb37-6"><a href="descriptive-statistics-1.html#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="descriptive-statistics-1.html#cb37-7" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
+<span id="cb37-8"><a href="descriptive-statistics-1.html#cb37-8" aria-hidden="true" tabindex="-1"></a>ridge_reg <span class="ot">=</span> <span class="fu">glmnet</span>(x, y_train, <span class="at">nlambda =</span> <span class="dv">25</span>, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">family =</span> <span class="st">&#39;gaussian&#39;</span>, <span class="at">lambda =</span> lambdas)</span>
+<span id="cb37-9"><a href="descriptive-statistics-1.html#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="descriptive-statistics-1.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ridge_reg)</span></code></pre></div>
+<pre><code>##           Length Class     Mode   
+## a0         51    -none-    numeric
+## beta      561    dgCMatrix S4     
+## df         51    -none-    numeric
+## dim         2    -none-    numeric
+## lambda     51    -none-    numeric
+## dev.ratio  51    -none-    numeric
+## nulldev     1    -none-    numeric
+## npasses     1    -none-    numeric
+## jerr        1    -none-    numeric
+## offset      1    -none-    logical
+## call        7    -none-    call   
+## nobs        1    -none-    numeric</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="descriptive-statistics-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>cv_ridge <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y_train, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">lambda =</span> lambdas)</span>
+<span id="cb39-2"><a href="descriptive-statistics-1.html#cb39-2" aria-hidden="true" tabindex="-1"></a>optimal_lambda <span class="ot">&lt;-</span> cv_ridge<span class="sc">$</span>lambda.min</span>
+<span id="cb39-3"><a href="descriptive-statistics-1.html#cb39-3" aria-hidden="true" tabindex="-1"></a>optimal_lambda</span></code></pre></div>
+<pre><code>## [1] 0.05011872</code></pre>
+</div>
+<div id="lasso-regression" class="section level2" number="5.13">
+<h2><span class="header-section-number">5.13</span> Lasso Regression</h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="descriptive-statistics-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
+<span id="cb41-2"><a href="descriptive-statistics-1.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="descriptive-statistics-1.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting alpha = 1 implements lasso regression</span></span>
+<span id="cb41-4"><a href="descriptive-statistics-1.html#cb41-4" aria-hidden="true" tabindex="-1"></a>lasso_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y_train, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> lambdas, <span class="at">standardize =</span> <span class="cn">TRUE</span>, <span class="at">nfolds =</span> <span class="dv">5</span>)</span>
+<span id="cb41-5"><a href="descriptive-statistics-1.html#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="descriptive-statistics-1.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Best </span></span>
+<span id="cb41-7"><a href="descriptive-statistics-1.html#cb41-7" aria-hidden="true" tabindex="-1"></a>lambda_best <span class="ot">&lt;-</span> lasso_reg<span class="sc">$</span>lambda.min </span>
+<span id="cb41-8"><a href="descriptive-statistics-1.html#cb41-8" aria-hidden="true" tabindex="-1"></a>lambda_best</span></code></pre></div>
+<pre><code>## [1] 0.001995262</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>lasso_model <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y_train, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> lambda_best, <span class="at">standardize =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-2"><a href="descriptive-statistics-1.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="descriptive-statistics-1.html#cb43-3" aria-hidden="true" tabindex="-1"></a>predictions_train <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_model, <span class="at">s =</span> lambda_best, <span class="at">newx =</span> x)</span>
+<span id="cb43-4"><a href="descriptive-statistics-1.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">eval_results</span>(y_train, predictions_train, train)</span></code></pre></div>
+<pre><code>##        RMSE   Rsquare
+## 1 0.7898025 0.3756541</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics-1.html#cb45-1" aria-hidden="true" tabindex="-1"></a>predictions_test <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_model, <span class="at">s =</span> lambda_best, <span class="at">newx =</span> x_test)</span>
+<span id="cb45-2"><a href="descriptive-statistics-1.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval_results</span>(y_test, predictions_test, test)</span></code></pre></div>
+<pre><code>## Warning in mean.default(true): argument is not numeric or logical: returning NA</code></pre>
+<pre><code>##   RMSE Rsquare
+## 1    0     NaN</code></pre>
+<div id="features-of-the-glmnet-package" class="section level3" number="5.13.1">
+<h3><span class="header-section-number">5.13.1</span> Features of the ‘glmnet’ Package</h3>
+<p><span class="math inline">\(\lambda\)</span> is defined once and <span class="math inline">\(\alpha\)</span> where lasso is scaled by <span class="math inline">\(\alpha\)</span> and ridge penalty is scaled by <span class="math inline">\((1-\alpha\)</span>).</p>
+</div>
+<div id="elastic-net-regression" class="section level3" number="5.13.2">
+<h3><span class="header-section-number">5.13.2</span> Elastic Net Regression</h3>
+<p>Elastic net regression combines the properties of ridge and lasso regression</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set training control</span></span>
+<span id="cb48-2"><a href="descriptive-statistics-1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>train_cont <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</span>
+<span id="cb48-3"><a href="descriptive-statistics-1.html#cb48-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">number =</span> <span class="dv">10</span>,</span>
+<span id="cb48-4"><a href="descriptive-statistics-1.html#cb48-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">repeats =</span> <span class="dv">5</span>,</span>
+<span id="cb48-5"><a href="descriptive-statistics-1.html#cb48-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">search =</span> <span class="st">&quot;random&quot;</span>,</span>
+<span id="cb48-6"><a href="descriptive-statistics-1.html#cb48-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">verboseIter =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-7"><a href="descriptive-statistics-1.html#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="descriptive-statistics-1.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the model</span></span>
+<span id="cb48-9"><a href="descriptive-statistics-1.html#cb48-9" aria-hidden="true" tabindex="-1"></a>elastic_reg <span class="ot">&lt;-</span> <span class="fu">train</span>(quality <span class="sc">~</span> .,</span>
+<span id="cb48-10"><a href="descriptive-statistics-1.html#cb48-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> train,</span>
+<span id="cb48-11"><a href="descriptive-statistics-1.html#cb48-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">method =</span> <span class="st">&quot;glmnet&quot;</span>,</span>
+<span id="cb48-12"><a href="descriptive-statistics-1.html#cb48-12" aria-hidden="true" tabindex="-1"></a>                           <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</span>
+<span id="cb48-13"><a href="descriptive-statistics-1.html#cb48-13" aria-hidden="true" tabindex="-1"></a>                           <span class="at">tuneLength =</span> <span class="dv">10</span>,</span>
+<span id="cb48-14"><a href="descriptive-statistics-1.html#cb48-14" aria-hidden="true" tabindex="-1"></a>                           <span class="at">trControl =</span> train_cont)</span></code></pre></div>
+<pre><code>## + Fold01.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold01.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold01.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold01.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold01.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold01.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold01.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold01.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold01.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold01.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold01.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold01.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold01.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold01.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold01.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold01.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold01.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold01.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold01.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold01.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold02.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold02.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold02.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold02.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold02.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold02.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold02.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold02.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold02.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold02.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold02.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold02.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold02.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold02.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold02.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold02.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold02.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold02.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold02.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold02.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold03.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold03.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold03.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold03.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold03.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold03.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold03.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold03.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold03.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold03.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold03.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold03.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold03.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold03.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold03.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold03.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold03.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold03.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold03.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold03.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold04.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold04.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold04.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold04.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold04.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold04.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold04.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold04.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold04.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold04.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold04.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold04.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold04.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold04.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold04.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold04.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold04.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold04.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold04.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold04.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold05.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold05.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold05.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold05.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold05.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold05.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold05.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold05.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold05.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold05.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold05.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold05.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold05.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold05.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold05.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold05.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold05.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold05.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold05.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold05.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold06.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold06.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold06.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold06.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold06.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold06.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold06.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold06.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold06.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold06.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold06.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold06.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold06.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold06.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold06.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold06.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold06.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold06.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold06.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold06.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold07.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold07.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold07.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold07.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold07.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold07.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold07.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold07.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold07.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold07.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold07.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold07.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold07.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold07.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold07.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold07.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold07.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold07.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold07.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold07.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold08.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold08.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold08.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold08.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold08.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold08.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold08.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold08.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold08.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold08.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold08.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold08.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold08.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold08.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold08.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold08.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold08.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold08.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold08.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold08.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold09.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold09.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold09.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold09.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold09.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold09.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold09.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold09.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold09.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold09.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold09.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold09.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold09.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold09.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold09.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold09.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold09.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold09.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold09.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold09.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold10.Rep1: alpha=0.4004, lambda=0.002439 
+## - Fold10.Rep1: alpha=0.4004, lambda=0.002439 
+## + Fold10.Rep1: alpha=0.1857, lambda=1.109010 
+## - Fold10.Rep1: alpha=0.1857, lambda=1.109010 
+## + Fold10.Rep1: alpha=0.9054, lambda=0.120703 
+## - Fold10.Rep1: alpha=0.9054, lambda=0.120703 
+## + Fold10.Rep1: alpha=0.5759, lambda=1.247636 
+## - Fold10.Rep1: alpha=0.5759, lambda=1.247636 
+## + Fold10.Rep1: alpha=0.2560, lambda=0.003753 
+## - Fold10.Rep1: alpha=0.2560, lambda=0.003753 
+## + Fold10.Rep1: alpha=0.7879, lambda=0.195914 
+## - Fold10.Rep1: alpha=0.7879, lambda=0.195914 
+## + Fold10.Rep1: alpha=0.4018, lambda=0.086926 
+## - Fold10.Rep1: alpha=0.4018, lambda=0.086926 
+## + Fold10.Rep1: alpha=0.1517, lambda=1.159105 
+## - Fold10.Rep1: alpha=0.1517, lambda=1.159105 
+## + Fold10.Rep1: alpha=0.3660, lambda=0.692297 
+## - Fold10.Rep1: alpha=0.3660, lambda=0.692297 
+## + Fold10.Rep1: alpha=0.2080, lambda=0.003654 
+## - Fold10.Rep1: alpha=0.2080, lambda=0.003654 
+## + Fold01.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold01.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold01.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold01.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold01.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold01.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold01.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold01.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold01.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold01.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold01.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold01.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold01.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold01.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold01.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold01.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold01.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold01.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold01.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold01.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold02.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold02.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold02.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold02.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold02.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold02.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold02.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold02.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold02.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold02.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold02.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold02.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold02.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold02.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold02.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold02.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold02.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold02.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold02.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold02.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold03.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold03.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold03.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold03.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold03.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold03.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold03.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold03.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold03.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold03.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold03.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold03.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold03.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold03.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold03.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold03.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold03.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold03.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold03.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold03.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold04.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold04.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold04.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold04.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold04.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold04.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold04.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold04.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold04.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold04.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold04.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold04.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold04.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold04.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold04.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold04.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold04.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold04.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold04.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold04.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold05.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold05.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold05.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold05.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold05.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold05.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold05.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold05.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold05.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold05.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold05.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold05.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold05.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold05.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold05.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold05.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold05.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold05.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold05.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold05.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold06.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold06.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold06.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold06.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold06.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold06.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold06.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold06.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold06.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold06.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold06.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold06.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold06.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold06.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold06.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold06.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold06.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold06.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold06.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold06.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold07.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold07.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold07.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold07.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold07.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold07.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold07.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold07.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold07.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold07.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold07.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold07.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold07.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold07.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold07.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold07.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold07.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold07.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold07.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold07.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold08.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold08.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold08.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold08.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold08.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold08.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold08.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold08.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold08.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold08.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold08.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold08.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold08.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold08.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold08.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold08.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold08.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold08.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold08.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold08.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold09.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold09.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold09.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold09.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold09.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold09.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold09.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold09.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold09.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold09.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold09.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold09.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold09.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold09.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold09.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold09.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold09.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold09.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold09.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold09.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold10.Rep2: alpha=0.4004, lambda=0.002439 
+## - Fold10.Rep2: alpha=0.4004, lambda=0.002439 
+## + Fold10.Rep2: alpha=0.1857, lambda=1.109010 
+## - Fold10.Rep2: alpha=0.1857, lambda=1.109010 
+## + Fold10.Rep2: alpha=0.9054, lambda=0.120703 
+## - Fold10.Rep2: alpha=0.9054, lambda=0.120703 
+## + Fold10.Rep2: alpha=0.5759, lambda=1.247636 
+## - Fold10.Rep2: alpha=0.5759, lambda=1.247636 
+## + Fold10.Rep2: alpha=0.2560, lambda=0.003753 
+## - Fold10.Rep2: alpha=0.2560, lambda=0.003753 
+## + Fold10.Rep2: alpha=0.7879, lambda=0.195914 
+## - Fold10.Rep2: alpha=0.7879, lambda=0.195914 
+## + Fold10.Rep2: alpha=0.4018, lambda=0.086926 
+## - Fold10.Rep2: alpha=0.4018, lambda=0.086926 
+## + Fold10.Rep2: alpha=0.1517, lambda=1.159105 
+## - Fold10.Rep2: alpha=0.1517, lambda=1.159105 
+## + Fold10.Rep2: alpha=0.3660, lambda=0.692297 
+## - Fold10.Rep2: alpha=0.3660, lambda=0.692297 
+## + Fold10.Rep2: alpha=0.2080, lambda=0.003654 
+## - Fold10.Rep2: alpha=0.2080, lambda=0.003654 
+## + Fold01.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold01.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold01.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold01.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold01.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold01.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold01.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold01.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold01.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold01.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold01.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold01.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold01.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold01.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold01.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold01.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold01.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold01.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold01.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold01.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold02.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold02.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold02.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold02.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold02.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold02.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold02.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold02.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold02.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold02.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold02.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold02.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold02.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold02.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold02.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold02.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold02.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold02.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold02.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold02.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold03.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold03.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold03.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold03.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold03.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold03.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold03.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold03.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold03.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold03.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold03.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold03.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold03.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold03.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold03.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold03.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold03.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold03.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold03.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold03.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold04.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold04.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold04.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold04.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold04.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold04.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold04.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold04.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold04.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold04.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold04.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold04.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold04.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold04.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold04.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold04.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold04.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold04.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold04.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold04.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold05.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold05.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold05.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold05.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold05.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold05.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold05.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold05.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold05.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold05.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold05.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold05.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold05.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold05.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold05.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold05.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold05.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold05.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold05.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold05.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold06.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold06.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold06.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold06.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold06.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold06.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold06.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold06.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold06.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold06.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold06.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold06.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold06.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold06.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold06.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold06.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold06.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold06.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold06.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold06.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold07.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold07.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold07.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold07.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold07.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold07.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold07.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold07.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold07.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold07.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold07.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold07.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold07.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold07.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold07.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold07.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold07.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold07.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold07.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold07.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold08.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold08.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold08.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold08.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold08.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold08.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold08.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold08.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold08.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold08.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold08.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold08.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold08.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold08.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold08.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold08.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold08.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold08.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold08.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold08.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold09.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold09.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold09.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold09.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold09.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold09.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold09.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold09.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold09.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold09.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold09.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold09.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold09.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold09.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold09.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold09.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold09.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold09.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold09.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold09.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold10.Rep3: alpha=0.4004, lambda=0.002439 
+## - Fold10.Rep3: alpha=0.4004, lambda=0.002439 
+## + Fold10.Rep3: alpha=0.1857, lambda=1.109010 
+## - Fold10.Rep3: alpha=0.1857, lambda=1.109010 
+## + Fold10.Rep3: alpha=0.9054, lambda=0.120703 
+## - Fold10.Rep3: alpha=0.9054, lambda=0.120703 
+## + Fold10.Rep3: alpha=0.5759, lambda=1.247636 
+## - Fold10.Rep3: alpha=0.5759, lambda=1.247636 
+## + Fold10.Rep3: alpha=0.2560, lambda=0.003753 
+## - Fold10.Rep3: alpha=0.2560, lambda=0.003753 
+## + Fold10.Rep3: alpha=0.7879, lambda=0.195914 
+## - Fold10.Rep3: alpha=0.7879, lambda=0.195914 
+## + Fold10.Rep3: alpha=0.4018, lambda=0.086926 
+## - Fold10.Rep3: alpha=0.4018, lambda=0.086926 
+## + Fold10.Rep3: alpha=0.1517, lambda=1.159105 
+## - Fold10.Rep3: alpha=0.1517, lambda=1.159105 
+## + Fold10.Rep3: alpha=0.3660, lambda=0.692297 
+## - Fold10.Rep3: alpha=0.3660, lambda=0.692297 
+## + Fold10.Rep3: alpha=0.2080, lambda=0.003654 
+## - Fold10.Rep3: alpha=0.2080, lambda=0.003654 
+## + Fold01.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold01.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold01.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold01.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold01.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold01.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold01.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold01.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold01.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold01.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold01.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold01.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold01.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold01.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold01.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold01.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold01.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold01.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold01.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold01.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold02.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold02.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold02.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold02.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold02.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold02.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold02.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold02.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold02.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold02.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold02.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold02.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold02.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold02.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold02.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold02.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold02.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold02.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold02.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold02.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold03.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold03.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold03.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold03.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold03.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold03.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold03.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold03.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold03.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold03.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold03.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold03.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold03.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold03.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold03.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold03.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold03.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold03.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold03.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold03.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold04.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold04.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold04.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold04.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold04.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold04.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold04.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold04.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold04.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold04.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold04.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold04.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold04.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold04.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold04.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold04.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold04.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold04.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold04.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold04.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold05.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold05.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold05.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold05.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold05.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold05.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold05.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold05.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold05.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold05.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold05.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold05.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold05.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold05.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold05.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold05.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold05.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold05.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold05.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold05.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold06.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold06.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold06.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold06.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold06.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold06.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold06.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold06.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold06.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold06.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold06.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold06.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold06.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold06.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold06.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold06.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold06.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold06.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold06.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold06.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold07.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold07.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold07.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold07.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold07.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold07.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold07.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold07.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold07.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold07.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold07.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold07.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold07.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold07.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold07.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold07.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold07.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold07.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold07.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold07.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold08.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold08.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold08.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold08.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold08.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold08.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold08.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold08.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold08.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold08.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold08.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold08.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold08.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold08.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold08.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold08.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold08.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold08.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold08.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold08.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold09.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold09.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold09.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold09.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold09.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold09.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold09.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold09.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold09.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold09.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold09.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold09.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold09.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold09.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold09.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold09.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold09.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold09.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold09.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold09.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold10.Rep4: alpha=0.4004, lambda=0.002439 
+## - Fold10.Rep4: alpha=0.4004, lambda=0.002439 
+## + Fold10.Rep4: alpha=0.1857, lambda=1.109010 
+## - Fold10.Rep4: alpha=0.1857, lambda=1.109010 
+## + Fold10.Rep4: alpha=0.9054, lambda=0.120703 
+## - Fold10.Rep4: alpha=0.9054, lambda=0.120703 
+## + Fold10.Rep4: alpha=0.5759, lambda=1.247636 
+## - Fold10.Rep4: alpha=0.5759, lambda=1.247636 
+## + Fold10.Rep4: alpha=0.2560, lambda=0.003753 
+## - Fold10.Rep4: alpha=0.2560, lambda=0.003753 
+## + Fold10.Rep4: alpha=0.7879, lambda=0.195914 
+## - Fold10.Rep4: alpha=0.7879, lambda=0.195914 
+## + Fold10.Rep4: alpha=0.4018, lambda=0.086926 
+## - Fold10.Rep4: alpha=0.4018, lambda=0.086926 
+## + Fold10.Rep4: alpha=0.1517, lambda=1.159105 
+## - Fold10.Rep4: alpha=0.1517, lambda=1.159105 
+## + Fold10.Rep4: alpha=0.3660, lambda=0.692297 
+## - Fold10.Rep4: alpha=0.3660, lambda=0.692297 
+## + Fold10.Rep4: alpha=0.2080, lambda=0.003654 
+## - Fold10.Rep4: alpha=0.2080, lambda=0.003654 
+## + Fold01.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold01.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold01.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold01.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold01.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold01.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold01.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold01.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold01.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold01.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold01.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold01.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold01.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold01.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold01.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold01.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold01.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold01.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold01.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold01.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold02.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold02.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold02.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold02.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold02.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold02.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold02.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold02.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold02.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold02.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold02.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold02.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold02.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold02.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold02.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold02.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold02.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold02.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold02.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold02.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold03.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold03.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold03.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold03.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold03.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold03.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold03.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold03.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold03.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold03.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold03.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold03.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold03.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold03.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold03.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold03.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold03.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold03.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold03.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold03.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold04.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold04.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold04.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold04.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold04.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold04.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold04.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold04.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold04.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold04.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold04.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold04.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold04.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold04.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold04.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold04.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold04.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold04.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold04.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold04.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold05.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold05.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold05.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold05.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold05.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold05.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold05.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold05.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold05.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold05.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold05.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold05.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold05.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold05.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold05.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold05.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold05.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold05.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold05.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold05.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold06.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold06.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold06.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold06.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold06.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold06.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold06.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold06.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold06.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold06.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold06.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold06.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold06.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold06.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold06.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold06.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold06.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold06.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold06.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold06.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold07.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold07.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold07.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold07.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold07.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold07.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold07.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold07.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold07.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold07.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold07.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold07.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold07.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold07.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold07.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold07.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold07.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold07.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold07.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold07.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold08.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold08.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold08.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold08.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold08.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold08.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold08.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold08.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold08.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold08.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold08.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold08.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold08.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold08.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold08.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold08.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold08.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold08.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold08.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold08.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold09.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold09.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold09.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold09.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold09.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold09.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold09.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold09.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold09.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold09.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold09.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold09.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold09.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold09.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold09.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold09.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold09.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold09.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold09.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold09.Rep5: alpha=0.2080, lambda=0.003654 
+## + Fold10.Rep5: alpha=0.4004, lambda=0.002439 
+## - Fold10.Rep5: alpha=0.4004, lambda=0.002439 
+## + Fold10.Rep5: alpha=0.1857, lambda=1.109010 
+## - Fold10.Rep5: alpha=0.1857, lambda=1.109010 
+## + Fold10.Rep5: alpha=0.9054, lambda=0.120703 
+## - Fold10.Rep5: alpha=0.9054, lambda=0.120703 
+## + Fold10.Rep5: alpha=0.5759, lambda=1.247636 
+## - Fold10.Rep5: alpha=0.5759, lambda=1.247636 
+## + Fold10.Rep5: alpha=0.2560, lambda=0.003753 
+## - Fold10.Rep5: alpha=0.2560, lambda=0.003753 
+## + Fold10.Rep5: alpha=0.7879, lambda=0.195914 
+## - Fold10.Rep5: alpha=0.7879, lambda=0.195914 
+## + Fold10.Rep5: alpha=0.4018, lambda=0.086926 
+## - Fold10.Rep5: alpha=0.4018, lambda=0.086926 
+## + Fold10.Rep5: alpha=0.1517, lambda=1.159105 
+## - Fold10.Rep5: alpha=0.1517, lambda=1.159105 
+## + Fold10.Rep5: alpha=0.3660, lambda=0.692297 
+## - Fold10.Rep5: alpha=0.3660, lambda=0.692297 
+## + Fold10.Rep5: alpha=0.2080, lambda=0.003654 
+## - Fold10.Rep5: alpha=0.2080, lambda=0.003654</code></pre>
+<pre><code>## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo, : There were missing values in resampled performance measures.</code></pre>
+<pre><code>## Aggregating results
+## Selecting tuning parameters
+## Fitting alpha = 0.208, lambda = 0.00365 on full training set</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics-1.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best tuning parameter</span></span>
+<span id="cb52-2"><a href="descriptive-statistics-1.html#cb52-2" aria-hidden="true" tabindex="-1"></a>elastic_reg<span class="sc">$</span>bestTune</span></code></pre></div>
+<pre><code>##       alpha      lambda
+## 3 0.2079599 0.003654144</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics-1.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions on training set</span></span>
+<span id="cb54-2"><a href="descriptive-statistics-1.html#cb54-2" aria-hidden="true" tabindex="-1"></a>predictions_train <span class="ot">&lt;-</span> <span class="fu">predict</span>(elastic_reg, x)</span>
+<span id="cb54-3"><a href="descriptive-statistics-1.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">eval_results</span>(y_train, predictions_train, train) </span></code></pre></div>
+<pre><code>##        RMSE  Rsquare
+## 1 0.7897507 0.375736</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics-1.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions on test set</span></span>
+<span id="cb56-2"><a href="descriptive-statistics-1.html#cb56-2" aria-hidden="true" tabindex="-1"></a>predictions_test <span class="ot">&lt;-</span> <span class="fu">predict</span>(elastic_reg, x_test)</span>
+<span id="cb56-3"><a href="descriptive-statistics-1.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">eval_results</span>(y_test, predictions_test, test)</span></code></pre></div>
+<pre><code>## Warning in mean.default(true): argument is not numeric or logical: returning NA</code></pre>
+<pre><code>##   RMSE Rsquare
+## 1    0     NaN</code></pre>
+
+</div>
+</div>
+<div id="load-data-1" class="section level2" number="5.14">
+<h2><span class="header-section-number">5.14</span> Load Data</h2>
+<p>We have taken a data-set from Kaggle: <a href="https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009" class="uri">https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009</a>
+This data-set inlcudes the measurements from the wine along with its quality rating.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="descriptive-statistics-1.html#cb59-1" aria-hidden="true" tabindex="-1"></a>wine<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/winequality-red.csv&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb59-2"><a href="descriptive-statistics-1.html#cb59-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb59-3"><a href="descriptive-statistics-1.html#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="descriptive-statistics-1.html#cb59-4" aria-hidden="true" tabindex="-1"></a>wine<span class="sc">$</span>quality<span class="ot">&lt;-</span><span class="fu">as.factor</span>(wine<span class="sc">$</span>quality) </span></code></pre></div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="introduction-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="introduction-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="partitition-data-into-training-and-test-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -445,6 +1739,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

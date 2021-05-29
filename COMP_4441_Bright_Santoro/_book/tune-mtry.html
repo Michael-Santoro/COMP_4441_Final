@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>KMeans_Testing</title>
+  <title>Chapter 11 Tune mtry | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="KMeans_Testing" />
+  <meta property="og:title" content="Chapter 11 Tune mtry | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 11 Tune mtry | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="error-rate-in-random-forest-model.html"/>
+<link rel="next" href="random-forest-1.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,22 +228,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">KMeans_Testing</h1>
-<p class="author"><em>Emma Bright</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>5/14/2021</em></p>
-</div>
-<div id="index" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Index</h1>
-
+<div id="tune-mtry" class="section level1" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Tune mtry</h1>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="tune-mtry.html#cb76-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">tuneRF</span>(train[,<span class="sc">-</span><span class="dv">12</span>], train[,<span class="dv">12</span>], </span>
+<span id="cb76-2"><a href="tune-mtry.html#cb76-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">stepFactor =</span> <span class="fl">0.5</span>, </span>
+<span id="cb76-3"><a href="tune-mtry.html#cb76-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot=</span><span class="cn">TRUE</span>,</span>
+<span id="cb76-4"><a href="tune-mtry.html#cb76-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">ntreeTry =</span> <span class="dv">100</span>,</span>
+<span id="cb76-5"><a href="tune-mtry.html#cb76-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">trace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb76-6"><a href="tune-mtry.html#cb76-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">improve=</span><span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## mtry = 3  OOB error = 33.63% 
+## Searching left ...
+## mtry = 6     OOB error = 34.34% 
+## -0.02110818 0.05 
+## Searching right ...
+## mtry = 1     OOB error = 33.63% 
+## 0 0.05</code></pre>
+<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+So this means that the model hits its lowest error rate when mtry=3, so we can then go back and adjust our model to reflect this new mtry value.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="error-rate-in-random-forest-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-forest-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +284,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-RandomForest.Rmd",
 "text": "Edit"
 },
 "history": {

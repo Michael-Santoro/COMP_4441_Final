@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>KMeans_Testing</title>
+  <title>Chapter 6 Partitition Data into training and test data | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="KMeans_Testing" />
+  <meta property="og:title" content="Chapter 6 Partitition Data into training and test data | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 6 Partitition Data into training and test data | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="descriptive-statistics-1.html"/>
+<link rel="next" href="random-forest.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,22 +228,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">KMeans_Testing</h1>
-<p class="author"><em>Emma Bright</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>5/14/2021</em></p>
-</div>
-<div id="index" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Index</h1>
-
+<div id="partitition-data-into-training-and-test-data" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Partitition Data into training and test data</h1>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="partitition-data-into-training-and-test-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb60-2"><a href="partitition-data-into-training-and-test-data.html#cb60-2" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2</span>, <span class="fu">nrow</span>(wine), <span class="at">replace=</span><span class="cn">TRUE</span>, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
+<span id="cb60-3"><a href="partitition-data-into-training-and-test-data.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="partitition-data-into-training-and-test-data.html#cb60-4" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> wine[ind<span class="sc">==</span><span class="dv">1</span>, ]</span>
+<span id="cb60-5"><a href="partitition-data-into-training-and-test-data.html#cb60-5" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> wine[ind<span class="sc">==</span><span class="dv">2</span>,]</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="descriptive-statistics-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-forest.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +274,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-RandomForest.Rmd",
 "text": "Edit"
 },
 "history": {

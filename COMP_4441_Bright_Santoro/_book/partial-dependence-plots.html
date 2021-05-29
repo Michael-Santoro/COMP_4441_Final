@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Descriptive Statistics | KMeans_Testing</title>
+  <title>Chapter 16 Partial Dependence Plots | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Descriptive Statistics | KMeans_Testing" />
+  <meta property="og:title" content="Chapter 16 Partial Dependence Plots | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Descriptive Statistics | KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 16 Partial Dependence Plots | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
-<link rel="next" href="introduction-1.html"/>
+<link rel="prev" href="number-of-nodes-on-the-trees.html"/>
+
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,15 +228,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="descriptive-statistics" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Descriptive Statistics</h1>
-<div id="the-data" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> The Data</h2>
+<div id="partial-dependence-plots" class="section level1" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Partial Dependence Plots</h1>
+<p>Produces partial plot for alcohol in training set data/rf model for classication 5 aka quality =5.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="partial-dependence-plots.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">partialPlot</span>(rf, train, alcohol, <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>This plot tells u that when alcohol is less than 11% it predicts classification 5 more strongly than when it is greater than 11%.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="partial-dependence-plots.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">partialPlot</span>(rf, train, alcohol, <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>This plot tells us that when alcohol is greater than 10% it predicts classification 7 more strongly than when it is less than 10%.</p>
+
+<div id="introduction-2" class="section level2" number="16.1">
+<h2><span class="header-section-number">16.1</span> Introduction</h2>
+<p>Just planning to use this file to walk through some tutorials of k-means clustering I found.</p>
+</div>
+<div id="load-data-2" class="section level2" number="16.2">
+<h2><span class="header-section-number">16.2</span> Load Data</h2>
 <p>We have taken a data-set from Kaggle: <a href="https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009" class="uri">https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009</a>
 This data-set inlcudes the measurements from the wine along with its quality rating.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descriptive-statistics.html#cb1-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/winequality-red.csv&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb1-2"><a href="descriptive-statistics.html#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="descriptive-statistics.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="partial-dependence-plots.html#cb96-1" aria-hidden="true" tabindex="-1"></a>wine<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/winequality-red.csv&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb96-2"><a href="partial-dependence-plots.html#cb96-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb96-3"><a href="partial-dependence-plots.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wine)</span></code></pre></div>
 <pre><code>##   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates alcohol
 ## 1           7.4             0.70        0.00            1.9     0.076                  11                   34  0.9978 3.51      0.56     9.4
 ## 2           7.8             0.88        0.00            2.6     0.098                  25                   67  0.9968 3.20      0.68     9.8
@@ -252,163 +264,76 @@ This data-set inlcudes the measurements from the wine along with its quality rat
 ## 5       5
 ## 6       5</code></pre>
 </div>
-<div id="data-exploration-and-descr-statistics" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Data Exploration and Descr Statistics</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat.desc</span>(df)</span></code></pre></div>
-<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar    chlorides free.sulfur.dioxide total.sulfur.dioxide      density
-## nbr.val       1.599000e+03     1.599000e+03 1.599000e+03   1.599000e+03 1.599000e+03        1.599000e+03         1.599000e+03 1.599000e+03
-## nbr.null      0.000000e+00     0.000000e+00 1.320000e+02   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
-## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
-## min           4.600000e+00     1.200000e-01 0.000000e+00   9.000000e-01 1.200000e-02        1.000000e+00         6.000000e+00 9.900700e-01
-## max           1.590000e+01     1.580000e+00 1.000000e+00   1.550000e+01 6.110000e-01        7.200000e+01         2.890000e+02 1.003690e+00
-## range         1.130000e+01     1.460000e+00 1.000000e+00   1.460000e+01 5.990000e-01        7.100000e+01         2.830000e+02 1.362000e-02
-## sum           1.330310e+04     8.439850e+02 4.332900e+02   4.059550e+03 1.398590e+02        2.538400e+04         7.430200e+04 1.593798e+03
-## median        7.900000e+00     5.200000e-01 2.600000e-01   2.200000e+00 7.900000e-02        1.400000e+01         3.800000e+01 9.967500e-01
-## mean          8.319637e+00     5.278205e-01 2.709756e-01   2.538806e+00 8.746654e-02        1.587492e+01         4.646779e+01 9.967467e-01
-## SE.mean       4.354102e-02     4.477892e-03 4.871551e-03   3.525922e-02 1.177000e-03        2.615857e-01         8.226402e-01 4.719810e-05
-## CI.mean.0.95  8.540351e-02     8.783160e-03 9.555302e-03   6.915919e-02 2.308627e-03        5.130871e-01         1.613567e+00 9.257670e-05
-## var           3.031416e+00     3.206238e-02 3.794748e-02   1.987897e+00 2.215143e-03        1.094149e+02         1.082102e+03 3.562029e-06
-## std.dev       1.741096e+00     1.790597e-01 1.948011e-01   1.409928e+00 4.706530e-02        1.046016e+01         3.289532e+01 1.887334e-03
-## coef.var      2.092755e-01     3.392435e-01 7.188881e-01   5.553510e-01 5.380949e-01        6.589108e-01         7.079167e-01 1.893494e-03
-##                        pH    sulphates      alcohol      quality
-## nbr.val      1.599000e+03 1.599000e+03 1.599000e+03 1.599000e+03
-## nbr.null     0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
-## nbr.na       0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
-## min          2.740000e+00 3.300000e-01 8.400000e+00 3.000000e+00
-## max          4.010000e+00 2.000000e+00 1.490000e+01 8.000000e+00
-## range        1.270000e+00 1.670000e+00 6.500000e+00 5.000000e+00
-## sum          5.294470e+03 1.052380e+03 1.666635e+04 9.012000e+03
-## median       3.310000e+00 6.200000e-01 1.020000e+01 6.000000e+00
-## mean         3.311113e+00 6.581488e-01 1.042298e+01 5.636023e+00
-## SE.mean      3.860868e-03 4.238999e-03 2.665002e-02 2.019555e-02
-## CI.mean.0.95 7.572899e-03 8.314584e-03 5.227267e-02 3.961255e-02
-## var          2.383518e-02 2.873262e-02 1.135647e+00 6.521684e-01
-## std.dev      1.543865e-01 1.695070e-01 1.065668e+00 8.075694e-01
-## coef.var     4.662676e-02 2.575511e-01 1.022421e-01 1.432871e-01</code></pre>
+<div id="clean-and-normalize-the-data." class="section level2" number="16.3">
+<h2><span class="header-section-number">16.3</span> Clean and Normalize the data.</h2>
+<p>Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns. We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it’s the prediction.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="partial-dependence-plots.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Normalization</span></span>
+<span id="cb98-2"><a href="partial-dependence-plots.html#cb98-2" aria-hidden="true" tabindex="-1"></a>normalize <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb98-3"><a href="partial-dependence-plots.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> ((x <span class="sc">-</span> <span class="fu">min</span>(x)) <span class="sc">/</span> (<span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))) }</span>
+<span id="cb98-4"><a href="partial-dependence-plots.html#cb98-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-5"><a href="partial-dependence-plots.html#cb98-5" aria-hidden="true" tabindex="-1"></a>wine.normal <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(wine[,<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], normalize))</span>
+<span id="cb98-6"><a href="partial-dependence-plots.html#cb98-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-7"><a href="partial-dependence-plots.html#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wine.normal)</span></code></pre></div>
+<pre><code>##   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides free.sulfur.dioxide total.sulfur.dioxide   density        pH sulphates
+## 1     0.2477876        0.3972603        0.00     0.06849315 0.1068447           0.1408451           0.09893993 0.5675477 0.6062992 0.1377246
+## 2     0.2831858        0.5205479        0.00     0.11643836 0.1435726           0.3380282           0.21554770 0.4941263 0.3622047 0.2095808
+## 3     0.2831858        0.4383562        0.04     0.09589041 0.1335559           0.1971831           0.16961131 0.5088106 0.4094488 0.1916168
+## 4     0.5840708        0.1095890        0.56     0.06849315 0.1051753           0.2253521           0.19081272 0.5822320 0.3307087 0.1497006
+## 5     0.2477876        0.3972603        0.00     0.06849315 0.1068447           0.1408451           0.09893993 0.5675477 0.6062992 0.1377246
+## 6     0.2477876        0.3698630        0.00     0.06164384 0.1051753           0.1690141           0.12014134 0.5675477 0.6062992 0.1377246
+##     alcohol
+## 1 0.1538462
+## 2 0.2153846
+## 3 0.2153846
+## 4 0.2153846
+## 5 0.1538462
+## 6 0.1538462</code></pre>
 </div>
-<div id="univariate-exploration" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Univariate Exploration</h2>
+<div id="data-splice" class="section level2" number="16.4">
+<h2><span class="header-section-number">16.4</span> Data Splice</h2>
+<p>Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about <span class="math inline">\(5\%\)</span> of the data for testing which ends up being <span class="math inline">\(80\)</span> values.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="partial-dependence-plots.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb100-2"><a href="partial-dependence-plots.html#cb100-2" aria-hidden="true" tabindex="-1"></a>dat.d <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(wine.normal),<span class="at">size=</span><span class="fu">nrow</span>(wine.normal)<span class="sc">*</span><span class="fl">0.8</span>,<span class="at">replace =</span> <span class="cn">FALSE</span>) <span class="co">#random selection of 90% data.</span></span>
+<span id="cb100-3"><a href="partial-dependence-plots.html#cb100-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb100-4"><a href="partial-dependence-plots.html#cb100-4" aria-hidden="true" tabindex="-1"></a>train.wine <span class="ot">&lt;-</span> wine.normal[dat.d,] <span class="co"># 90% training data</span></span>
+<span id="cb100-5"><a href="partial-dependence-plots.html#cb100-5" aria-hidden="true" tabindex="-1"></a>test.wine <span class="ot">&lt;-</span> wine.normal[<span class="sc">-</span>dat.d,] <span class="co"># remaining 10% test data</span></span>
+<span id="cb100-6"><a href="partial-dependence-plots.html#cb100-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-7"><a href="partial-dependence-plots.html#cb100-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-8"><a href="partial-dependence-plots.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating seperate dataframe for &#39;Quality&#39; feature which is our target.</span></span>
+<span id="cb100-9"><a href="partial-dependence-plots.html#cb100-9" aria-hidden="true" tabindex="-1"></a>train.quality_label <span class="ot">&lt;-</span> wine[dat.d,<span class="dv">12</span>]</span>
+<span id="cb100-10"><a href="partial-dependence-plots.html#cb100-10" aria-hidden="true" tabindex="-1"></a>test.quality_label <span class="ot">&lt;-</span>wine[<span class="sc">-</span>dat.d,<span class="dv">12</span>]</span></code></pre></div>
+<p>Next, we’re going to calculate the number of observations in the training data set. The reason we’re doing this is that we want to initialize the value of ‘K’ in the KNN model. One of the ways to find the optimal K value is to calculate the square root of the total number of observations in the data set. This square root will give you the ‘K’ value.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="partial-dependence-plots.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">NROW</span>(train.quality_label) </span></code></pre></div>
+<pre><code>## [1] 1279</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="partial-dependence-plots.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">NROW</span>(train.quality_label) )</span></code></pre></div>
+<pre><code>## [1] 35.76311</code></pre>
+<p>The square root of 1493 is around 35.7 we’ll create a model with a ‘K’ value as 36.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="partial-dependence-plots.html#cb105-1" aria-hidden="true" tabindex="-1"></a>knn<span class="fl">.36</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train=</span>train.wine, <span class="at">test=</span>test.wine, <span class="at">cl=</span>train.quality_label, <span class="at">k=</span><span class="dv">36</span>)</span></code></pre></div>
 </div>
-<div id="bivariate-exploration" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Bivariate Exploration</h2>
+<div id="model-evaluation" class="section level2" number="16.5">
+<h2><span class="header-section-number">16.5</span> Model Evaluation</h2>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="partial-dependence-plots.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the proportion of correct classification for k =37</span></span>
+<span id="cb106-2"><a href="partial-dependence-plots.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="partial-dependence-plots.html#cb106-3" aria-hidden="true" tabindex="-1"></a>ACC<span class="fl">.36</span> <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(test.quality_label <span class="sc">==</span> knn<span class="fl">.36</span>)<span class="sc">/</span><span class="fu">NROW</span>(test.quality_label)</span>
+<span id="cb106-4"><a href="partial-dependence-plots.html#cb106-4" aria-hidden="true" tabindex="-1"></a>ACC<span class="fl">.36</span></span></code></pre></div>
+<pre><code>## [1] 58.4375</code></pre>
+<p>As shown above, the accuracy for K = 36 is 58.435</p>
 </div>
-<div id="multivariate-exploration" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Multivariate Exploration</h2>
-<p>Correlations between the variables</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descriptive-statistics.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ++++++++++++++++++++++++++++</span></span>
-<span id="cb5-2"><a href="descriptive-statistics.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># flattenCorrMatrix</span></span>
-<span id="cb5-3"><a href="descriptive-statistics.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ++++++++++++++++++++++++++++</span></span>
-<span id="cb5-4"><a href="descriptive-statistics.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cormat : matrix of the correlation coefficients</span></span>
-<span id="cb5-5"><a href="descriptive-statistics.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pmat : matrix of the correlation p-values</span></span>
-<span id="cb5-6"><a href="descriptive-statistics.html#cb5-6" aria-hidden="true" tabindex="-1"></a>flattenCorrMatrix <span class="ot">&lt;-</span> <span class="cf">function</span>(cormat, pmat) {</span>
-<span id="cb5-7"><a href="descriptive-statistics.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  ut <span class="ot">&lt;-</span> <span class="fu">upper.tri</span>(cormat)</span>
-<span id="cb5-8"><a href="descriptive-statistics.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb5-9"><a href="descriptive-statistics.html#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">row =</span> <span class="fu">rownames</span>(cormat)[<span class="fu">row</span>(cormat)[ut]],</span>
-<span id="cb5-10"><a href="descriptive-statistics.html#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">column =</span> <span class="fu">rownames</span>(cormat)[<span class="fu">col</span>(cormat)[ut]],</span>
-<span id="cb5-11"><a href="descriptive-statistics.html#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">cor  =</span>(cormat)[ut],</span>
-<span id="cb5-12"><a href="descriptive-statistics.html#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> pmat[ut]</span>
-<span id="cb5-13"><a href="descriptive-statistics.html#cb5-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-14"><a href="descriptive-statistics.html#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-15"><a href="descriptive-statistics.html#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="descriptive-statistics.html#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="descriptive-statistics.html#cb5-17" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> <span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(df))</span>
-<span id="cb5-18"><a href="descriptive-statistics.html#cb5-18" aria-hidden="true" tabindex="-1"></a>cor.m <span class="ot">&lt;-</span> <span class="fu">flattenCorrMatrix</span>(res2<span class="sc">$</span>r, res2<span class="sc">$</span>P)</span>
-<span id="cb5-19"><a href="descriptive-statistics.html#cb5-19" aria-hidden="true" tabindex="-1"></a>cor.m[<span class="fu">order</span>(cor.m[,<span class="dv">3</span>],<span class="at">decreasing=</span><span class="cn">TRUE</span>),]</span></code></pre></div>
-<pre><code>##                     row               column          cor            p
-## 2         fixed.acidity          citric.acid  0.671703435 0.000000e+00
-## 22        fixed.acidity              density  0.668047292 0.000000e+00
-## 21  free.sulfur.dioxide total.sulfur.dioxide  0.667666450 0.000000e+00
-## 66              alcohol              quality  0.476166324 0.000000e+00
-## 41            chlorides            sulphates  0.371260481 0.000000e+00
-## 24          citric.acid              density  0.364947175 0.000000e+00
-## 25       residual.sugar              density  0.355283371 0.000000e+00
-## 39          citric.acid            sulphates  0.312770044 0.000000e+00
-## 65            sulphates              quality  0.251397079 0.000000e+00
-## 30     volatile.acidity                   pH  0.234937294 0.000000e+00
-## 58          citric.acid              quality  0.226372514 0.000000e+00
-## 54                   pH              alcohol  0.205632509 0.000000e+00
-## 9           citric.acid            chlorides  0.203822914 2.220446e-16
-## 19       residual.sugar total.sulfur.dioxide  0.203027882 2.220446e-16
-## 26            chlorides              density  0.200632327 4.440892e-16
-## 14       residual.sugar  free.sulfur.dioxide  0.187048995 4.685141e-14
-## 37        fixed.acidity            sulphates  0.183005664 1.647571e-13
-## 44              density            sulphates  0.148506412 2.418474e-09
-## 6           citric.acid       residual.sugar  0.143577162 8.083723e-09
-## 56        fixed.acidity              quality  0.124051649 6.495635e-07
-## 4         fixed.acidity       residual.sugar  0.114776724 4.199465e-06
-## 48          citric.acid              alcohol  0.109903247 1.059462e-05
-## 7         fixed.acidity            chlorides  0.093705186 1.751746e-04
-## 55            sulphates              alcohol  0.093594750 1.783053e-04
-## 17     volatile.acidity total.sulfur.dioxide  0.076470005 2.213857e-03
-## 28 total.sulfur.dioxide              density  0.071269476 4.354284e-03
-## 34  free.sulfur.dioxide                   pH  0.070377499 4.869975e-03
-## 8      volatile.acidity            chlorides  0.061297772 1.422491e-02
-## 10       residual.sugar            chlorides  0.055609535 2.617079e-02
-## 42  free.sulfur.dioxide            sulphates  0.051657572 3.888321e-02
-## 20            chlorides total.sulfur.dioxide  0.047400468 5.809120e-02
-## 43 total.sulfur.dioxide            sulphates  0.042946836 8.601835e-02
-## 49       residual.sugar              alcohol  0.042075437 9.258425e-02
-## 18          citric.acid total.sulfur.dioxide  0.035533024 1.555454e-01
-## 23     volatile.acidity              density  0.022026232 3.787554e-01
-## 59       residual.sugar              quality  0.013731637 5.832180e-01
-## 15            chlorides  free.sulfur.dioxide  0.005562147 8.241238e-01
-## 40       residual.sugar            sulphates  0.005527121 8.252134e-01
-## 5      volatile.acidity       residual.sugar  0.001917882 9.389168e-01
-## 12     volatile.acidity  free.sulfur.dioxide -0.010503827 6.747011e-01
-## 27  free.sulfur.dioxide              density -0.021945831 3.804985e-01
-## 61  free.sulfur.dioxide              quality -0.050656057 4.283398e-02
-## 64                   pH              quality -0.057731391 2.096278e-02
-## 13          citric.acid  free.sulfur.dioxide -0.060978129 1.473916e-02
-## 46        fixed.acidity              alcohol -0.061668271 1.364868e-02
-## 35 total.sulfur.dioxide                   pH -0.066494559 7.818341e-03
-## 51  free.sulfur.dioxide              alcohol -0.069408354 5.492314e-03
-## 32       residual.sugar                   pH -0.085652422 6.065915e-04
-## 16        fixed.acidity total.sulfur.dioxide -0.113181443 5.709033e-06
-## 60            chlorides              quality -0.128906560 2.313383e-07
-## 11        fixed.acidity  free.sulfur.dioxide -0.153794193 6.335581e-10
-## 63              density              quality -0.174919228 1.874945e-12
-## 62 total.sulfur.dioxide              quality -0.185100289 8.615331e-14
-## 45                   pH            sulphates -0.196647602 2.220446e-15
-## 47     volatile.acidity              alcohol -0.202288027 4.440892e-16
-## 52 total.sulfur.dioxide              alcohol -0.205653944 0.000000e+00
-## 50            chlorides              alcohol -0.221140545 0.000000e+00
-## 1         fixed.acidity     volatile.acidity -0.256130895 0.000000e+00
-## 38     volatile.acidity            sulphates -0.260986685 0.000000e+00
-## 33            chlorides                   pH -0.265026131 0.000000e+00
-## 36              density                   pH -0.341699335 0.000000e+00
-## 57     volatile.acidity              quality -0.390557780 0.000000e+00
-## 53              density              alcohol -0.496179770 0.000000e+00
-## 31          citric.acid                   pH -0.541904145 0.000000e+00
-## 3      volatile.acidity          citric.acid -0.552495685 0.000000e+00
-## 29        fixed.acidity                   pH -0.682978195 0.000000e+00</code></pre>
-<div id="visualize-correlations" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> Visualize Correlations</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Insignificant correlations are leaved blank</span></span>
-<span id="cb7-2"><a href="descriptive-statistics.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(res2<span class="sc">$</span>r, <span class="at">type=</span><span class="st">&quot;upper&quot;</span>, <span class="at">order=</span><span class="st">&quot;hclust&quot;</span>, </span>
-<span id="cb7-3"><a href="descriptive-statistics.html#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">p.mat =</span> res2<span class="sc">$</span>P, <span class="at">sig.level =</span> <span class="fl">0.01</span>, <span class="at">insig =</span> <span class="st">&quot;blank&quot;</span>)</span></code></pre></div>
-<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualization of a Correlation Matrix. On top the (absolute) value of the correlation plus the result of the cor.test as stars. On bottom, the bivariate scatterplots, with a fitted line</span></span>
-<span id="cb8-2"><a href="descriptive-statistics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.Correlation</span>(df, <span class="at">histogram=</span><span class="cn">TRUE</span>, <span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
-<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
-<span id="cb9-2"><a href="descriptive-statistics.html#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> fixed.acidity, </span>
-<span id="cb9-3"><a href="descriptive-statistics.html#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> pH, </span>
-<span id="cb9-4"><a href="descriptive-statistics.html#cb9-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> quality)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="descriptive-statistics.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, </span>
-<span id="cb9-6"><a href="descriptive-statistics.html#cb9-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> .<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="descriptive-statistics.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wine Composition by fixed acidity, citric acid, and quality&quot;</span>)</span></code></pre></div>
-<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="descriptive-statistics.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
-<span id="cb10-2"><a href="descriptive-statistics.html#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> fixed.acidity, </span>
-<span id="cb10-3"><a href="descriptive-statistics.html#cb10-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> density, </span>
-<span id="cb10-4"><a href="descriptive-statistics.html#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> quality)) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="descriptive-statistics.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, </span>
-<span id="cb10-6"><a href="descriptive-statistics.html#cb10-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> .<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="descriptive-statistics.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wine Composition by fixed acidity, density, and quality&quot;</span>)</span></code></pre></div>
-<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="optimization" class="section level2" number="16.6">
+<h2><span class="header-section-number">16.6</span> Optimization</h2>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="partial-dependence-plots.html#cb108-1" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb108-2"><a href="partial-dependence-plots.html#cb108-2" aria-hidden="true" tabindex="-1"></a>k.optm<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb108-3"><a href="partial-dependence-plots.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">37</span>){</span>
+<span id="cb108-4"><a href="partial-dependence-plots.html#cb108-4" aria-hidden="true" tabindex="-1"></a>  knn.mod <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train=</span>train.wine, <span class="at">test=</span>test.wine, <span class="at">cl=</span>train.quality_label, <span class="at">k=</span>i)</span>
+<span id="cb108-5"><a href="partial-dependence-plots.html#cb108-5" aria-hidden="true" tabindex="-1"></a>  k.optm[i] <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(test.quality_label <span class="sc">==</span> knn.mod)<span class="sc">/</span><span class="fu">NROW</span>(test.quality_label)</span>
+<span id="cb108-6"><a href="partial-dependence-plots.html#cb108-6" aria-hidden="true" tabindex="-1"></a>  k<span class="ot">=</span>i</span>
+<span id="cb108-7"><a href="partial-dependence-plots.html#cb108-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(k,<span class="st">&#39;=&#39;</span>,k.optm[i],<span class="st">&#39;&#39;</span>)</span>
+<span id="cb108-8"><a href="partial-dependence-plots.html#cb108-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 1 = 61.875 2 = 56.875 3 = 56.875 4 = 61.25 5 = 59.0625 6 = 58.125 7 = 55.625 8 = 57.1875 9 = 57.5 10 = 56.875 11 = 59.0625 12 = 59.375 13 = 58.75 14 = 59.375 15 = 60 16 = 60.3125 17 = 61.25 18 = 60.9375 19 = 60 20 = 59.0625 21 = 59.375 22 = 59.375 23 = 59.6875 24 = 59.0625 25 = 58.125 26 = 58.125 27 = 59.0625 28 = 59.0625 29 = 58.4375 30 = 58.4375 31 = 58.75 32 = 59.375 33 = 60 34 = 60.3125 35 = 59.6875 36 = 59.0625 37 = 59.375</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="partial-dependence-plots.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Accuracy plot</span></span>
+<span id="cb110-2"><a href="partial-dependence-plots.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k.optm, <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;K- Value&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Accuracy level&quot;</span>)</span></code></pre></div>
+<p><img src="COMP-4441-Final-Project-Bright-Santoro_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 
-
-</div>
 </div>
 </div>
             </section>
@@ -416,8 +341,8 @@ This data-set inlcudes the measurements from the wine along with its quality rat
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="number-of-nodes-on-the-trees.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -449,7 +374,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-DescriptiveStats.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-RandomForest.Rmd",
 "text": "Edit"
 },
 "history": {

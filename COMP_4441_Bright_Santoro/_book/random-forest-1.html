@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>KMeans_Testing</title>
+  <title>Chapter 12 Random Forest | KMeans_Testing</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="KMeans_Testing" />
+  <meta property="og:title" content="Chapter 12 Random Forest | KMeans_Testing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="KMeans_Testing" />
+  <meta name="twitter:title" content="Chapter 12 Random Forest | KMeans_Testing" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="tune-mtry.html"/>
+<link rel="next" href="rerun-predicition-and-confusion-matrix-train-data.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,22 +228,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">KMeans_Testing</h1>
-<p class="author"><em>Emma Bright</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>5/14/2021</em></p>
-</div>
-<div id="index" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Index</h1>
-
+<div id="random-forest-1" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Random Forest</h1>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="random-forest-1.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb78-2"><a href="random-forest-1.html#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="random-forest-1.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
+<span id="cb78-4"><a href="random-forest-1.html#cb78-4" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>train,</span>
+<span id="cb78-5"><a href="random-forest-1.html#cb78-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ntree=</span><span class="dv">200</span>,</span>
+<span id="cb78-6"><a href="random-forest-1.html#cb78-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">mTry=</span><span class="dv">3</span>, </span>
+<span id="cb78-7"><a href="random-forest-1.html#cb78-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">importance=</span><span class="cn">TRUE</span>,</span>
+<span id="cb78-8"><a href="random-forest-1.html#cb78-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">proximity=</span><span class="cn">TRUE</span>)</span>
+<span id="cb78-9"><a href="random-forest-1.html#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = quality ~ ., data = train, ntree = 200,      mTry = 3, importance = TRUE, proximity = TRUE) 
+##                Type of random forest: classification
+##                      Number of trees: 200
+## No. of variables tried at each split: 3
+## 
+##         OOB estimate of  error rate: 32.65%
+## Confusion matrix:
+##   3 4   5   6  7 8 class.error
+## 3 0 0   5   2  0 0   1.0000000
+## 4 0 0  24  13  0 0   1.0000000
+## 5 0 2 387  92  1 0   0.1970954
+## 6 0 0 115 299 27 1   0.3235294
+## 7 0 0   5  71 73 0   0.5100671
+## 8 0 0   0   5  5 0   1.0000000</code></pre>
+<p>Our original OOB estimate of error rate was 33.27% and now it is 32.65%, so it was improved by about 0.5%.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tune-mtry.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rerun-predicition-and-confusion-matrix-train-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +295,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-RandomForest.Rmd",
 "text": "Edit"
 },
 "history": {
