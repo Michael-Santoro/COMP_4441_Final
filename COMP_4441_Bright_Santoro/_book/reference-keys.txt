@@ -1,4 +1,8 @@
 index
+introduction
+the-research-question
+statistical-or-analytical-method
+variables-in-the-data-that-will-be-used-for-analysis
 descriptive-statistics
 the-data
 data-exploration-and-descr-statistics
@@ -6,3 +10,14 @@ univariate-exploration
 bivariate-exploration
 multivariate-exploration
 visualize-correlations
+introduction-1
+the-research-question-1
+statistical-or-analytical-method-1
+variables-in-the-data-that-will-be-used-for-analysis-1
+descriptive-statistics-1
+the-data-1
+data-exploration-and-descr-statistics-1
+univariate-exploration-1
+bivariate-exploration-1
+multivariate-exploration-1
+visualize-correlations-1

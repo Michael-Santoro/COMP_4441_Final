@@ -1,0 +1,13 @@
+
+
+# Introduction
+
+## The Research Question
+Our final project will explore the relationship between the outcome of two dependent variables of wine, value and quality, and their chemical composition: including measures such as acidity, residual sugar, and alcohol percentage. A predictive model for pricing and quality of wine can provide guidance to small wineries and vineyards, especially those from less established wine regions, so that they can more accurately price their inventory and ensure a better return on investment.   What is the quality of wine based on its quantitative characteristics (Fixed Acidity, Volatile Acidity, Citric Acid, Residual Sugar, Chlorides, Free Sulfur Dioxide, Total Sulfur Dioxide, Density, pH, Sulphates, and Alcohol)?
+
+## Statistical or Analytical Method
+LASSO Regression, Random Forests, and K-Nearest
+
+## Variables in the Data that will be used for Analysis
+Our analysis will include the following x-variables, output, or outcome variables: Fixed Acidity, Volatile Acidity, Citric Acid, Residual Sugar, Chlorides, Free Sulfur Dioxide, Total Sulfur Dioxide, Density, pH, Sulphates, and Alcohol.
+The dependent, y-variables of our analysis will be: Quality, Price (Value).

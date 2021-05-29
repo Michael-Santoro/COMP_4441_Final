@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
@@ -13,3 +13,133 @@ description: "This is a minimal example of using the bookdown package to write a
 ---
 
 # Index
+
+<!--chapter:end:index.Rmd-->
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+## The Research Question
+Our final project will explore the relationship between the outcome of two dependent variables of wine, value and quality, and their chemical composition: including measures such as acidity, residual sugar, and alcohol percentage. A predictive model for pricing and quality of wine can provide guidance to small wineries and vineyards, especially those from less established wine regions, so that they can more accurately price their inventory and ensure a better return on investment.   What is the quality of wine based on its quantitative characteristics (Fixed Acidity, Volatile Acidity, Citric Acid, Residual Sugar, Chlorides, Free Sulfur Dioxide, Total Sulfur Dioxide, Density, pH, Sulphates, and Alcohol)?
+
+## Statistical or Analytical Method
+LASSO Regression, Random Forests, and K-Nearest
+
+## Variables in the Data that will be used for Analysis
+Our analysis will include the following x-variables, output, or outcome variables: Fixed Acidity, Volatile Acidity, Citric Acid, Residual Sugar, Chlorides, Free Sulfur Dioxide, Total Sulfur Dioxide, Density, pH, Sulphates, and Alcohol.
+The dependent, y-variables of our analysis will be: Quality, Price (Value).
+
+<!--chapter:end:01-Introduction.Rmd-->
+
+# Descriptive Statistics
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(ggpubr)
+library(boot)
+library("Hmisc")
+library(corrplot)
+library("PerformanceAnalytics")
+library(pastecs)
+```
+
+
+## The Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+df<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+head(df)
+```
+
+
+
+## Data Exploration and Descr Statistics
+
+
+```{r}
+
+stat.desc(df)
+```
+
+## Univariate Exploration
+
+## Bivariate Exploration
+
+## Multivariate Exploration
+Correlations between the variables
+
+
+```{r}
+# ++++++++++++++++++++++++++++
+# flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat : matrix of the correlation coefficients
+# pmat : matrix of the correlation p-values
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  =(cormat)[ut],
+    p = pmat[ut]
+    )
+}
+
+
+res2 <- rcorr(as.matrix(df))
+cor.m <- flattenCorrMatrix(res2$r, res2$P)
+cor.m[order(cor.m[,3],decreasing=TRUE),]
+
+```
+
+### Visualize Correlations
+
+```{r}
+
+# Insignificant correlations are leaved blank
+corrplot(res2$r, type="upper", order="hclust", 
+         p.mat = res2$P, sig.level = 0.01, insig = "blank")
+```
+
+```{r}
+#Visualization of a Correlation Matrix. On top the (absolute) value of the correlation plus the result of the cor.test as stars. On bottom, the bivariate scatterplots, with a fitted line
+chart.Correlation(df, histogram=TRUE, pch=19)
+
+```
+
+
+
+
+```{r}
+
+ggplot(df, 
+       aes(x = fixed.acidity, 
+           y = pH, 
+           color = quality)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by fixed acidity, citric acid, and quality")
+```
+```{r}
+
+ggplot(df, 
+       aes(x = fixed.acidity, 
+           y = density, 
+           color = quality)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by fixed acidity, density, and quality")
+```
+
+<!--chapter:end:02-DescriptiveStats.Rmd-->
+
