@@ -63,15 +63,24 @@ With these assumptions being true we can model quality witht the following equat
 $$ q = a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_2nx_n + b$$
 Where $a_1, a_2, \dots, a_n$ are coefficients from the model. $x_1, x_2, \dots, x_n$ are the input variables to the model. $b$ is a factor of the model and $q$ is equal to the quality output.
 
-In the code-block below
+### Single Variable
 
+In the code-block below we output the summary of just the measurement alchol into the linear model.
+```{r}
+summary(lm(quality~alcohol, data = train))
+```
+Focusing on the p-value above we can tell that it is unlikely that by chance we will observe a relationship between alcohol and quality.
+
+### Multiple Variables
+In the code block below we will input all of the variables and examine the output.
 
 ```{r}
 lr <- lm(quality~fixed.acidity + volatile.acidity + citric.acid + residual.sugar + chlorides + free.sulfur.dioxide + density + pH + sulphates + alcohol, data = train)
 summary(lr)
 
-
 ```
+
+Reviewing the output we find that the inputs: 'volatile.acidity', 'sulphates', and 'alcohol'.
 
 ## Regularization
 
