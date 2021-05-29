@@ -58,14 +58,14 @@ The simplest form of regression is linear regression, which assumes that the pre
 
 We saw in the Descriptive Stats section *that this was not the case*
 
-With these assumptions being true we can model quality witht the following equation.
+With these assumptions being true we can model quality with the following equation.
 
 $$ q = a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_2nx_n + b$$
 Where $a_1, a_2, \dots, a_n$ are coefficients from the model. $x_1, x_2, \dots, x_n$ are the input variables to the model. $b$ is a factor of the model and $q$ is equal to the quality output.
 
 ### Single Variable
 
-In the code-block below we output the summary of just the measurement alchol into the linear model.
+In the code-block below we output the summary of just the measurement alcohol into the linear model.
 ```{r}
 summary(lm(quality~alcohol, data = train))
 ```
