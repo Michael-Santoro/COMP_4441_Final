@@ -289,13 +289,13 @@ This data-set inlcudes the measurements from the wine along with its quality rat
 ### Assumptions
 * Input is assumed to have a Normal distribution and are not correlated with each other.</p>
 <p>We saw in the Descriptive Stats section <em>that this was not the case</em></p>
-<p>With these assumptions being true we can model quality witht the following equation.</p>
+<p>With these assumptions being true we can model quality with the following equation.</p>
 <p><span class="math display">\[ q = a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_2nx_n + b\]</span>
 Where <span class="math inline">\(a_1, a_2, \dots, a_n\)</span> are coefficients from the model. <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> are the input variables to the model. <span class="math inline">\(b\)</span> is a factor of the model and <span class="math inline">\(q\)</span> is equal to the quality output.</p>
 </div>
 <div id="single-variable" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Single Variable</h3>
-<p>In the code-block below we output the summary of just the measurement alchol into the linear model.</p>
+<p>In the code-block below we output the summary of just the measurement alcohol into the linear model.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="lasso-regression.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(quality<span class="sc">~</span>alcohol, <span class="at">data =</span> train))</span></code></pre></div>
 <pre><code>## 
 ## Call:
