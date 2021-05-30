@@ -33,7 +33,7 @@ linear-regression
 what-is-it
 single-variable
 multiple-variables
-regularization
+less-variables
 ridge-regression
 lasso-regression-1
 features-of-the-glmnet-package

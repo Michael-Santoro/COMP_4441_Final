@@ -11,6 +11,12 @@ wine <-wine[,1:12]
 normalize <- function(x) {
 return ((x - min(x)) / (max(x) - min(x))) }
 
+#De-Normalization
+de.normalize <- function(val){
+  x <- wine[,1:12]
+  return (val*(max(x) - min(x))+min(x))
+}
+
 #only normalize variables
 wine.normal <- as.data.frame(lapply(wine[,1:11], normalize))
 
@@ -35,4 +41,15 @@ train <- wine.normal[ind==1, ]
 test <- wine.normal[ind==2,]
 
 ```
+
+## Comparing Results
+
+We will be comparing accuracy of each of the methods so we will set up an accuracy data frame to compare the effectiveness of each of the methods.
+
+```{r}
+accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Random Forest","Regression"))
+
+accuracy
+```
+
 

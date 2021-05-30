@@ -24,7 +24,7 @@
 <meta name="author" content="Emma Bright and Michael Santoro" />
 
 
-<meta name="date" content="2021-05-29" />
+<meta name="date" content="2021-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-cleaning-and-partitioning.html"/>
 <link rel="next" href="k-nearest-neighbor.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -184,13 +184,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.1" data-path="lasso-regression.html"><a href="lasso-regression.html#what-is-it"><i class="fa fa-check"></i><b>6.5.1</b> What is it?</a></li>
 <li class="chapter" data-level="6.5.2" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.5.2</b> Single Variable</a></li>
 <li class="chapter" data-level="6.5.3" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.5.3</b> Multiple Variables</a></li>
+<li class="chapter" data-level="6.5.4" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.5.4</b> Less Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="lasso-regression.html"><a href="lasso-regression.html#regularization"><i class="fa fa-check"></i><b>6.6</b> Regularization</a></li>
-<li class="chapter" data-level="6.7" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.7</b> Ridge Regression</a></li>
-<li class="chapter" data-level="6.8" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.8</b> Lasso Regression</a>
+<li class="chapter" data-level="6.6" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.6</b> Ridge Regression</a></li>
+<li class="chapter" data-level="6.7" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.7</b> Lasso Regression</a>
 <ul>
-<li class="chapter" data-level="6.8.1" data-path="lasso-regression.html"><a href="lasso-regression.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>6.8.1</b> Features of the ‘glmnet’ Package</a></li>
-<li class="chapter" data-level="6.8.2" data-path="lasso-regression.html"><a href="lasso-regression.html#elastic-net-regression"><i class="fa fa-check"></i><b>6.8.2</b> Elastic Net Regression</a></li>
+<li class="chapter" data-level="6.7.1" data-path="lasso-regression.html"><a href="lasso-regression.html#features-of-the-glmnet-package"><i class="fa fa-check"></i><b>6.7.1</b> Features of the ‘glmnet’ Package</a></li>
+<li class="chapter" data-level="6.7.2" data-path="lasso-regression.html"><a href="lasso-regression.html#elastic-net-regression"><i class="fa fa-check"></i><b>6.7.2</b> Elastic Net Regression</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
@@ -285,15 +285,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+##                      Class: 9
+## Sensitivity          1.000000
+## Specificity          1.000000
+## Pos Pred Value       1.000000
+## Neg Pred Value       1.000000
+## Prevalence           0.001096
+## Detection Rate       0.001096
+## Detection Prevalence 0.001096
+## Balanced Accuracy    1.000000</code></pre>
 <p>There were no misclassifications of our training data, our model was 100% accurate. THe reason for the large discrepancy between accuracy markers for the OOB and the confusion matrix is that the confusion matrix for p1 is base on the training data random forest model…so it has already “seen” the training data data points.</p>
 </div>
 <div id="predicition-and-confusion-matrix---test-data" class="section level2" number="4.3">
@@ -438,15 +447,24 @@ So this means that the model hits its lowest error rate when mtry=3, so we can t
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+##                      Class: 9
+## Sensitivity          1.000000
+## Specificity          1.000000
+## Pos Pred Value       1.000000
+## Neg Pred Value       1.000000
+## Prevalence           0.001096
+## Detection Rate       0.001096
+## Detection Prevalence 0.001096
+## Balanced Accuracy    1.000000</code></pre>
 <p>Again the accuracy is 100% but this is due to the training data already being seen by the model.</p>
 </div>
 <div id="rerun-predicition-and-confusion-matrix---test-data" class="section level2" number="4.8">

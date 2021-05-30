@@ -1,0 +1,737 @@
+--- 
+title: "COMP 4441 Final Project"
+author: "Emma Bright and Michael Santoro"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright. "
+---
+
+
+<!--chapter:end:index.Rmd-->
+
+
+
+# Introduction
+
+**Purpose**
+
+Wine is an alcoholic beverage made from fermented grape juice. (Puckette) Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma.  Though these tests are subjective, there is overlap between the observation of these characteristics and a wine's physiochemical properties.  For example, a wine's perceived acidity or tartness is based upon the pH of the wine and a wine's perceived sweetness is based upon the residual sugar of the wine.  
+
+The goal of our research is to determine:
+
+Can we predict the subjective quality rating of wine based solely on its physiochemical properties?
+
+An accurate predictive model for determining an objective quality of wine would enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.   
+
+**Statistical or Analytical Method**
+
+We will be using the the following statistical methods to create predictive models for quality of wine:
+
+- LASSO Regression, 
+- Random Forest, and 
+- K-Nearest Neighbor.
+
+
+
+  
+
+<!--chapter:end:01-Introduction.Rmd-->
+
+# Descriptive Statistics
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(ggpubr)
+library(boot)
+library("Hmisc")
+library(corrplot)
+library("PerformanceAnalytics")
+library(pastecs)
+library(ggplot2)
+library(class)
+library(caret)
+library(randomForest)
+library(plyr)
+```
+
+
+## Dataset
+
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository (see References). The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
+
+
+**Read in Data**
+
+```{r}
+redWine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+whiteWine<-read.table("data/winequality-white.csv",stringsAsFactors = FALSE,
+                sep=";",header = TRUE)
+
+redWine$type='red'
+whiteWine$type='white'
+
+# create a field that shows whether a wine is red or white based on initial 
+# datasets
+wine <- rbind(redWine, whiteWine)
+
+str(wine)
+```
+
+
+## Exploratory Analysis
+
+### Descriptive Statistics
+
+In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)
+
+The table below shows descriptive statistic measurements for each of the variables in our dataset. 
+
+```{r}
+
+stat.desc(wine)
+```
+
+***Univariate Exploration***
+We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
+
+The variables for the three plots below were selected judgmentally from the dataset. 
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(alcohol))
+
+p<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(volatile.acidity))
+
+p<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(density))
+
+p<-ggplot(wine, aes(x=density, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+***Bivariate Exploration***
+Bivariate exploration allows us to explore the relationship between two descriptive statistics in a dataset. 
+
+To better determine which variable relationships we should explore, we ran correlation analysis.  
+
+```{r}
+# ++++++++++++++++++++++++++++
+# flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat : matrix of the correlation coefficients
+# pmat : matrix of the correlation p-values
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  =(cormat)[ut],
+    p = pmat[ut]
+    )
+}
+
+# exclude the type of wine from the correlation variables 
+res2 <- rcorr(as.matrix(wine[,1:12]))
+cor.m <- flattenCorrMatrix(res2$r, res2$P)
+cor.m[order(cor.m[,3],decreasing=TRUE),]
+
+```
+
+***Visualize Correlations***
+
+```{r}
+
+# Insignificant correlations are leaved blank
+corrplot(res2$r, type="upper", order="hclust", 
+         p.mat = res2$P, sig.level = 0.01, insig = "blank")
+```
+
+Based on the correlation matrix and the correlation plots it appears that there is a strong negative correlation between alcohol and density and a strong positive correlation between residual sugar and density.  These are plotted below. 
+
+
+```{r}
+
+ggplot(wine, 
+       aes(x = alcohol, 
+           y = density, 
+           color = type)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by alcohol, density, and type")
+```
+```{r}
+
+ggplot(wine, 
+       aes(x = residual.sugar, 
+           y = density, 
+           color = type)) +
+  geom_point(size = 3, 
+             alpha = .6) +
+  labs(title = "Wine Composition by residual.sugar, density, and type")
+```
+
+<!--chapter:end:02-DescriptiveStats.Rmd-->
+
+# Lasso Regression
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(quantreg)
+library(glmnet)
+library(caret)
+```
+
+## Load Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+glimpse(wine)
+```
+
+## Process Reference
+
+The process was followed from this site: https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r
+
+## Data Partitioning
+
+The below code takes 70% of the data for training and 30% of the code for testing.
+
+```{r}
+set.seed(100) 
+
+index = sample(1:nrow(wine), 0.7*nrow(wine)) 
+
+train = wine[index,] # Create the training data 
+test = wine[-index,] # Create the test data
+
+dim(train)
+dim(test)
+```
+
+## Scaling the Numeric Features
+
+```{r}
+cols <- colnames(wine)
+pre_proc_val <- preProcess(train[,cols], method = c("center", "scale"))
+
+train[,cols] = predict(pre_proc_val, train[,cols])
+test[,cols] = predict(pre_proc_val, test[,cols])
+
+summary(train)
+```
+
+## Linear Regression
+### What is it?
+The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 
+### Assumptions
+* Input is assumed to have a Normal distribution and are not correlated with each other.
+
+We saw in the Descriptive Stats section *TO:DO that this was not the case*
+
+With these assumptions being true we can model quality with the following equation.
+
+$$ q = a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_2nx_n + b + \epsilon$$
+Where $a_1, a_2, \dots, a_n$ are coefficients from the model. $x_1, x_2, \dots, x_n$ are the input variables to the model. $b$ is a factor of the model representing the y-intercept and $q$ is equal to the quality output. Finally, $\epsilon$ is the error.
+The method that we use to optimize this model is Ordinary Least Squares (OLS).
+
+### Single Variable
+
+In the code-block below we output the summary of just the measurement alcohol into the linear model.
+```{r}
+lr.1 <- lm(quality~alcohol, data = train)
+summary(lr.1)
+```
+Focusing on the p-value above we can tell that it is unlikely that by chance we will observe a relationship between alcohol and quality. Which fits our standard threshold of $5\%$.
+We will use the Root Mean Square Error (RMSE) to compare the results of each of the models.
+
+```{r}
+p.1 <- predict(lr.1, newdata = test)
+
+RMSE.1 <- RMSE(p.1,test$quality)
+#R_SQUARE_LM <- rsquare(predicted,test$quality)
+#LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
+#LR.Results.df
+RMSE.1
+```
+```{r}
+bool <- p.1-test$quality
+```
+
+
+### Multiple Variables
+In the code block below we will input all of the variables and examine the output.
+
+```{r}
+lr.2 <- lm(quality~., data = train)
+summary(lr.2)
+
+```
+
+Reviewing the output we find from the output that the variables that fall under our standard $5\%$ null-hypothesis threshold are: 'volatile.acidity', 'citric.acid', 'chlorides', 'sulphates', and 'alcohol'.
+
+One of the issues with so many variables is there a risk of including variables that do not affect the outcome.
+
+
+```{r}
+p.2 <- predict(lr.2, newdata = test)
+
+RMSE.2 <- RMSE(p.2,test$quality)
+#R_SQUARE_LM <- rsquare(predicted,test$quality)
+#LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
+#LR.Results.df
+RMSE.2
+```
+
+### Less Variables
+In the code block below we will input all of the variables and examine the output.
+
+```{r}
+lr.3 <- lm(quality~ volatile.acidity + citric.acid + chlorides + free.sulfur.dioxide + sulphates + alcohol, data = train)
+summary(lr.3)
+```
+
+```{r}
+p.3 <- predict(lr.3, newdata = test)
+
+RMSE.3 <- RMSE(p.3,test$quality)
+#R_SQUARE_LM <- rsquare(predicted,test$quality)
+#LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
+#LR.Results.df
+RMSE.3
+```
+
+## Ridge Regression
+
+Ridge regression is an extension of linear regression where the loss function is modified to minimize the complexity of the model. This modification is done by adding a penalty parameter that is equivalent to the square of the magnitude of the coefficients. If we re-write the OLS in Matrix for below:
+$$X_tX\beta = X_tY$$
+To solbe for the $\beta$ terms to obtain the estimation model, we obtain the following.
+
+$$\beta = (X^{'}X)^{-1}X^{'}Y$$
+
+Ridge regression modifies the above by adding a small value of $\lambda$, to the diagonal elements of the correlation matrix.
+$$\beta = (R+\lambda I)^{-1}X^{'}Y$$
+
+We need to find an optimal value for the $lambda$ factor. The 'glmnet' feature makes this easy for us. It does not accept a data frame though so we need to make a matrix of the the input variables. The other thing that the chunk below is doing is creating a vecotr of $\lambda$ values that we want to try. Finally, we plot the 
+
+```{r}
+qual <- train$quality
+cols <- cols[1:length(cols)-1]
+train.mat <- train %>% select(cols) %>% data.matrix()
+lambdas <- 10^seq(3, -2, by = -.1)
+ridge_reg <- cv.glmnet(train.mat, qual, alpha = 0, lambda = lambdas)
+plot(ridge_reg)
+```
+The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.
+
+```{r}
+opt_lambda <- ridge_reg$lambda.min
+opt_lambda
+```
+```{r}
+ridge_model <- ridge_reg$glmnet.fit
+summary(ridge_model)
+```
+
+Next, we prepare our test data for prediction.
+```{r}
+test.mat <- test %>% select(cols) %>% data.matrix()
+```
+
+Next, we find the RMSE of the ridge regression.
+
+```{r}
+p.4 <- predict(ridge_model, s = opt_lambda, newx = test.mat)
+
+RMSE.4 <- RMSE(p.4,test$quality)
+RMSE.4
+```
+
+
+## Lasso Regression
+
+```{r}
+lambdas <- 10^seq(2, -3, by = -.1)
+
+# Setting alpha = 1 implements lasso regression
+lasso_reg <- cv.glmnet(x, y_train, alpha = 1, lambda = lambdas)
+plot(lasso_reg)
+```
+
+
+
+```{r}
+# Best 
+lambda_best <- lasso_reg$lambda.min 
+lambda_best
+```
+
+
+```{r}
+p.5 <- predict(lasso_reg, s = lambda_best, newx = test.mat)
+
+RMSE.4 <- RMSE(p.5,test$quality)
+RMSE.4
+```
+
+
+### Features of the 'glmnet' Package
+
+$\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and ridge penalty is scaled by $(1-\alpha$).
+
+### Elastic Net Regression
+Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.
+
+
+```{r}
+# Set training control
+train_cont <- trainControl(method = "repeatedcv",
+                              number = 10,
+                              repeats = 5,
+                              search = "random",
+                              verboseIter = TRUE)
+
+# Train the model
+elastic_reg <- train(quality ~ .,
+                           data = train,
+                           method = "glmnet",
+                           preProcess = c("center", "scale"),
+                           tuneLength = 10,
+                           trControl = train_cont)
+
+
+# Best tuning parameter
+elastic_reg$bestTune
+```
+
+```{r}
+elastic_reg <- glmnet(train.mat , qual, alpha = elastic_reg$bestTune[1,1], lambda = elastic_reg$bestTune[1,2])
+```
+
+
+```{r}
+p.6 <- predict(elastic_reg, s = elastic_reg$bestTune, newx = test.mat)
+
+RMSE.4 <- RMSE(p.6,test$quality)
+RMSE.4
+```
+
+
+<!--chapter:end:03-LassoRegression.Rmd-->
+
+# Random Forest 
+
+
+## Run random forest function
+```{r}
+set.seed(444)
+
+train$quality<-as.factor(train$quality) 
+test$quality<-as.factor(test$quality) 
+
+# quality is a function of all other variables 
+rf <- randomForest(quality~., data=train)
+print(rf)
+
+```
+The reults show that the out of bag error rate is 33.27%.  The model was most inaccurate when predicting wines with a quality values of 3, 4, and 8 with a 100% error rate. It was most accurate when predicting wines with a quality of 5, 19% error rate. 
+
+
+
+## Predicition and COnfusion matrix - train data
+```{r}
+
+p1 <- predict(rf, train)
+p1<- droplevels(p1) #drop any unused levels
+head(p1) # predicted values
+head(train$quality) # actual values
+```
+Coincidentally, all of the first 6 predictions were 100% accurate.
+
+
+```{r}
+#install.packages('caret', dependencies = TRUE)
+
+confusionMatrix(p1, train$quality )
+```
+There were no misclassifications of our training data, our model was 100% accurate. THe reason for the large discrepancy between accuracy markers for the OOB and the confusion matrix is that the confusion matrix for p1 is base on the training data random forest model...so it has already "seen" the training data data points. 
+
+## Predicition and COnfusion matrix - test data
+```{r}
+
+p2 <- predict(rf, test)
+p2<-droplevels(p2) # drop unused levels
+head(p2) # predicted values
+head(test$quality) # actual values
+```
+This model was able to predict 4 out of 6 of the first values accurately. 
+
+
+```{r}
+confusionMatrix(p2, test$quality )
+```
+
+
+## Error Rate in Random Forest Model 
+
+```{r}
+plot(rf)
+```
+THe model has a drop off after about 300 trees and then is more or less constant, therefore, we can adjust tune our model. 
+
+## Tune mtry
+
+```{r}
+
+set.seed(2222)
+
+t <- tuneRF(train[,-12], train[,12], 
+       stepFactor = 0.5, 
+       plot=TRUE,
+       ntreeTry = 100,
+       trace=TRUE,
+       improve=0.05)
+
+```
+So this means that the model hits its lowest error rate when mtry=3, so we can then go back and adjust our model to reflect this new mtry value. 
+
+
+## Random Forest
+
+Rerun random forest with new tuning factors 
+
+```{r}
+set.seed(444)
+
+# quality is a function of all other variables 
+rf <- randomForest(quality~., data=train,
+                   ntree=300,
+                   mTry=3, 
+                   importance=TRUE,
+                   proximity=TRUE)
+print(rf)
+
+```
+Our original OOB estimate of error rate was 33.27% and now it is 32.65%, so it was improved by about 0.5%.
+
+
+## Rerun Predicition and Confusion matrix - train data
+```{r}
+
+p1 <- predict(rf, train)
+p1<- droplevels(p1) # drop any unused levels
+head(p1) # predicted values
+head(train$quality) # actual values
+```
+Coincidentally, all of the first 6 predictions were 100% accurate.
+
+
+```{r}
+
+confusionMatrix(p1, train$quality )
+```
+
+Again the accuracy is 100% but this is due to the training data already being seen by the model. 
+
+
+## Rerun Predicition and COnfusion matrix - test data
+```{r}
+
+p2 <- predict(rf, test)
+p2 <- droplevels(p2) # drop any unuused levels 
+head(p2) # predicted values
+head(test$quality) # actual values
+```
+This model was able to predict 4 out of 6 of the first values accurately. 
+
+
+```{r}
+confusionMatrix(p2, test$quality )
+```
+Overall, there was only a 0.5% increase in accuracy for the test data. However, there were improvements in sensitify for Class 5 and Class 7. 
+
+## Number of Nodes on the trees
+
+```{r}
+
+hist(treesize(rf),
+     main = "No. of nodes for the trees", 
+     col="blue")
+
+```
+## Variable Importance 
+
+```{r}
+varImpPlot(rf, 
+           main="Variable Importance")
+```
+This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 30% mean decrease in accuracy. On the opposite end of the spectrum the pH has almost no affect in the model's accuracy. 
+
+## Partial Dependence Plots 
+
+Produces partial plot for alcohol in training set data/rf model for classication 5 aka quality =5. 
+
+```{r}
+
+partialPlot(rf, train, alcohol, 5)
+
+```
+
+This plot tells u that when alcohol is less than 11% it predicts classification 5 more strongly than when it is greater than 11%.
+
+
+```{r}
+
+partialPlot(rf, train, alcohol, 7)
+
+```
+
+This plot tells us that when alcohol is greater than 10% it predicts classification 7 more strongly than when it is less than 10%.
+
+
+
+
+
+
+<!--chapter:end:04-RandomForest.Rmd-->
+
+# K-Nearest Neighbor
+
+## Introduction
+Just planning to use this file to walk through some tutorials of k-means clustering I found. 
+
+## Load Data
+We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
+This data-set inlcudes the measurements from the wine along with its quality rating.
+
+```{r}
+wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+head(wine)
+```
+
+
+
+## Clean and Normalize the data. 
+Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
+```{r}
+
+#Normalization
+normalize <- function(x) {
+return ((x - min(x)) / (max(x) - min(x))) }
+
+wine.normal <- as.data.frame(lapply(wine[,1:11], normalize))
+
+head(wine.normal)
+
+```
+
+
+## Data Splice
+Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
+
+```{r}
+set.seed(123)
+dat.d <- sample(1:nrow(wine.normal),size=nrow(wine.normal)*0.8,replace = FALSE) #random selection of 90% data.
+ 
+train.wine <- wine.normal[dat.d,] # 90% training data
+test.wine <- wine.normal[-dat.d,] # remaining 10% test data
+
+
+#Creating seperate dataframe for 'Quality' feature which is our target.
+train.quality_label <- wine[dat.d,12]
+test.quality_label <-wine[-dat.d,12]
+```
+
+Next, we’re going to calculate the number of observations in the training data set. The reason we’re doing this is that we want to initialize the value of ‘K’ in the KNN model. One of the ways to find the optimal K value is to calculate the square root of the total number of observations in the data set. This square root will give you the ‘K’ value.
+
+```{r}
+NROW(train.quality_label) 
+sqrt(NROW(train.quality_label) )
+
+```
+The square root of 1493 is around 35.7 we'll create a model with a ‘K’ value as 36.
+
+```{r}
+
+knn.36 <- knn(train=train.wine, test=test.wine, cl=train.quality_label, k=36)
+
+```
+
+
+## Model Evaluation 
+
+```{r}
+#Calculate the proportion of correct classification for k =37
+
+ACC.36 <- 100 * sum(test.quality_label == knn.36)/NROW(test.quality_label)
+ACC.36
+
+```
+As shown above, the accuracy for K = 36 is 58.435
+
+## Optimization
+
+```{r}
+i=1
+k.optm=1
+for (i in 1:37){
+  knn.mod <- knn(train=train.wine, test=test.wine, cl=train.quality_label, k=i)
+  k.optm[i] <- 100 * sum(test.quality_label == knn.mod)/NROW(test.quality_label)
+  k=i
+  cat(k,'=',k.optm[i],'')
+}
+```
+
+
+```{r}
+#Accuracy plot
+plot(k.optm, type="b", xlab="K- Value",ylab="Accuracy level")
+```
+
+
+
+<!--chapter:end:05-KMeans_Testing.Rmd-->
+

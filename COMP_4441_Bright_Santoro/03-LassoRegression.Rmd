@@ -8,47 +8,6 @@ library(glmnet)
 library(caret)
 ```
 
-## Load Data
-We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
-This data-set inlcudes the measurements from the wine along with its quality rating.
-
-```{r}
-wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
-                sep=",",header = TRUE)
-glimpse(wine)
-```
-
-## Process Reference
-
-The process was followed from this site: https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r
-
-## Data Partitioning
-
-The below code takes 70% of the data for training and 30% of the code for testing.
-
-```{r}
-set.seed(100) 
-
-index = sample(1:nrow(wine), 0.7*nrow(wine)) 
-
-train = wine[index,] # Create the training data 
-test = wine[-index,] # Create the test data
-
-dim(train)
-dim(test)
-```
-
-## Scaling the Numeric Features
-
-```{r}
-cols <- colnames(wine)
-pre_proc_val <- preProcess(train[,cols], method = c("center", "scale"))
-
-train[,cols] = predict(pre_proc_val, train[,cols])
-test[,cols] = predict(pre_proc_val, test[,cols])
-
-summary(train)
-```
 
 ## Linear Regression
 ### What is it?
@@ -56,7 +15,7 @@ The simplest form of regression is linear regression, which assumes that the pre
 ### Assumptions
 * Input is assumed to have a Normal distribution and are not correlated with each other.
 
-We saw in the Descriptive Stats section *TO:DO that this was not the case*
+We saw in the Descriptive Stats section that visually this factor had a strong correlation with quality.
 
 With these assumptions being true we can model quality with the following equation.
 
@@ -72,21 +31,24 @@ lr.1 <- lm(quality~alcohol, data = train)
 summary(lr.1)
 ```
 Focusing on the p-value above we can tell that it is unlikely that by chance we will observe a relationship between alcohol and quality. Which fits our standard threshold of $5\%$.
-We will use the Root Mean Square Error (RMSE) to compare the results of each of the models.
+We will use the Root Mean Square Error (RMSE) to compare the results of each of the models. (Glenn) The Root Mean Square Error (RMSE) is the standard deviation of the residuals (prediction errors). Residuals are a measure of how far from the regression line data points are; RMSE is a measure of how spread out these residuals are. In other words, it tells you how concentrated the data is around the line of best fit. We are looking for a value very close to zero here as the formula is as follows:
+
+$$RMSE = \sqrt{\frac{\sum_{i=1}^{N}(predicted_i - actual_i)^2}{N}}$$
+
 
 ```{r}
 p.1 <- predict(lr.1, newdata = test)
-
 RMSE.1 <- RMSE(p.1,test$quality)
-#R_SQUARE_LM <- rsquare(predicted,test$quality)
-#LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
-#LR.Results.df
 RMSE.1
 ```
-```{r}
-bool <- p.1-test$quality
-```
 
+Since we will be comparing results to other discrette statistical methods we now calculate an accuracy measure.
+```{r}
+
+rp.1<-round(p.1)
+acc.1 <- mean(rp.1==test$quality)
+
+```
 
 ### Multiple Variables
 In the code block below we will input all of the variables and examine the output.
@@ -94,7 +56,6 @@ In the code block below we will input all of the variables and examine the outpu
 ```{r}
 lr.2 <- lm(quality~., data = train)
 summary(lr.2)
-
 ```
 
 Reviewing the output we find from the output that the variables that fall under our standard $5\%$ null-hypothesis threshold are: 'volatile.acidity', 'citric.acid', 'chlorides', 'sulphates', and 'alcohol'.
@@ -106,11 +67,14 @@ One of the issues with so many variables is there a risk of including variables 
 p.2 <- predict(lr.2, newdata = test)
 
 RMSE.2 <- RMSE(p.2,test$quality)
-#R_SQUARE_LM <- rsquare(predicted,test$quality)
-#LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
-#LR.Results.df
 RMSE.2
 ```
+
+```{r}
+rp.2<-round(p.2)
+mean(rp.2==test$quality)
+```
+
 
 ### Less Variables
 In the code block below we will input all of the variables and examine the output.
@@ -124,10 +88,11 @@ summary(lr.3)
 p.3 <- predict(lr.3, newdata = test)
 
 RMSE.3 <- RMSE(p.3,test$quality)
-#R_SQUARE_LM <- rsquare(predicted,test$quality)
-#LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
-#LR.Results.df
 RMSE.3
+```
+```{r}
+rp.3<-round(p.3)
+mean(rp.3==test$quality)
 ```
 
 ## Ridge Regression
@@ -141,10 +106,11 @@ $$\beta = (X^{'}X)^{-1}X^{'}Y$$
 Ridge regression modifies the above by adding a small value of $\lambda$, to the diagonal elements of the correlation matrix.
 $$\beta = (R+\lambda I)^{-1}X^{'}Y$$
 
-We need to find an optimal value for the $lambda$ factor. The 'glmnet' feature makes this easy for us. It does not accept a data frame though so we need to make a matrix of the the input variables. The other thing that the chunk below is doing is creating a vecotr of $\lambda$ values that we want to try. Finally, we plot the 
+We need to find an optimal value for the $lambda$ factor. The 'glmnet' feature makes this easy for us. It does not accept a data frame though so we need to make a matrix of the the input variables. The other thing that the chunk below is doing is creating a vector of $\lambda$ values that we want to try. Finally, we plot the 
 
 ```{r}
 qual <- train$quality
+cols <-colnames(train)
 cols <- cols[1:length(cols)-1]
 train.mat <- train %>% select(cols) %>% data.matrix()
 lambdas <- 10^seq(3, -2, by = -.1)
@@ -157,6 +123,8 @@ The lowest point in the curve indicates the optimal lambda: the log value of lam
 opt_lambda <- ridge_reg$lambda.min
 opt_lambda
 ```
+
+
 ```{r}
 ridge_model <- ridge_reg$glmnet.fit
 summary(ridge_model)
@@ -175,15 +143,21 @@ p.4 <- predict(ridge_model, s = opt_lambda, newx = test.mat)
 RMSE.4 <- RMSE(p.4,test$quality)
 RMSE.4
 ```
+```{r}
+rp.4<-round(p.4)
+mean(rp.4==test$quality)
+```
 
 
 ## Lasso Regression
+
+The method for LASSO regression is much similar to the above.
 
 ```{r}
 lambdas <- 10^seq(2, -3, by = -.1)
 
 # Setting alpha = 1 implements lasso regression
-lasso_reg <- cv.glmnet(x, y_train, alpha = 1, lambda = lambdas)
+lasso_reg <- cv.glmnet(train.mat, qual, alpha = 1, lambda = lambdas)
 plot(lasso_reg)
 ```
 
@@ -199,8 +173,13 @@ lambda_best
 ```{r}
 p.5 <- predict(lasso_reg, s = lambda_best, newx = test.mat)
 
-RMSE.4 <- RMSE(p.5,test$quality)
-RMSE.4
+RMSE.5 <- RMSE(p.5,test$quality)
+RMSE.5
+```
+
+```{r}
+rp.5<-round(p.5)
+mean(rp.5==test$quality)
 ```
 
 
@@ -212,7 +191,7 @@ $\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and rid
 Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.
 
 
-```{r}
+```{r, echo=FALSE}
 # Set training control
 train_cont <- trainControl(method = "repeatedcv",
                               number = 10,
@@ -229,11 +208,12 @@ elastic_reg <- train(quality ~ .,
                            trControl = train_cont)
 
 
-# Best tuning parameter
-elastic_reg$bestTune
+
 ```
 
 ```{r}
+# Best tuning parameter
+elastic_reg$bestTune
 elastic_reg <- glmnet(train.mat , qual, alpha = elastic_reg$bestTune[1,1], lambda = elastic_reg$bestTune[1,2])
 ```
 
@@ -241,7 +221,17 @@ elastic_reg <- glmnet(train.mat , qual, alpha = elastic_reg$bestTune[1,1], lambd
 ```{r}
 p.6 <- predict(elastic_reg, s = elastic_reg$bestTune, newx = test.mat)
 
-RMSE.4 <- RMSE(p.6,test$quality)
-RMSE.4
+RMSE.6 <- RMSE(p.6,test$quality)
+RMSE.6
+```
+
+```{r}
+rp.6<-round(p.6)
+acc.6 <- mean(rp.6==test$quality)
+```
+
+
+```{r}
+accuracy[3,1] <- acc.6
 ```
 

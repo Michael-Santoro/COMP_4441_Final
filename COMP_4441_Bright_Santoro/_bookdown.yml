@@ -4,5 +4,5 @@ language:
     chapter_name: "Chapter "
 delete_merged_file: true
 rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-DescriptiveStats.Rmd", 
-"03-DataCleaning.Rmd", "04-RandomForest.Rmd", "05-KMeans_Testing.Rmd", "03-LassoRegression.Rmd","07-References.Rmd"]
+"03-DataCleaning.Rmd", "04-RandomForest.Rmd", "05-KMeans_Testing.Rmd", "03-LassoRegression.Rmd","08-Results.Rmd","07-References.Rmd"]
 

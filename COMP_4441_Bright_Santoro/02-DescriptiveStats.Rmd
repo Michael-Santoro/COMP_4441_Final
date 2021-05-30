@@ -150,7 +150,7 @@ ggplot(wine,
            y = density, 
            color = type)) +
   geom_point(size = 3, 
-             alpha = .6) +
+             alpha = .05) +
   labs(title = "Wine Composition by alcohol, density, and type")
 ```
 ```{r}
@@ -160,6 +160,6 @@ ggplot(wine,
            y = density, 
            color = type)) +
   geom_point(size = 3, 
-             alpha = .6) +
+             alpha = .05) +
   labs(title = "Wine Composition by residual.sugar, density, and type")
 ```
