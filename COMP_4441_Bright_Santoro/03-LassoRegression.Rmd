@@ -83,6 +83,9 @@ RMSE.1 <- RMSE(p.1,test$quality)
 #LR.Results.df
 RMSE.1
 ```
+```{r}
+bool <- p.1-test$quality
+```
 
 
 ### Multiple Variables
