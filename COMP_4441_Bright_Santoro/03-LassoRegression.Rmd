@@ -206,7 +206,7 @@ RMSE.4
 $\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and ridge penalty is scaled by $(1-\alpha$).
 
 ### Elastic Net Regression
-Elastic net regression combines the properties of ridge and lasso regression
+Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.
 
 
 ```{r}
