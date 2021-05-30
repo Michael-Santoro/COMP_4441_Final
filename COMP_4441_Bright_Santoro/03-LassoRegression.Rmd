@@ -77,7 +77,7 @@ We will use the Root Mean Square Error (RMSE) to compare the results of each of 
 ```{r}
 p.1 <- predict(lr.1, newdata = test)
 
-RMSE.1 <- RMSE(predicted,test$quality)
+RMSE.1 <- RMSE(p.1,test$quality)
 #R_SQUARE_LM <- rsquare(predicted,test$quality)
 #LR.Results.df$Single.Var.LM <- data.frame(c(RMSE_LM, R_SQUARE_LM))
 #LR.Results.df
@@ -145,18 +145,18 @@ qual <- train$quality
 cols <- cols[1:length(cols)-1]
 train.mat <- train %>% select(cols) %>% data.matrix()
 lambdas <- 10^seq(3, -2, by = -.1)
-cv_fit <- cv.glmnet(train.mat, qual, alpha = 0, lambda = lambdas)
-plot(cv_fit)
+ridge_reg <- cv.glmnet(train.mat, qual, alpha = 0, lambda = lambdas)
+plot(ridge_reg)
 ```
 The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.
 
 ```{r}
-opt_lambda <- cv_fit$lambda.min
+opt_lambda <- ridge_reg$lambda.min
 opt_lambda
 ```
 ```{r}
-fit <- cv_fit$glmnet.fit
-summary(fit)
+ridge_model <- ridge_reg$glmnet.fit
+summary(ridge_model)
 ```
 
 Next, we prepare our test data for prediction.
@@ -167,14 +167,11 @@ test.mat <- test %>% select(cols) %>% data.matrix()
 Next, we find the RMSE of the ridge regression.
 
 ```{r}
-rr <- predict(fit, s = opt_lambda, newx = test.mat)
+p.4 <- predict(ridge_model, s = opt_lambda, newx = test.mat)
 
-RMSE.4 <- RMSE(rr,test$quality)
+RMSE.4 <- RMSE(p.4,test$quality)
 RMSE.4
 ```
-
-
-
 
 
 ## Lasso Regression
@@ -183,21 +180,24 @@ RMSE.4
 lambdas <- 10^seq(2, -3, by = -.1)
 
 # Setting alpha = 1 implements lasso regression
-lasso_reg <- cv.glmnet(x, y_train, alpha = 1, lambda = lambdas, standardize = TRUE, nfolds = 5)
+lasso_reg <- cv.glmnet(x, y_train, alpha = 1, lambda = lambdas)
+plot(lasso_reg)
+```
 
+
+
+```{r}
 # Best 
 lambda_best <- lasso_reg$lambda.min 
 lambda_best
 ```
 
+
 ```{r}
-lasso_model <- glmnet(x, y_train, alpha = 1, lambda = lambda_best, standardize = TRUE)
+p.5 <- predict(lasso_reg, s = lambda_best, newx = test.mat)
 
-predictions_train <- predict(lasso_model, s = lambda_best, newx = x)
-eval_results(y_train, predictions_train, train)
-
-predictions_test <- predict(lasso_model, s = lambda_best, newx = x_test)
-eval_results(y_test, predictions_test, test)
+RMSE.4 <- RMSE(p.5,test$quality)
+RMSE.4
 ```
 
 
@@ -229,13 +229,16 @@ elastic_reg <- train(quality ~ .,
 # Best tuning parameter
 elastic_reg$bestTune
 ```
-```{r}
-# Make predictions on training set
-predictions_train <- predict(elastic_reg, x)
-eval_results(y_train, predictions_train, train) 
 
-# Make predictions on test set
-predictions_test <- predict(elastic_reg, x_test)
-eval_results(y_test, predictions_test, test)
+```{r}
+elastic_reg <- glmnet(train.mat , qual, alpha = elastic_reg$bestTune[1,1], lambda = elastic_reg$bestTune[1,2])
+```
+
+
+```{r}
+p.6 <- predict(elastic_reg, s = elastic_reg$bestTune, newx = test.mat)
+
+RMSE.4 <- RMSE(p.6,test$quality)
+RMSE.4
 ```
 
