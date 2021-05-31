@@ -3,7 +3,7 @@
 Decision trees can suffer from from the problem of overfitting.  In order to help solve this problem, the Random Forest algorithm was devised.  It works by building multiple decision trees and then merging them together to form a prediction. 
 Random forest can be used to solve both classification and regression problems, however, for our analysis we will be utilizing it solve our classification problem. 
 
-"Each tree within the Random Forest is grown as follows:
+Each tree within the Random Forest is grown as follows:
 
 1. If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.
 2. If there are M input variables, a number m<<M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.
@@ -29,9 +29,9 @@ print(rf)
 
 ```
 
-The default number of trees was utilized to run our model (500) and the number of variables tried at each split in the tree was 3 variables.
+The default number of trees was utilized to run our model (500) and the number of variables tried at each split in the tree was $3$ variables.
 
-The table above shows the confusion matrix for the random forest model created with the training dataset. The out-of-bag (OOB) error is shown to be 32.91%. According to the class.error results, the model was most inaccurate when predicting wines with a quality of 3 or 9 with a 100% error rate.  It was most accurate when predicting wines of value 6 with only a 22% error rate. 
+The table above shows the confusion matrix for the random forest model created with the training dataset. The out-of-bag (OOB) error is shown to be $32.91\%$. According to the class.error results, the model was most inaccurate when predicting wines with a quality of $3$ or $9$ with a $100\%$ error rate.  It was most accurate when predicting wines of value 6 with only a $22\%$ error rate. 
 
 
 ## Predicition and Confusion Matrix - Training Data
@@ -155,7 +155,7 @@ head(rf.test$quality) # actual values
 ```{r}
 confusionMatrix(p2, rf.test$quality )
 ```
-The accuracy is roughly 68.24% when utilizing the test dataset with the new random forest model. This is a .7% improvement from the previous results of 68.91%.
+The accuracy is roughly $68.24\%$ when utilizing the test dataset with the new random forest model. This is a $0.7\%$ improvement from the previous results of $68.91\%$.
 
 ## Variable Importance 
 

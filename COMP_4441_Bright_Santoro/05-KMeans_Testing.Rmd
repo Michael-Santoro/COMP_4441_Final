@@ -1,34 +1,5 @@
 # K-Nearest Neighbor
 
-## Introduction
-Just planning to use this file to walk through some tutorials of k-means clustering I found. 
-
-## Load Data
-We have taken a data-set from Kaggle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 
-This data-set inlcudes the measurements from the wine along with its quality rating.
-
-```{r}
-wine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
-                sep=",",header = TRUE)
-head(wine)
-```
-
-
-
-## Clean and Normalize the data. 
-Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
-```{r}
-
-#Normalization
-normalize <- function(x) {
-return ((x - min(x)) / (max(x) - min(x))) }
-
-wine.normal <- as.data.frame(lapply(wine[,1:11], normalize))
-
-head(wine.normal)
-
-```
-
 
 ## Data Splice
 Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
