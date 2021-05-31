@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-cleaning-and-partitioning.html"/>
 <link rel="next" href="k-nearest-neighbor.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -300,15 +300,24 @@ Random forest can be used to solve both classification and regression problems, 
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+##                      Class: 9
+## Sensitivity          1.000000
+## Specificity          1.000000
+## Pos Pred Value       1.000000
+## Neg Pred Value       1.000000
+## Prevalence           0.001096
+## Detection Rate       0.001096
+## Detection Prevalence 0.001096
+## Balanced Accuracy    1.000000</code></pre>
 <p>Using the confusion matrix function from the caret library, we can show the accuracy of our model when predicting the quality values for our training dataset. The accuracy is 100% when utilizing the training dataset with the random forest model trained by the training dataset.</p>
 </div>
 <div id="predicition-and-confusion-matrix---test-data" class="section level2" number="4.3">
@@ -460,15 +469,24 @@ This output indicates that our model hits its lowest error rate when the mTry va
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
-## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
+##                      Class: 9
+## Sensitivity          1.000000
+## Specificity          1.000000
+## Pos Pred Value       1.000000
+## Neg Pred Value       1.000000
+## Prevalence           0.001096
+## Detection Rate       0.001096
+## Detection Prevalence 0.001096
+## Balanced Accuracy    1.000000</code></pre>
 <p>Again, all of our predictions were 100% accurate as the training data had already been “seen” by the model.</p>
 </div>
 <div id="rerun-predicition-and-confusion-matrix---test-data" class="section level2" number="4.7">

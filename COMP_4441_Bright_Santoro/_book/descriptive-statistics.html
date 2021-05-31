@@ -33,7 +33,7 @@
   
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="data-cleaning-and-partitioning.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -256,21 +256,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)</p>
 <p>The table below shows descriptive statistic measurements for each of the variables in our dataset.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat.desc</span>(wine)</span></code></pre></div>
-<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar    chlorides free.sulfur.dioxide total.sulfur.dioxide      density
-## nbr.val       6.497000e+03     6.497000e+03 6.497000e+03   6.497000e+03 6.497000e+03        6.497000e+03         6.497000e+03 6.497000e+03
-## nbr.null      0.000000e+00     0.000000e+00 1.510000e+02   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
-## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
-## min           3.800000e+00     8.000000e-02 0.000000e+00   6.000000e-01 9.000000e-03        1.000000e+00         6.000000e+00 9.871100e-01
-## max           1.590000e+01     1.580000e+00 1.660000e+00   6.580000e+01 6.110000e-01        2.890000e+02         4.400000e+02 1.038980e+00
-## range         1.210000e+01     1.500000e+00 1.660000e+00   6.520000e+01 6.020000e-01        2.880000e+02         4.340000e+02 5.187000e-02
-## sum           4.687785e+04     2.206810e+03 2.070160e+03   3.536470e+04 3.640520e+02        1.983230e+05         7.519925e+05 6.462544e+03
-## median        7.000000e+00     2.900000e-01 3.100000e-01   3.000000e+00 4.700000e-02        2.900000e+01         1.180000e+02 9.948900e-01
-## mean          7.215307e+00     3.396660e-01 3.186332e-01   5.443235e+00 5.603386e-02        3.052532e+01         1.157446e+02 9.946966e-01
-## SE.mean       1.608399e-02     2.042536e-03 1.802862e-03   5.902692e-02 4.346387e-04        2.202050e-01         7.012292e-01 3.720255e-05
-## CI.mean.0.95  3.152992e-02     4.004042e-03 3.534204e-03   1.157122e-01 8.520349e-04        4.316744e-01         1.374640e+00 7.292924e-05
-## var           1.680740e+00     2.710517e-02 2.111728e-02   2.263670e+01 1.227353e-03        3.150412e+02         3.194720e+03 8.992040e-06
-## std.dev       1.296434e+00     1.646365e-01 1.453179e-01   4.757804e+00 3.503360e-02        1.774940e+01         5.652185e+01 2.998673e-03
-## coef.var      1.796783e-01     4.847011e-01 4.560663e-01   8.740764e-01 6.252220e-01        5.814648e-01         4.883326e-01 3.014661e-03
+<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar
+## nbr.val       6.497000e+03     6.497000e+03 6.497000e+03   6.497000e+03
+## nbr.null      0.000000e+00     0.000000e+00 1.510000e+02   0.000000e+00
+## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00
+## min           3.800000e+00     8.000000e-02 0.000000e+00   6.000000e-01
+## max           1.590000e+01     1.580000e+00 1.660000e+00   6.580000e+01
+## range         1.210000e+01     1.500000e+00 1.660000e+00   6.520000e+01
+## sum           4.687785e+04     2.206810e+03 2.070160e+03   3.536470e+04
+## median        7.000000e+00     2.900000e-01 3.100000e-01   3.000000e+00
+## mean          7.215307e+00     3.396660e-01 3.186332e-01   5.443235e+00
+## SE.mean       1.608399e-02     2.042536e-03 1.802862e-03   5.902692e-02
+## CI.mean.0.95  3.152992e-02     4.004042e-03 3.534204e-03   1.157122e-01
+## var           1.680740e+00     2.710517e-02 2.111728e-02   2.263670e+01
+## std.dev       1.296434e+00     1.646365e-01 1.453179e-01   4.757804e+00
+## coef.var      1.796783e-01     4.847011e-01 4.560663e-01   8.740764e-01
+##                 chlorides free.sulfur.dioxide total.sulfur.dioxide      density
+## nbr.val      6.497000e+03        6.497000e+03         6.497000e+03 6.497000e+03
+## nbr.null     0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
+## nbr.na       0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00
+## min          9.000000e-03        1.000000e+00         6.000000e+00 9.871100e-01
+## max          6.110000e-01        2.890000e+02         4.400000e+02 1.038980e+00
+## range        6.020000e-01        2.880000e+02         4.340000e+02 5.187000e-02
+## sum          3.640520e+02        1.983230e+05         7.519925e+05 6.462544e+03
+## median       4.700000e-02        2.900000e+01         1.180000e+02 9.948900e-01
+## mean         5.603386e-02        3.052532e+01         1.157446e+02 9.946966e-01
+## SE.mean      4.346387e-04        2.202050e-01         7.012292e-01 3.720255e-05
+## CI.mean.0.95 8.520349e-04        4.316744e-01         1.374640e+00 7.292924e-05
+## var          1.227353e-03        3.150412e+02         3.194720e+03 8.992040e-06
+## std.dev      3.503360e-02        1.774940e+01         5.652185e+01 2.998673e-03
+## coef.var     6.252220e-01        5.814648e-01         4.883326e-01 3.014661e-03
 ##                        pH    sulphates      alcohol      quality type
 ## nbr.val      6.497000e+03 6.497000e+03 6.497000e+03 6.497000e+03   NA
 ## nbr.null     0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   NA

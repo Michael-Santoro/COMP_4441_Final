@@ -16,9 +16,9 @@ An accurate predictive model for determining an objective quality of wine would 
 
 We will be using the the following statistical methods to create predictive models for quality of wine:
 
-- LASSO Regression, 
-- Random Forest, and 
-- K-Nearest Neighbor.
+- Elastic Net Regression (LASSO and Ridge)
+- Random Forest
+- K-Nearest Neighbor
 
 
 
