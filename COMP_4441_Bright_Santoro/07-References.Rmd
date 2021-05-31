@@ -12,3 +12,5 @@ Puckette, Madeline. “What Is Wine Exactly?” Wine Folly, 5 Oct. 2015, winefol
 "Ridge Regression, LASSO, and Elastic Nets" Derek Kane, 23, Feb. 2015, https://www.slideshare.net/DerekKane/data-science-part-xii-ridge-regression-lasso-and-elastic-nets; https://www.youtube.com/watch?v=ipb2MhSRGdw
 
 Stephanie Glen. "RMSE: Root Mean Square Error" From StatisticsHowTo.com: Elementary Statistics for the rest of us! https://www.statisticshowto.com/probability-and-statistics/regression-analysis/rmse-root-mean-square-error/
+
+Breiman, Leo, and Adele Cutler. “Random Forests.” Berkeley Statistics, www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm. Accessed 30 May 2021.

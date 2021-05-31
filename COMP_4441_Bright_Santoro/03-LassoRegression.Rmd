@@ -1,14 +1,5 @@
 # Lasso Regression
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(quantreg)
-library(glmnet)
-library(caret)
-```
-
-
 ## Linear Regression
 ### What is it?
 The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 

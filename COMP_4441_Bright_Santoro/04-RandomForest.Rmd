@@ -1,70 +1,104 @@
 # Random Forest 
 
+Decision trees can suffer from from the problem of overfitting.  In order to help solve this problem, the Random Forest algorithm was devised.  It works by building multiple decision trees and then merging them together to form a prediction. 
+Random forest can be used to solve both classification and regression problems, however, for our analysis we will be utilizing it solve our classification problem. 
 
-## Run random forest function
+"Each tree within the Random Forest is grown as follows:
+
+1. If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.
+2. If there are M input variables, a number m<<M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.
+3. Each tree is grown to the largest extent possible. There is no pruning." (Breiman and Cutler)
+
+
+## Create Random Forest Model
+
+We will start by running the randomForest function utilizing the training dataset to train the model. 
+
 ```{r}
 set.seed(444)
 
-train$quality<-as.factor(train$quality) 
-test$quality<-as.factor(test$quality) 
+rf.train <- train
+rf.train$quality <-as.factor(rf.train$quality)
+
+rf.test <- test
+rf.test$quality <-as.factor(rf.test$quality)
 
 # quality is a function of all other variables 
-rf <- randomForest(quality~., data=train)
+rf <- randomForest(quality~., data=rf.train)
 print(rf)
 
 ```
-The reults show that the out of bag error rate is 33.27%.  The model was most inaccurate when predicting wines with a quality values of 3, 4, and 8 with a 100% error rate. It was most accurate when predicting wines with a quality of 5, 19% error rate. 
+
+The default number of trees was utilized to run our model (500) and the number of variables tried at each split in the tree was 3 variables.
+
+The table above shows the confusion matrix for the random forest model created with the training dataset. The out-of-bag (OOB) error is shown to be 32.91%. According to the class.error results, the model was most inaccurate when predicting wines with a quality of 3 or 9 with a 100% error rate.  It was most accurate when predicting wines of value 6 with only a 22% error rate. 
 
 
+## Predicition and Confusion Matrix - Training Data
 
-## Predicition and COnfusion matrix - train data
+The following code runs a prediction of the quality values for the training set using the random forest model created above.  
+
+As you can see, all 6 predictions in the predicted values vector are 100% accurate. This makes sense as the random forest model was built using the training data, so it has already "seen" these values. 
+
 ```{r}
 
-p1 <- predict(rf, train)
+p1 <- predict(rf, rf.train)
 p1<- droplevels(p1) #drop any unused levels
 head(p1) # predicted values
-head(train$quality) # actual values
+head(rf.train$quality) # actual values
 ```
-Coincidentally, all of the first 6 predictions were 100% accurate.
 
 
 ```{r}
 #install.packages('caret', dependencies = TRUE)
 
-confusionMatrix(p1, train$quality )
+confusionMatrix(p1, rf.train$quality )
 ```
-There were no misclassifications of our training data, our model was 100% accurate. THe reason for the large discrepancy between accuracy markers for the OOB and the confusion matrix is that the confusion matrix for p1 is base on the training data random forest model...so it has already "seen" the training data data points. 
 
-## Predicition and COnfusion matrix - test data
-```{r}
+Using the confusion matrix function from the caret library, we can show the accuracy of our model when predicting the quality values for our training dataset. The accuracy is 100% when utilizing the training dataset with the random forest model trained by the training dataset. 
 
-p2 <- predict(rf, test)
-p2<-droplevels(p2) # drop unused levels
-head(p2) # predicted values
-head(test$quality) # actual values
-```
+## Predicition and Confusion Matrix - Test Data
+
+The following code runs a prediction of the quality values for the test dataset using the random forest model created with our training dataset from above.   
+
 This model was able to predict 4 out of 6 of the first values accurately. 
 
-
 ```{r}
-confusionMatrix(p2, test$quality )
+
+p2 <- predict(rf, rf.test)
+p2<-droplevels(p2) # drop unused levels
+head(p2) # predicted values
+head(rf.test$quality) # actual values
 ```
 
+```{r}
+confusionMatrix(p2, rf.test$quality )
+```
 
-## Error Rate in Random Forest Model 
+Using the confusion matrix function from the caret library, we can show the accuracy of our model in predicting the quality values for our test dataset. The accuracy is roughly 69% when utilizing the test dataset with the random forest model trained by the training dataset. 
+
+## Tuning our Model
+
+Now, that we have run our initial model, we can focus on fine tuning the random forest parameters in order to create a more accurate predictive model. 
+
+### Plotting the Error Rate
+
+Plotting the error rate to the number of trees can show us where our model has more or less the same level of effectiveness and we can choose a more accurate tree number. 
 
 ```{r}
 plot(rf)
 ```
-THe model has a drop off after about 300 trees and then is more or less constant, therefore, we can adjust tune our model. 
+The model appears to have a drop off after about 300 trees and then is more or less constant, therefore, we can adjust our tree number in the model to be 300. 
 
-## Tune mtry
+### Tuning mTry
+
+The mTry value reflects the number of variables tested at each node split. The tuneRF function can be used to determine what our mTry value should be. 
 
 ```{r}
 
 set.seed(2222)
 
-t <- tuneRF(train[,-12], train[,12], 
+t <- tuneRF(rf.train[,-12], rf.train[,12], 
        stepFactor = 0.5, 
        plot=TRUE,
        ntreeTry = 100,
@@ -72,18 +106,17 @@ t <- tuneRF(train[,-12], train[,12],
        improve=0.05)
 
 ```
-So this means that the model hits its lowest error rate when mtry=3, so we can then go back and adjust our model to reflect this new mtry value. 
+This output indicates that our model hits its lowest error rate when the mTry value is 3, so we can adjust our model to reflect this new  value. 
 
+## Recreate our Random Forest Model
 
-## Random Forest
-
-Rerun random forest with new tuning factors 
+The following code reruns our model utilizing the new tuning parameters found above.
 
 ```{r}
 set.seed(444)
 
 # quality is a function of all other variables 
-rf <- randomForest(quality~., data=train,
+rf <- randomForest(quality~., data=rf.train,
                    ntree=300,
                    mTry=3, 
                    importance=TRUE,
@@ -91,82 +124,58 @@ rf <- randomForest(quality~., data=train,
 print(rf)
 
 ```
-Our original OOB estimate of error rate was 33.27% and now it is 32.65%, so it was improved by about 0.5%.
 
+Our original OOB error rate was 32.91% and utilizing our new tuned parameters, our OOB error rate was 32.23%, so it was improved roughly 0.7%. 
 
-## Rerun Predicition and Confusion matrix - train data
+## Rerun Predicition and Confusion Matrix - Training Data
 ```{r}
 
-p1 <- predict(rf, train)
+p1 <- predict(rf, rf.train)
 p1<- droplevels(p1) # drop any unused levels
 head(p1) # predicted values
-head(train$quality) # actual values
+head(rf.train$quality) # actual values
 ```
-Coincidentally, all of the first 6 predictions were 100% accurate.
-
 
 ```{r}
 
-confusionMatrix(p1, train$quality )
+confusionMatrix(p1, rf.train$quality )
 ```
 
-Again the accuracy is 100% but this is due to the training data already being seen by the model. 
+Again, all of our predictions were 100% accurate as the training data had already been "seen" by the model. 
 
-
-## Rerun Predicition and COnfusion matrix - test data
+## Rerun Predicition and Confusion Matrix - Test Data
 ```{r}
 
-p2 <- predict(rf, test)
+p2 <- predict(rf, rf.test)
 p2 <- droplevels(p2) # drop any unuused levels 
 head(p2) # predicted values
-head(test$quality) # actual values
+head(rf.test$quality) # actual values
 ```
-This model was able to predict 4 out of 6 of the first values accurately. 
-
 
 ```{r}
-confusionMatrix(p2, test$quality )
+confusionMatrix(p2, rf.test$quality )
 ```
-Overall, there was only a 0.5% increase in accuracy for the test data. However, there were improvements in sensitify for Class 5 and Class 7. 
+The accuracy is roughly 68.24% when utilizing the test dataset with the new random forest model. This is a .7% improvement from the previous results of 68.91%.
 
-## Number of Nodes on the trees
-
-```{r}
-
-hist(treesize(rf),
-     main = "No. of nodes for the trees", 
-     col="blue")
-
-```
 ## Variable Importance 
+
+We are able to see the variables that had the highest level of importance in our model by running the varImpPlot function. 
 
 ```{r}
 varImpPlot(rf, 
            main="Variable Importance")
 ```
-This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 30% mean decrease in accuracy. On the opposite end of the spectrum the pH has almost no affect in the model's accuracy. 
+This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 75% mean decrease in accuracy. 
 
-## Partial Dependence Plots 
+## Accuracy
 
-Produces partial plot for alcohol in training set data/rf model for classication 5 aka quality =5. 
-
-```{r}
-
-partialPlot(rf, train, alcohol, 5)
-
-```
-
-This plot tells u that when alcohol is less than 11% it predicts classification 5 more strongly than when it is greater than 11%.
+In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison. 
 
 
 ```{r}
 
-partialPlot(rf, train, alcohol, 7)
-
+accuracy[2,1] <- confusionMatrix(p2, rf.test$quality )[["overall"]][["Accuracy"]]
 ```
-
-This plot tells us that when alcohol is greater than 10% it predicts classification 7 more strongly than when it is less than 10%.
-
 
 
 
