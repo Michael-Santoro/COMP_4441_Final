@@ -165,3 +165,14 @@ ggplot(wine,
              alpha = .05) +
   labs(title = "Wine Composition by residual.sugar, density, and type")
 ```
+
+## Test for Normality
+
+In the tests that follow, we will want to have a normal looking distribution, and we can see from the plot below that it is Normal looking.
+
+```{r}
+hist(wine$quality)
+```
+
+
+

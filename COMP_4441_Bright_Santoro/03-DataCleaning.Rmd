@@ -30,7 +30,7 @@ head(wine.normal)
 
 ## Data Partitioning
 
-In order to determine whether our models are effective we must partition our dataset into a training and test set. 
+In order to determine whether our models are effective we must partition our dataset into a training and test set. We have decided to use $70\%$ of our data for training and $30\%$ for testing.
 
 ```{r}
 
