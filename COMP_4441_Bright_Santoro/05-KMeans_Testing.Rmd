@@ -1,66 +1,75 @@
 # K-Nearest Neighbor
 
-
-## Data Splice
-Since our data-set our research question involves prediction will will randomly select a portion of data to use for overall effectiveness measurement. We plan to save about $5\%$ of the data for testing which ends up being $80$ values.
-
-```{r}
-set.seed(123)
-dat.d <- sample(1:nrow(wine.normal),size=nrow(wine.normal)*0.8,replace = FALSE) #random selection of 90% data.
- 
-train.wine <- wine.normal[dat.d,] # 90% training data
-test.wine <- wine.normal[-dat.d,] # remaining 10% test data
+K-Nearest Neighbor is a supervised machine learning algorithm that can be used for both classification and regression problems.  It is able to classify a new data point by comparing its variables to those variables of its "nearest neighbors". The Euclidean distance formula is used to determine which of the data points are closest to the new point. Similarly to Random Forest, KNN uses the consensus of those neighbors to predict the outcome variable for the new data point. 
 
 
-#Creating seperate dataframe for 'Quality' feature which is our target.
-train.quality_label <- wine[dat.d,12]
-test.quality_label <-wine[-dat.d,12]
-```
-
-Next, we’re going to calculate the number of observations in the training data set. The reason we’re doing this is that we want to initialize the value of ‘K’ in the KNN model. One of the ways to find the optimal K value is to calculate the square root of the total number of observations in the data set. This square root will give you the ‘K’ value.
+## Data Partitioning
+Our data has already been randomly partitioned into training and test data sets, however, the KNN algorithm we are utilizing within the caret library requires that we make our quality variables a "factor" data type. 
 
 ```{r}
-NROW(train.quality_label) 
-sqrt(NROW(train.quality_label) )
+set.seed(444)
 
-```
-The square root of 1493 is around 35.7 we'll create a model with a ‘K’ value as 36.
+knn.train <- train
+knn.train$quality <-as.factor(knn.train$quality)
 
-```{r}
+knn.test <- test
+knn.test$quality <-as.factor(knn.test$quality)
 
-knn.36 <- knn(train=train.wine, test=test.wine, cl=train.quality_label, k=36)
+str(knn.test)
+str(knn.train)
 
 ```
 
+Because our data was randomly partitioned you can see there are 7 levels within quality factor in the train data, while there are only 6 levels within the quality factor in the test data. This will have to be managed later using the "droplevels" function, to find the accuracy using the confusionmatrix.
 
-## Model Evaluation 
 
-```{r}
-#Calculate the proportion of correct classification for k =37
+## Determine the k-value
 
-ACC.36 <- 100 * sum(test.quality_label == knn.36)/NROW(test.quality_label)
-ACC.36
+The k-value in the KNN algorithm determines how many of the nearest neighbors we will use to calculate our predicted quality.  There are many different methods for computing the value of K, however, caret provides a built in library function "train" to help determine what the k-value we should utilize is. 
 
-```
-As shown above, the accuracy for K = 36 is 58.435
+"train" utilizes k-fold cross validation to determine the accuracy of each k-value value.  For our model, we used the repeated cross-validation method which indicates using cross-validation and repeating it a number of times to ensure accuracy.  For our parameters, we chose to repeat 5 times and left the default number of folds to 10, as that has been previously found to result in a low-bias model. 
 
-## Optimization
+Within the train function, we define the method for training our model to be "knn" for k-nearest neighbor and our tune length to be 40.  The tuneLength parameter tells the algorithm to try 40 different values of k. 
 
 ```{r}
-i=1
-k.optm=1
-for (i in 1:37){
-  knn.mod <- knn(train=train.wine, test=test.wine, cl=train.quality_label, k=i)
-  k.optm[i] <- 100 * sum(test.quality_label == knn.mod)/NROW(test.quality_label)
-  k=i
-  cat(k,'=',k.optm[i],'')
-}
+set.seed(400)
+tc <- trainControl(method="repeatedcv",repeats = 5) #,classProbs=TRUE,summaryFunction = twoClassSummary)
+k.value <- train(quality ~ ., data = knn.train, method = "knn", trControl = tc, tuneLength=40)
+
+k.value
+
 ```
+The plot below shows the accuracy of the repeated cross-validation models to the k-values from train.  We can see that the highest level of accuracy was hit at k=37 and then appears to decrease in accuracy as k increases. 
+
+```{r}
+plot(k.value)
+```
+
+## KNN Prediction
+
+Now that we have our k-value and knn model trained, we can use it to predict our test values. In this portion of code, we will also account for the missing level from the quality factor that we found earlier, so that we can compute our confusion matrix. 
 
 
 ```{r}
-#Accuracy plot
-plot(k.optm, type="b", xlab="K- Value",ylab="Accuracy level")
+knnPredict <- predict(knnFit,newdata = knn.test )
+knnPredict.2<-droplevels(knnPredict)
+
+#Get the confusion matrix to see accuracy value and other parameter values
+confusionMatrix(knnPredict.2, knn.test$quality )
 ```
+
+Our model was found to be about 56.75% accurate in predicting quality measures for our wine samples. 
+
+## Accuracy
+
+In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison. 
+
+
+```{r}
+
+accuracy[1,1] <- confusionMatrix(knnPredict.2, knn.test$quality )[["overall"]][["Accuracy"]]
+```
+
+
 
 
