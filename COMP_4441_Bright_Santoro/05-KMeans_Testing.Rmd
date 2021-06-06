@@ -51,7 +51,7 @@ Now that we have our k-value and knn model trained, we can use it to predict our
 
 
 ```{r}
-knnPredict <- predict(knnFit,newdata = knn.test )
+knnPredict <- predict(k.value,newdata = knn.test )
 knnPredict.2<-droplevels(knnPredict)
 
 #Get the confusion matrix to see accuracy value and other parameter values
