@@ -167,7 +167,6 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#test-for-normality"><i class="fa fa-check"></i><b>2.3</b> Test for Normality</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
@@ -203,9 +202,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="lasso-regression.html"><a href="lasso-regression.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear Regression</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="lasso-regression.html"><a href="lasso-regression.html#what-is-it"><i class="fa fa-check"></i><b>6.1.1</b> What is it?</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.2</b> Single Variable</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.3</b> Multiple Variables</a></li>
-<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.4</b> Less Variables</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#assumptions"><i class="fa fa-check"></i><b>6.1.2</b> Assumptions</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.3</b> Single Variable</a></li>
+<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.4</b> Multiple Variables</a></li>
+<li class="chapter" data-level="6.1.5" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.5</b> Less Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.3</b> Lasso Regression</a>
@@ -216,7 +216,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>7</b> Results</a></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
-<li class="chapter" data-level="9" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -243,15 +242,15 @@ div.csl-indent {
 <div id="data-partitioning-1" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Data Partitioning</h2>
 <p>Our data has already been randomly partitioned into training and test data sets, however, the KNN algorithm we are utilizing within the caret library requires that we make our quality variables a “factor” data type.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="k-nearest-neighbor.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
-<span id="cb55-2"><a href="k-nearest-neighbor.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="k-nearest-neighbor.html#cb55-3" aria-hidden="true" tabindex="-1"></a>knn.train <span class="ot">&lt;-</span> train</span>
-<span id="cb55-4"><a href="k-nearest-neighbor.html#cb55-4" aria-hidden="true" tabindex="-1"></a>knn.train<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(knn.train<span class="sc">$</span>quality)</span>
-<span id="cb55-5"><a href="k-nearest-neighbor.html#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="k-nearest-neighbor.html#cb55-6" aria-hidden="true" tabindex="-1"></a>knn.test <span class="ot">&lt;-</span> test</span>
-<span id="cb55-7"><a href="k-nearest-neighbor.html#cb55-7" aria-hidden="true" tabindex="-1"></a>knn.test<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(knn.test<span class="sc">$</span>quality)</span>
-<span id="cb55-8"><a href="k-nearest-neighbor.html#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-9"><a href="k-nearest-neighbor.html#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(knn.test)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="k-nearest-neighbor.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb54-2"><a href="k-nearest-neighbor.html#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="k-nearest-neighbor.html#cb54-3" aria-hidden="true" tabindex="-1"></a>knn.train <span class="ot">&lt;-</span> train</span>
+<span id="cb54-4"><a href="k-nearest-neighbor.html#cb54-4" aria-hidden="true" tabindex="-1"></a>knn.train<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(knn.train<span class="sc">$</span>quality)</span>
+<span id="cb54-5"><a href="k-nearest-neighbor.html#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="k-nearest-neighbor.html#cb54-6" aria-hidden="true" tabindex="-1"></a>knn.test <span class="ot">&lt;-</span> test</span>
+<span id="cb54-7"><a href="k-nearest-neighbor.html#cb54-7" aria-hidden="true" tabindex="-1"></a>knn.test<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(knn.test<span class="sc">$</span>quality)</span>
+<span id="cb54-8"><a href="k-nearest-neighbor.html#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="k-nearest-neighbor.html#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(knn.test)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1933 obs. of  12 variables:
 ##  $ fixed.acidity       : num  0.331 0.612 0.298 0.289 0.24 ...
 ##  $ volatile.acidity    : num  0.533 0.133 0.413 0.38 0.333 ...
@@ -265,7 +264,7 @@ div.csl-indent {
 ##  $ sulphates           : num  0.258 0.202 0.191 0.14 0.18 ...
 ##  $ alcohol             : num  0.261 0.261 0.203 0.29 0.174 ...
 ##  $ quality             : Factor w/ 6 levels &quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,..: 3 4 3 5 3 3 4 4 3 3 ...</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="k-nearest-neighbor.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(knn.train)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="k-nearest-neighbor.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(knn.train)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    4564 obs. of  12 variables:
 ##  $ fixed.acidity       : num  0.298 0.331 0.298 0.339 0.331 ...
 ##  $ volatile.acidity    : num  0.413 0.453 0.387 0.347 0.333 ...
@@ -286,11 +285,11 @@ div.csl-indent {
 <p>The k-value in the KNN algorithm determines how many of the nearest neighbors we will use to calculate our predicted quality. There are many different methods for computing the value of K, however, caret provides a built in library function “train” to help determine what the k-value we should utilize is.</p>
 <p>“train” utilizes k-fold cross validation to determine the accuracy of each k-value value. For our model, we used the repeated cross-validation method which indicates using cross-validation and repeating it a number of times to ensure accuracy. For our parameters, we chose to repeat 5 times and left the default number of folds to 10, as that has been previously found to result in a low-bias model.</p>
 <p>Within the train function, we define the method for training our model to be “knn” for k-nearest neighbor and our tune length to be 40. The tuneLength parameter tells the algorithm to try 40 different values of k.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="k-nearest-neighbor.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">400</span>)</span>
-<span id="cb59-2"><a href="k-nearest-neighbor.html#cb59-2" aria-hidden="true" tabindex="-1"></a>tc <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">&quot;repeatedcv&quot;</span>,<span class="at">repeats =</span> <span class="dv">5</span>) <span class="co">#,classProbs=TRUE,summaryFunction = twoClassSummary)</span></span>
-<span id="cb59-3"><a href="k-nearest-neighbor.html#cb59-3" aria-hidden="true" tabindex="-1"></a>k.value <span class="ot">&lt;-</span> <span class="fu">train</span>(quality <span class="sc">~</span> ., <span class="at">data =</span> knn.train, <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, <span class="at">trControl =</span> tc, <span class="at">tuneLength=</span><span class="dv">40</span>)</span>
-<span id="cb59-4"><a href="k-nearest-neighbor.html#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-5"><a href="k-nearest-neighbor.html#cb59-5" aria-hidden="true" tabindex="-1"></a>k.value</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="k-nearest-neighbor.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">400</span>)</span>
+<span id="cb58-2"><a href="k-nearest-neighbor.html#cb58-2" aria-hidden="true" tabindex="-1"></a>tc <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">&quot;repeatedcv&quot;</span>,<span class="at">repeats =</span> <span class="dv">5</span>) <span class="co">#,classProbs=TRUE,summaryFunction = twoClassSummary)</span></span>
+<span id="cb58-3"><a href="k-nearest-neighbor.html#cb58-3" aria-hidden="true" tabindex="-1"></a>k.value <span class="ot">&lt;-</span> <span class="fu">train</span>(quality <span class="sc">~</span> ., <span class="at">data =</span> knn.train, <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, <span class="at">trControl =</span> tc, <span class="at">tuneLength=</span><span class="dv">40</span>)</span>
+<span id="cb58-4"><a href="k-nearest-neighbor.html#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="k-nearest-neighbor.html#cb58-5" aria-hidden="true" tabindex="-1"></a>k.value</span></code></pre></div>
 <pre><code>## k-Nearest Neighbors 
 ## 
 ## 4564 samples
@@ -347,21 +346,19 @@ div.csl-indent {
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was k = 31.</code></pre>
 <p>The plot below shows the accuracy of the repeated cross-validation models to the k-values from train. We can see that the highest level of accuracy was hit at k=37 and then appears to decrease in accuracy as k increases.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="k-nearest-neighbor.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k.value)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="k-nearest-neighbor.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k.value)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="knn-prediction" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> KNN Prediction</h2>
 <p>Now that we have our k-value and knn model trained, we can use it to predict our test values. In this portion of code, we will also account for the missing level from the quality factor that we found earlier, so that we can compute our confusion matrix.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="k-nearest-neighbor.html#cb62-1" aria-hidden="true" tabindex="-1"></a>knnPredict <span class="ot">&lt;-</span> <span class="fu">predict</span>(k.value,<span class="at">newdata =</span> knn.test )</span>
-<span id="cb62-2"><a href="k-nearest-neighbor.html#cb62-2" aria-hidden="true" tabindex="-1"></a>knnPredict<span class="fl">.2</span><span class="ot">&lt;-</span><span class="fu">droplevels</span>(knnPredict)</span>
-<span id="cb62-3"><a href="k-nearest-neighbor.html#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-4"><a href="k-nearest-neighbor.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the confusion matrix to see accuracy value and other parameter values</span></span>
-<span id="cb62-5"><a href="k-nearest-neighbor.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(knnPredict<span class="fl">.2</span>, knn.test<span class="sc">$</span>quality )</span></code></pre></div>
-<pre><code>## Warning in levels(reference) != levels(data): longer object length is not a
-## multiple of shorter object length</code></pre>
-<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are
-## not in the same order for reference and data. Refactoring data to match.</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="k-nearest-neighbor.html#cb61-1" aria-hidden="true" tabindex="-1"></a>knnPredict <span class="ot">&lt;-</span> <span class="fu">predict</span>(k.value,<span class="at">newdata =</span> knn.test )</span>
+<span id="cb61-2"><a href="k-nearest-neighbor.html#cb61-2" aria-hidden="true" tabindex="-1"></a>knnPredict<span class="fl">.2</span><span class="ot">&lt;-</span><span class="fu">droplevels</span>(knnPredict)</span>
+<span id="cb61-3"><a href="k-nearest-neighbor.html#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="k-nearest-neighbor.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the confusion matrix to see accuracy value and other parameter values</span></span>
+<span id="cb61-5"><a href="k-nearest-neighbor.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(knnPredict<span class="fl">.2</span>, knn.test<span class="sc">$</span>quality )</span></code></pre></div>
+<pre><code>## Warning in levels(reference) != levels(data): longer object length is not a multiple of shorter object length</code></pre>
+<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are not in the same order for reference and data. Refactoring data to match.</code></pre>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -400,11 +397,9 @@ div.csl-indent {
 <div id="accuracy-1" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Accuracy</h2>
 <p>In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="k-nearest-neighbor.html#cb66-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(knnPredict<span class="fl">.2</span>, knn.test<span class="sc">$</span>quality )[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
-<pre><code>## Warning in levels(reference) != levels(data): longer object length is not a
-## multiple of shorter object length</code></pre>
-<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are
-## not in the same order for reference and data. Refactoring data to match.</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="k-nearest-neighbor.html#cb65-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(knnPredict<span class="fl">.2</span>, knn.test<span class="sc">$</span>quality )[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
+<pre><code>## Warning in levels(reference) != levels(data): longer object length is not a multiple of shorter object length</code></pre>
+<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are not in the same order for reference and data. Refactoring data to match.</code></pre>
 
 </div>
 </div>

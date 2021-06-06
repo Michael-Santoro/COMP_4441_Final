@@ -167,7 +167,6 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#test-for-normality"><i class="fa fa-check"></i><b>2.3</b> Test for Normality</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
@@ -203,9 +202,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="lasso-regression.html"><a href="lasso-regression.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear Regression</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="lasso-regression.html"><a href="lasso-regression.html#what-is-it"><i class="fa fa-check"></i><b>6.1.1</b> What is it?</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.2</b> Single Variable</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.3</b> Multiple Variables</a></li>
-<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.4</b> Less Variables</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#assumptions"><i class="fa fa-check"></i><b>6.1.2</b> Assumptions</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.3</b> Single Variable</a></li>
+<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.4</b> Multiple Variables</a></li>
+<li class="chapter" data-level="6.1.5" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.5</b> Less Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.3</b> Lasso Regression</a>
@@ -216,7 +216,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>7</b> Results</a></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
-<li class="chapter" data-level="9" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -239,11 +238,13 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="results" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Results</h1>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="results.html#cb113-1" aria-hidden="true" tabindex="-1"></a>accuracy</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="results.html#cb110-1" aria-hidden="true" tabindex="-1"></a>accuracy</span></code></pre></div>
 <pre><code>##                Accuracy
 ## K-Nearest     0.5628557
 ## Random Forest 0.6844283
 ## Regression    0.5380238</code></pre>
+<p>We have concluded from our research that Random Forest provides the most accurate predictions of quality for this dataset of wine samples. We believe that additional tuning to the Random Forest model parameters and a larger dataset for training our model could help to increase the level of accuracy in our predictions in the future.</p>
+
 </div>
             </section>
 
@@ -283,7 +284,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-Results.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-Results.Rmd",
 "text": "Edit"
 },
 "history": {

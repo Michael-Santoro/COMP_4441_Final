@@ -7,7 +7,7 @@ Each tree within the Random Forest is grown as follows:
 
 1. If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.
 2. If there are M input variables, a number m<<M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.
-3. Each tree is grown to the largest extent possible. There is no pruning." (Breiman and Cutler)
+3. Each tree is grown to the largest extent possible. There is no pruning." @random_forests
 
 
 ## Create Random Forest Model

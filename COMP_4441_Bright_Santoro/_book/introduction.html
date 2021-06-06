@@ -167,7 +167,6 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#test-for-normality"><i class="fa fa-check"></i><b>2.3</b> Test for Normality</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
@@ -203,9 +202,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="lasso-regression.html"><a href="lasso-regression.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear Regression</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="lasso-regression.html"><a href="lasso-regression.html#what-is-it"><i class="fa fa-check"></i><b>6.1.1</b> What is it?</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.2</b> Single Variable</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.3</b> Multiple Variables</a></li>
-<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.4</b> Less Variables</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#assumptions"><i class="fa fa-check"></i><b>6.1.2</b> Assumptions</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.3</b> Single Variable</a></li>
+<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.4</b> Multiple Variables</a></li>
+<li class="chapter" data-level="6.1.5" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.5</b> Less Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.3</b> Lasso Regression</a>
@@ -216,7 +216,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>7</b> Results</a></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
-<li class="chapter" data-level="9" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -245,18 +244,26 @@ div.csl-indent {
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
 <p><strong>Purpose</strong></p>
-<p>Wine is an alcoholic beverage made from fermented grape juice. (Puckette) Generally, a wine’s quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma. Though these tests are subjective, there is overlap between the observation of these characteristics and a wine’s physiochemical properties. For example, a wine’s perceived acidity or tartness is based upon the pH of the wine and a wine’s perceived sweetness is based upon the residual sugar of the wine.</p>
+<p>Wine is an alcoholic beverage made from fermented grape juice. Generally, a wine’s quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma. <span class="citation"><a href="#ref-wine_exactly_web" role="doc-biblioref">Puckette</a> (<a href="#ref-wine_exactly_web" role="doc-biblioref">n.d.</a>)</span> Though these evaluations are subjective, there is an overlap between these subjective characteristics and a wines physicochemical properties. For example, a wines perceived acidity or tartness can be related to the pH of the wine and a wines perceived sweetness can be related to the residual sugar of the wine.</p>
+<p>Wine is an alcoholic beverage made from fermented grape juice. <span class="citation"><a href="#ref-wine_exactly_web" role="doc-biblioref">Puckette</a> (<a href="#ref-wine_exactly_web" role="doc-biblioref">n.d.</a>)</span> Generally, a wine’s quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma. Though these tests are subjective, there is overlap between the observation of these characteristics and a wine’s physiochemical properties. For example, a wine’s perceived acidity or tartness is based upon the pH of the wine and a wine’s perceived sweetness is based upon the residual sugar of the wine.</p>
 <p>The goal of our research is to determine:</p>
-<p>Can we predict the subjective quality rating of wine based solely on its physiochemical properties?</p>
-<p>An accurate predictive model for determining an objective quality of wine would enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.</p>
+<p>Can we determine an accurate subjective rating of a wine based solely on its physicochemical properties?</p>
+<p><strong><em>Why is this important?</em></strong></p>
+<p>An accurate predictive model for determining the quality of wine will enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.</p>
 <p><strong>Statistical or Analytical Method</strong></p>
 <p>We will be using the the following statistical methods to create predictive models for quality of wine:</p>
 <ul>
-<li>Elastic Net Regression (LASSO and Ridge)</li>
 <li>Random Forest</li>
 <li>K-Nearest Neighbor</li>
+<li>Elastic Net Regression (LASSO and Ridge)</li>
 </ul>
 
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-wine_exactly_web" class="csl-entry">
+Puckette, Madeline. n.d. <span>“What Is Wine Exactly.”</span> <a href="https://winefolly.com/deep-dive/what-is-wine">winefolly.com/deep-dive/what-is-wine</a>.
+</div>
 </div>
             </section>
 

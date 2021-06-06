@@ -5,4 +5,4 @@
 accuracy
 ```
 
-# References
+We have concluded from our research that Random Forest provides the most accurate predictions of quality for this dataset of wine samples. We believe that additional tuning to the Random Forest model parameters and a larger dataset for training our model could help to increase the level of accuracy in our predictions in the future. 
