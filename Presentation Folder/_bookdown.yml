@@ -1,7 +1,0 @@
-book_filename: "Final Project - Bright Santoro"
-language:
-  ui:
-    chapter_name: "Chapter "
-delete_merged_file: true
-rmd_files: ["index.Rmd", "00-Title.Rmd", "01-Research_Question.Rmd", "02-Importance.Rmd", "03-Data_Description.Rmd"]
-

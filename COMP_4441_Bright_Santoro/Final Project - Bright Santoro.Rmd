@@ -1,3 +1,119 @@
+--- 
+title: "COMP 4441 Final Project"
+author: "Emma Bright and Michael Santoro"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright. "
+---
+--- 
+title: "COMP 4441 Final Project"
+author: "Emma Bright and Michael Santoro"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright. "
+---
+
+
+<!--chapter:end:index.Rmd-->
+
+
+
+# Introduction
+
+**Purpose**
+
+Wine is an alcoholic beverage made from fermented grape juice. (Puckette) Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma.  Though these tests are subjective, there is overlap between the observation of these characteristics and a wine's physiochemical properties.  For example, a wine's perceived acidity or tartness is based upon the pH of the wine and a wine's perceived sweetness is based upon the residual sugar of the wine.  
+
+The goal of our research is to determine:
+
+Can we predict the subjective quality rating of wine based solely on its physiochemical properties?
+
+An accurate predictive model for determining an objective quality of wine would enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.   
+
+**Statistical or Analytical Method**
+
+We will be using the the following statistical methods to create predictive models for quality of wine:
+
+- Elastic Net Regression (LASSO and Ridge)
+- Random Forest
+- K-Nearest Neighbor
+
+
+
+  
+
+<!--chapter:end:01-Introduction.Rmd-->
+
+
+# Descriptive Statistics
+
+Placeholder
+
+
+## Dataset
+## Exploratory Analysis
+### Descriptive Statistics
+## Test for Normality
+
+<!--chapter:end:02-DescriptiveStats.Rmd-->
+
+
+# Data Cleaning and Partitioning
+
+Placeholder
+
+
+## Data Normalization
+## Data Partitioning
+## Comparing Results
+
+<!--chapter:end:03-DataCleaning.Rmd-->
+
+
+# Random Forest 
+
+Placeholder
+
+
+## Create Random Forest Model
+## Predicition and Confusion Matrix - Training Data
+## Predicition and Confusion Matrix - Test Data
+## Tuning our Model
+### Plotting the Error Rate
+### Tuning mTry
+## Recreate our Random Forest Model
+## Rerun Predicition and Confusion Matrix - Training Data
+## Rerun Predicition and Confusion Matrix - Test Data
+## Variable Importance 
+## Accuracy
+
+<!--chapter:end:04-RandomForest.Rmd-->
+
+
+# K-Nearest Neighbor
+
+Placeholder
+
+
+## Data Partitioning
+## Determine the k-value
+## KNN Prediction
+## Accuracy
+
+<!--chapter:end:05-KMeans_Testing.Rmd-->
+
 ---
 output:
   pdf_document: default
@@ -230,4 +346,36 @@ acc.6 <- mean(rp.6==test$quality)
 ```{r}
 accuracy[3,1] <- acc.6
 ```
+
+
+<!--chapter:end:03-LassoRegression.Rmd-->
+
+# Results
+
+
+```{r}
+accuracy
+```
+
+
+<!--chapter:end:08-Results.Rmd-->
+
+# References
+
+P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
+Modeling wine preferences by data mining from physiochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
+
+Puckette, Madeline. “What Is Wine Exactly?” Wine Folly, 5 Oct. 2015, winefolly.com/deep-dive/what-is-wine.
+
+“Descriptive Statistics.” Wikipedia, en.wikipedia.org/wiki/Descriptive_statistics. Accessed 29 May 2021.
+
+"Linear, Lasso, and Ridge Regression with R" Deepika Singh, 12 Nov. 2019, https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r
+
+"Ridge Regression, LASSO, and Elastic Nets" Derek Kane, 23, Feb. 2015, https://www.slideshare.net/DerekKane/data-science-part-xii-ridge-regression-lasso-and-elastic-nets; https://www.youtube.com/watch?v=ipb2MhSRGdw
+
+Stephanie Glen. "RMSE: Root Mean Square Error" From StatisticsHowTo.com: Elementary Statistics for the rest of us! https://www.statisticshowto.com/probability-and-statistics/regression-analysis/rmse-root-mean-square-error/
+
+Breiman, Leo, and Adele Cutler. “Random Forests.” Berkeley Statistics, www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm. Accessed 30 May 2021.
+
+<!--chapter:end:07-References.Rmd-->
 
