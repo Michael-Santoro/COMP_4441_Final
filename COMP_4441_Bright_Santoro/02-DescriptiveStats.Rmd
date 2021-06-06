@@ -22,7 +22,7 @@ library(glmnet)
 
 ## Dataset
 
-The dataset utilized for our analysis was collected from the UCI Machine Learning Repository (see References). The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @dataset. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
 
 
 **Read in Data**
@@ -48,12 +48,11 @@ str(wine)
 
 ### Descriptive Statistics
 
-In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)
+In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
 
 The table below shows descriptive statistic measurements for each of the variables in our dataset. 
 
 ```{r}
-
 stat.desc(wine)
 ```
 
@@ -171,7 +170,9 @@ ggplot(wine,
 In the tests that follow, we will want to have a normal looking distribution, and we can see from the plot below that it is Normal looking.
 
 ```{r}
-hist(wine$quality)
+g <- ggplot()+geom_freqpoly(aes(wine$quality),bins=6)
+g <- g + labs(title = "Quality Normaility", x="Residual", y="Total")
+g
 ```
 
 

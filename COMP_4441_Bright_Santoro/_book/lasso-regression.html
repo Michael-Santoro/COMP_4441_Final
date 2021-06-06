@@ -24,7 +24,7 @@
 <meta name="author" content="Emma Bright and Michael Santoro" />
 
 
-<meta name="date" content="2021-05-30" />
+<meta name="date" content="2021-06-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -145,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#test-for-normality"><i class="fa fa-check"></i><b>2.3</b> Test for Normality</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
@@ -170,12 +193,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html"><i class="fa fa-check"></i><b>5</b> K-Nearest Neighbor</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#load-data"><i class="fa fa-check"></i><b>5.2</b> Load Data</a></li>
-<li class="chapter" data-level="5.3" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#clean-and-normalize-the-data."><i class="fa fa-check"></i><b>5.3</b> Clean and Normalize the data.</a></li>
-<li class="chapter" data-level="5.4" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#data-splice"><i class="fa fa-check"></i><b>5.4</b> Data Splice</a></li>
-<li class="chapter" data-level="5.5" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#model-evaluation"><i class="fa fa-check"></i><b>5.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="5.6" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#optimization"><i class="fa fa-check"></i><b>5.6</b> Optimization</a></li>
+<li class="chapter" data-level="5.1" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#data-partitioning-1"><i class="fa fa-check"></i><b>5.1</b> Data Partitioning</a></li>
+<li class="chapter" data-level="5.2" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#determine-the-k-value"><i class="fa fa-check"></i><b>5.2</b> Determine the k-value</a></li>
+<li class="chapter" data-level="5.3" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#knn-prediction"><i class="fa fa-check"></i><b>5.3</b> KNN Prediction</a></li>
+<li class="chapter" data-level="5.4" data-path="k-nearest-neighbor.html"><a href="k-nearest-neighbor.html#accuracy-1"><i class="fa fa-check"></i><b>5.4</b> Accuracy</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="lasso-regression.html"><a href="lasso-regression.html"><i class="fa fa-check"></i><b>6</b> Lasso Regression</a>
 <ul>
@@ -195,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>7</b> Results</a></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="chapter" data-level="9" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -221,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Linear Regression</h2>
 <div id="what-is-it" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> What is it?</h3>
-<p>The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable.
+<p><span class="citation"><a href="#ref-RMSE" role="doc-biblioref">Glen</a> (<a href="#ref-RMSE" role="doc-biblioref">n.d.</a>)</span> The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable.
 ### Assumptions
 * Input is assumed to have a Normal distribution and are not correlated with each other.</p>
 <p>We saw in the Descriptive Stats section that visually this factor had a strong correlation with quality.</p>
@@ -367,7 +389,7 @@ To solbe for the <span class="math inline">\(\beta\)</span> terms to obtain the 
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="lasso-regression.html#cb88-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
 <span id="cb88-2"><a href="lasso-regression.html#cb88-2" aria-hidden="true" tabindex="-1"></a>ridge_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(train.mat, qual, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">lambda =</span> lambdas)</span>
 <span id="cb88-3"><a href="lasso-regression.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge_reg)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="lasso-regression.html#cb89-1" aria-hidden="true" tabindex="-1"></a>opt_lambda <span class="ot">&lt;-</span> ridge_reg<span class="sc">$</span>lambda.min</span>
 <span id="cb89-2"><a href="lasso-regression.html#cb89-2" aria-hidden="true" tabindex="-1"></a>opt_lambda</span></code></pre></div>
@@ -407,7 +429,7 @@ The lowest point in the curve indicates the optimal lambda: the log value of lam
 <span id="cb98-3"><a href="lasso-regression.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting alpha = 1 implements lasso regression</span></span>
 <span id="cb98-4"><a href="lasso-regression.html#cb98-4" aria-hidden="true" tabindex="-1"></a>lasso_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(train.mat, qual, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> lambdas)</span>
 <span id="cb98-5"><a href="lasso-regression.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso_reg)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="lasso-regression.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best </span></span>
 <span id="cb99-2"><a href="lasso-regression.html#cb99-2" aria-hidden="true" tabindex="-1"></a>lambda_best <span class="ot">&lt;-</span> lasso_reg<span class="sc">$</span>lambda.min </span>
 <span id="cb99-3"><a href="lasso-regression.html#cb99-3" aria-hidden="true" tabindex="-1"></a>lambda_best</span></code></pre></div>
@@ -427,1026 +449,29 @@ The lowest point in the curve indicates the optimal lambda: the log value of lam
 <div id="elastic-net-regression" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Elastic Net Regression</h3>
 <p>Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.</p>
-<pre><code>## + Fold01.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold01.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold01.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold01.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold01.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold01.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold01.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold01.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold01.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold01.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold01.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold01.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold01.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold01.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold01.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold01.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold01.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold01.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold01.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold01.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold02.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold02.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold02.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold02.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold02.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold02.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold02.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold02.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold02.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold02.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold02.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold02.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold02.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold02.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold02.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold02.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold02.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold02.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold02.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold02.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold03.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold03.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold03.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold03.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold03.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold03.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold03.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold03.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold03.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold03.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold03.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold03.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold03.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold03.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold03.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold03.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold03.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold03.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold03.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold03.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold04.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold04.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold04.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold04.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold04.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold04.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold04.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold04.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold04.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold04.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold04.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold04.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold04.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold04.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold04.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold04.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold04.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold04.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold04.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold04.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold05.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold05.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold05.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold05.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold05.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold05.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold05.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold05.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold05.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold05.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold05.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold05.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold05.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold05.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold05.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold05.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold05.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold05.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold05.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold05.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold06.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold06.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold06.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold06.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold06.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold06.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold06.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold06.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold06.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold06.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold06.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold06.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold06.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold06.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold06.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold06.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold06.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold06.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold06.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold06.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold07.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold07.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold07.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold07.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold07.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold07.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold07.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold07.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold07.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold07.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold07.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold07.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold07.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold07.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold07.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold07.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold07.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold07.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold07.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold07.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold08.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold08.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold08.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold08.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold08.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold08.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold08.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold08.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold08.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold08.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold08.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold08.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold08.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold08.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold08.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold08.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold08.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold08.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold08.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold08.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold09.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold09.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold09.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold09.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold09.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold09.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold09.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold09.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold09.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold09.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold09.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold09.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold09.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold09.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold09.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold09.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold09.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold09.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold09.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold09.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold10.Rep1: alpha=0.26250, lambda=0.261806 
-## - Fold10.Rep1: alpha=0.26250, lambda=0.261806 
-## + Fold10.Rep1: alpha=0.54570, lambda=0.002641 
-## - Fold10.Rep1: alpha=0.54570, lambda=0.002641 
-## + Fold10.Rep1: alpha=0.11957, lambda=0.123919 
-## - Fold10.Rep1: alpha=0.11957, lambda=0.123919 
-## + Fold10.Rep1: alpha=0.30234, lambda=0.027277 
-## - Fold10.Rep1: alpha=0.30234, lambda=0.027277 
-## + Fold10.Rep1: alpha=0.95329, lambda=0.004732 
-## - Fold10.Rep1: alpha=0.95329, lambda=0.004732 
-## + Fold10.Rep1: alpha=0.09178, lambda=0.186019 
-## - Fold10.Rep1: alpha=0.09178, lambda=0.186019 
-## + Fold10.Rep1: alpha=0.73123, lambda=0.160383 
-## - Fold10.Rep1: alpha=0.73123, lambda=0.160383 
-## + Fold10.Rep1: alpha=0.17634, lambda=0.003602 
-## - Fold10.Rep1: alpha=0.17634, lambda=0.003602 
-## + Fold10.Rep1: alpha=0.85495, lambda=0.687550 
-## - Fold10.Rep1: alpha=0.85495, lambda=0.687550 
-## + Fold10.Rep1: alpha=0.17667, lambda=2.997956 
-## - Fold10.Rep1: alpha=0.17667, lambda=2.997956 
-## + Fold01.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold01.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold01.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold01.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold01.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold01.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold01.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold01.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold01.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold01.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold01.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold01.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold01.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold01.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold01.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold01.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold01.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold01.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold01.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold01.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold02.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold02.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold02.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold02.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold02.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold02.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold02.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold02.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold02.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold02.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold02.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold02.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold02.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold02.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold02.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold02.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold02.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold02.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold02.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold02.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold03.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold03.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold03.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold03.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold03.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold03.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold03.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold03.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold03.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold03.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold03.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold03.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold03.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold03.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold03.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold03.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold03.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold03.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold03.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold03.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold04.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold04.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold04.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold04.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold04.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold04.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold04.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold04.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold04.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold04.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold04.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold04.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold04.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold04.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold04.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold04.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold04.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold04.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold04.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold04.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold05.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold05.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold05.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold05.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold05.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold05.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold05.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold05.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold05.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold05.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold05.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold05.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold05.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold05.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold05.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold05.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold05.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold05.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold05.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold05.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold06.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold06.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold06.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold06.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold06.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold06.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold06.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold06.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold06.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold06.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold06.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold06.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold06.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold06.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold06.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold06.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold06.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold06.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold06.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold06.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold07.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold07.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold07.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold07.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold07.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold07.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold07.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold07.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold07.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold07.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold07.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold07.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold07.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold07.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold07.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold07.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold07.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold07.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold07.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold07.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold08.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold08.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold08.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold08.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold08.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold08.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold08.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold08.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold08.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold08.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold08.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold08.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold08.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold08.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold08.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold08.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold08.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold08.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold08.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold08.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold09.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold09.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold09.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold09.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold09.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold09.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold09.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold09.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold09.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold09.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold09.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold09.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold09.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold09.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold09.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold09.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold09.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold09.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold09.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold09.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold10.Rep2: alpha=0.26250, lambda=0.261806 
-## - Fold10.Rep2: alpha=0.26250, lambda=0.261806 
-## + Fold10.Rep2: alpha=0.54570, lambda=0.002641 
-## - Fold10.Rep2: alpha=0.54570, lambda=0.002641 
-## + Fold10.Rep2: alpha=0.11957, lambda=0.123919 
-## - Fold10.Rep2: alpha=0.11957, lambda=0.123919 
-## + Fold10.Rep2: alpha=0.30234, lambda=0.027277 
-## - Fold10.Rep2: alpha=0.30234, lambda=0.027277 
-## + Fold10.Rep2: alpha=0.95329, lambda=0.004732 
-## - Fold10.Rep2: alpha=0.95329, lambda=0.004732 
-## + Fold10.Rep2: alpha=0.09178, lambda=0.186019 
-## - Fold10.Rep2: alpha=0.09178, lambda=0.186019 
-## + Fold10.Rep2: alpha=0.73123, lambda=0.160383 
-## - Fold10.Rep2: alpha=0.73123, lambda=0.160383 
-## + Fold10.Rep2: alpha=0.17634, lambda=0.003602 
-## - Fold10.Rep2: alpha=0.17634, lambda=0.003602 
-## + Fold10.Rep2: alpha=0.85495, lambda=0.687550 
-## - Fold10.Rep2: alpha=0.85495, lambda=0.687550 
-## + Fold10.Rep2: alpha=0.17667, lambda=2.997956 
-## - Fold10.Rep2: alpha=0.17667, lambda=2.997956 
-## + Fold01.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold01.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold01.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold01.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold01.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold01.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold01.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold01.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold01.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold01.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold01.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold01.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold01.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold01.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold01.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold01.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold01.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold01.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold01.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold01.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold02.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold02.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold02.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold02.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold02.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold02.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold02.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold02.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold02.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold02.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold02.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold02.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold02.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold02.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold02.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold02.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold02.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold02.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold02.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold02.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold03.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold03.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold03.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold03.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold03.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold03.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold03.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold03.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold03.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold03.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold03.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold03.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold03.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold03.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold03.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold03.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold03.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold03.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold03.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold03.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold04.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold04.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold04.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold04.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold04.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold04.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold04.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold04.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold04.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold04.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold04.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold04.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold04.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold04.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold04.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold04.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold04.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold04.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold04.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold04.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold05.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold05.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold05.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold05.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold05.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold05.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold05.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold05.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold05.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold05.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold05.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold05.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold05.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold05.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold05.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold05.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold05.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold05.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold05.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold05.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold06.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold06.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold06.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold06.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold06.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold06.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold06.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold06.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold06.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold06.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold06.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold06.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold06.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold06.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold06.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold06.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold06.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold06.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold06.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold06.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold07.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold07.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold07.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold07.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold07.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold07.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold07.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold07.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold07.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold07.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold07.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold07.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold07.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold07.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold07.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold07.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold07.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold07.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold07.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold07.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold08.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold08.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold08.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold08.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold08.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold08.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold08.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold08.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold08.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold08.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold08.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold08.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold08.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold08.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold08.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold08.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold08.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold08.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold08.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold08.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold09.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold09.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold09.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold09.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold09.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold09.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold09.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold09.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold09.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold09.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold09.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold09.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold09.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold09.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold09.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold09.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold09.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold09.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold09.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold09.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold10.Rep3: alpha=0.26250, lambda=0.261806 
-## - Fold10.Rep3: alpha=0.26250, lambda=0.261806 
-## + Fold10.Rep3: alpha=0.54570, lambda=0.002641 
-## - Fold10.Rep3: alpha=0.54570, lambda=0.002641 
-## + Fold10.Rep3: alpha=0.11957, lambda=0.123919 
-## - Fold10.Rep3: alpha=0.11957, lambda=0.123919 
-## + Fold10.Rep3: alpha=0.30234, lambda=0.027277 
-## - Fold10.Rep3: alpha=0.30234, lambda=0.027277 
-## + Fold10.Rep3: alpha=0.95329, lambda=0.004732 
-## - Fold10.Rep3: alpha=0.95329, lambda=0.004732 
-## + Fold10.Rep3: alpha=0.09178, lambda=0.186019 
-## - Fold10.Rep3: alpha=0.09178, lambda=0.186019 
-## + Fold10.Rep3: alpha=0.73123, lambda=0.160383 
-## - Fold10.Rep3: alpha=0.73123, lambda=0.160383 
-## + Fold10.Rep3: alpha=0.17634, lambda=0.003602 
-## - Fold10.Rep3: alpha=0.17634, lambda=0.003602 
-## + Fold10.Rep3: alpha=0.85495, lambda=0.687550 
-## - Fold10.Rep3: alpha=0.85495, lambda=0.687550 
-## + Fold10.Rep3: alpha=0.17667, lambda=2.997956 
-## - Fold10.Rep3: alpha=0.17667, lambda=2.997956 
-## + Fold01.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold01.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold01.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold01.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold01.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold01.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold01.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold01.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold01.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold01.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold01.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold01.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold01.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold01.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold01.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold01.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold01.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold01.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold01.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold01.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold02.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold02.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold02.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold02.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold02.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold02.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold02.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold02.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold02.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold02.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold02.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold02.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold02.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold02.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold02.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold02.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold02.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold02.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold02.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold02.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold03.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold03.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold03.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold03.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold03.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold03.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold03.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold03.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold03.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold03.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold03.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold03.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold03.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold03.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold03.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold03.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold03.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold03.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold03.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold03.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold04.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold04.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold04.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold04.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold04.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold04.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold04.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold04.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold04.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold04.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold04.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold04.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold04.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold04.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold04.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold04.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold04.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold04.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold04.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold04.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold05.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold05.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold05.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold05.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold05.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold05.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold05.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold05.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold05.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold05.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold05.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold05.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold05.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold05.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold05.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold05.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold05.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold05.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold05.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold05.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold06.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold06.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold06.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold06.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold06.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold06.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold06.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold06.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold06.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold06.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold06.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold06.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold06.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold06.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold06.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold06.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold06.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold06.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold06.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold06.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold07.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold07.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold07.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold07.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold07.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold07.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold07.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold07.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold07.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold07.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold07.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold07.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold07.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold07.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold07.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold07.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold07.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold07.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold07.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold07.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold08.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold08.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold08.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold08.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold08.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold08.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold08.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold08.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold08.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold08.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold08.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold08.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold08.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold08.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold08.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold08.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold08.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold08.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold08.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold08.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold09.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold09.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold09.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold09.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold09.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold09.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold09.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold09.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold09.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold09.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold09.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold09.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold09.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold09.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold09.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold09.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold09.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold09.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold09.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold09.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold10.Rep4: alpha=0.26250, lambda=0.261806 
-## - Fold10.Rep4: alpha=0.26250, lambda=0.261806 
-## + Fold10.Rep4: alpha=0.54570, lambda=0.002641 
-## - Fold10.Rep4: alpha=0.54570, lambda=0.002641 
-## + Fold10.Rep4: alpha=0.11957, lambda=0.123919 
-## - Fold10.Rep4: alpha=0.11957, lambda=0.123919 
-## + Fold10.Rep4: alpha=0.30234, lambda=0.027277 
-## - Fold10.Rep4: alpha=0.30234, lambda=0.027277 
-## + Fold10.Rep4: alpha=0.95329, lambda=0.004732 
-## - Fold10.Rep4: alpha=0.95329, lambda=0.004732 
-## + Fold10.Rep4: alpha=0.09178, lambda=0.186019 
-## - Fold10.Rep4: alpha=0.09178, lambda=0.186019 
-## + Fold10.Rep4: alpha=0.73123, lambda=0.160383 
-## - Fold10.Rep4: alpha=0.73123, lambda=0.160383 
-## + Fold10.Rep4: alpha=0.17634, lambda=0.003602 
-## - Fold10.Rep4: alpha=0.17634, lambda=0.003602 
-## + Fold10.Rep4: alpha=0.85495, lambda=0.687550 
-## - Fold10.Rep4: alpha=0.85495, lambda=0.687550 
-## + Fold10.Rep4: alpha=0.17667, lambda=2.997956 
-## - Fold10.Rep4: alpha=0.17667, lambda=2.997956 
-## + Fold01.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold01.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold01.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold01.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold01.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold01.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold01.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold01.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold01.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold01.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold01.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold01.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold01.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold01.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold01.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold01.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold01.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold01.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold01.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold01.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold02.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold02.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold02.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold02.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold02.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold02.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold02.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold02.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold02.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold02.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold02.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold02.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold02.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold02.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold02.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold02.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold02.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold02.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold02.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold02.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold03.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold03.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold03.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold03.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold03.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold03.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold03.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold03.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold03.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold03.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold03.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold03.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold03.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold03.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold03.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold03.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold03.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold03.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold03.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold03.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold04.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold04.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold04.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold04.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold04.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold04.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold04.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold04.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold04.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold04.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold04.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold04.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold04.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold04.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold04.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold04.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold04.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold04.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold04.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold04.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold05.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold05.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold05.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold05.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold05.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold05.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold05.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold05.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold05.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold05.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold05.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold05.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold05.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold05.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold05.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold05.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold05.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold05.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold05.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold05.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold06.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold06.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold06.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold06.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold06.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold06.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold06.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold06.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold06.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold06.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold06.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold06.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold06.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold06.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold06.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold06.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold06.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold06.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold06.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold06.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold07.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold07.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold07.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold07.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold07.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold07.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold07.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold07.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold07.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold07.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold07.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold07.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold07.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold07.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold07.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold07.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold07.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold07.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold07.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold07.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold08.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold08.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold08.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold08.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold08.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold08.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold08.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold08.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold08.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold08.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold08.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold08.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold08.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold08.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold08.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold08.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold08.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold08.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold08.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold08.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold09.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold09.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold09.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold09.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold09.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold09.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold09.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold09.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold09.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold09.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold09.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold09.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold09.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold09.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold09.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold09.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold09.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold09.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold09.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold09.Rep5: alpha=0.17667, lambda=2.997956 
-## + Fold10.Rep5: alpha=0.26250, lambda=0.261806 
-## - Fold10.Rep5: alpha=0.26250, lambda=0.261806 
-## + Fold10.Rep5: alpha=0.54570, lambda=0.002641 
-## - Fold10.Rep5: alpha=0.54570, lambda=0.002641 
-## + Fold10.Rep5: alpha=0.11957, lambda=0.123919 
-## - Fold10.Rep5: alpha=0.11957, lambda=0.123919 
-## + Fold10.Rep5: alpha=0.30234, lambda=0.027277 
-## - Fold10.Rep5: alpha=0.30234, lambda=0.027277 
-## + Fold10.Rep5: alpha=0.95329, lambda=0.004732 
-## - Fold10.Rep5: alpha=0.95329, lambda=0.004732 
-## + Fold10.Rep5: alpha=0.09178, lambda=0.186019 
-## - Fold10.Rep5: alpha=0.09178, lambda=0.186019 
-## + Fold10.Rep5: alpha=0.73123, lambda=0.160383 
-## - Fold10.Rep5: alpha=0.73123, lambda=0.160383 
-## + Fold10.Rep5: alpha=0.17634, lambda=0.003602 
-## - Fold10.Rep5: alpha=0.17634, lambda=0.003602 
-## + Fold10.Rep5: alpha=0.85495, lambda=0.687550 
-## - Fold10.Rep5: alpha=0.85495, lambda=0.687550 
-## + Fold10.Rep5: alpha=0.17667, lambda=2.997956 
-## - Fold10.Rep5: alpha=0.17667, lambda=2.997956</code></pre>
 <pre><code>## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo, :
 ## There were missing values in resampled performance measures.</code></pre>
-<pre><code>## Aggregating results
-## Selecting tuning parameters
-## Fitting alpha = 0.176, lambda = 0.0036 on full training set</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lasso-regression.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best tuning parameter</span></span>
-<span id="cb108-2"><a href="lasso-regression.html#cb108-2" aria-hidden="true" tabindex="-1"></a>elastic_reg<span class="sc">$</span>bestTune</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="lasso-regression.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best tuning parameter</span></span>
+<span id="cb106-2"><a href="lasso-regression.html#cb106-2" aria-hidden="true" tabindex="-1"></a>elastic_reg<span class="sc">$</span>bestTune</span></code></pre></div>
 <pre><code>##       alpha      lambda
-## 3 0.1763378 0.003602272</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="lasso-regression.html#cb110-1" aria-hidden="true" tabindex="-1"></a>elastic_reg <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(train.mat , qual, <span class="at">alpha =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">1</span>], <span class="at">lambda =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lasso-regression.html#cb111-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(elastic_reg, <span class="at">s =</span> elastic_reg<span class="sc">$</span>bestTune, <span class="at">newx =</span> test.mat)</span>
-<span id="cb111-2"><a href="lasso-regression.html#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-3"><a href="lasso-regression.html#cb111-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.6</span>,test<span class="sc">$</span>quality)</span>
-<span id="cb111-4"><a href="lasso-regression.html#cb111-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span></span></code></pre></div>
-<pre><code>## [1] 0.7314961</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="lasso-regression.html#cb113-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.6</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.6</span>)</span>
-<span id="cb113-2"><a href="lasso-regression.html#cb113-2" aria-hidden="true" tabindex="-1"></a>acc<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">mean</span>(rp<span class="fl">.6</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lasso-regression.html#cb114-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> acc<span class="fl">.6</span></span></code></pre></div>
+## 6 0.8902916 0.001641559</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lasso-regression.html#cb108-1" aria-hidden="true" tabindex="-1"></a>elastic_reg <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(train.mat , qual, <span class="at">alpha =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">1</span>], <span class="at">lambda =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lasso-regression.html#cb109-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(elastic_reg, <span class="at">s =</span> elastic_reg<span class="sc">$</span>bestTune, <span class="at">newx =</span> test.mat)</span>
+<span id="cb109-2"><a href="lasso-regression.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="lasso-regression.html#cb109-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.6</span>,test<span class="sc">$</span>quality)</span>
+<span id="cb109-4"><a href="lasso-regression.html#cb109-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span></span></code></pre></div>
+<pre><code>## [1] 0.7314186</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lasso-regression.html#cb111-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.6</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.6</span>)</span>
+<span id="cb111-2"><a href="lasso-regression.html#cb111-2" aria-hidden="true" tabindex="-1"></a>acc<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">mean</span>(rp<span class="fl">.6</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="lasso-regression.html#cb112-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> acc<span class="fl">.6</span></span></code></pre></div>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-RMSE" class="csl-entry">
+Glen, Stephanie. n.d. <span>“RMSE: Root Mean Square Error.”</span> Accessed May 20, 2021. <a href="https://www.statisticshowto.com/probability-and-statistics/regression-analysis/rmse-root-mean-square-error/">https://www.statisticshowto.com/probability-and-statistics/regression-analysis/rmse-root-mean-square-error/</a>.
 </div>
 </div>
             </section>

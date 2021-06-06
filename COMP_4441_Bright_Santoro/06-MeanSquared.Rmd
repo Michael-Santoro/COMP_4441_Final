@@ -1,7 +1,0 @@
-# Accuracy Evaluation
-
-For each of the different methods we have calculated the accuracy.
-```{r}
-# DataFrame will be call accuracy
-```
-
