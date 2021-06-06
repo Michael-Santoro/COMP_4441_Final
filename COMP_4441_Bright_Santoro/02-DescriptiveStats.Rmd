@@ -22,7 +22,7 @@ library(glmnet)
 
 ## Dataset
 
-The dataset utilized for our analysis was collected from the UCI Machine Learning Repository (see References). The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @model_wine. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red and white Vinho Verde wine samples from Portugal.
 
 
 **Read in Data**
@@ -33,22 +33,24 @@ redWine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
 whiteWine<-read.table("data/winequality-white.csv",stringsAsFactors = FALSE,
                 sep=";",header = TRUE)
 
+# create a field that shows whether a wine is red or white based on initial 
+# datasets
 redWine$type='red'
 whiteWine$type='white'
 
-# create a field that shows whether a wine is red or white based on initial 
-# datasets
+# merge data
 wine <- rbind(redWine, whiteWine)
 
 str(wine)
 ```
 
+The table above shows the structure of our dataset before any sort of data manipulation, munging, or cleaning. 
 
 ## Exploratory Analysis
 
 ### Descriptive Statistics
 
-In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)
+In order to better understand our data set we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
 
 The table below shows descriptive statistic measurements for each of the variables in our dataset. 
 
@@ -58,7 +60,8 @@ stat.desc(wine)
 ```
 
 ***Univariate Exploration***
-We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
+
+Univariate exploration explores each variable one by one. We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
 
 The variables for the three plots below were selected judgmentally from the dataset. 
 
@@ -75,6 +78,9 @@ p<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
 
 p
 ```
+
+The table above shows the distribution of the alcohol variable 
+
 
 ```{r}
 

@@ -11,19 +11,6 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 description: "This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright. "
 ---
---- 
-title: "COMP 4441 Final Project"
-author: "Emma Bright and Michael Santoro"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-output: bookdown::gitbook
-documentclass: book
-bibliography: book.bib
-biblio-style: apalike
-link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This bookdown contains the write up and analysis of the COMP 4441 Final Project for Michael Santoro and Emma Bright. "
----
 
 
 <!--chapter:end:index.Rmd-->
@@ -50,67 +37,511 @@ We will be using the the following statistical methods to create predictive mode
 - Random Forest
 - K-Nearest Neighbor
 
-
-
+\pagebreak
+\tableofcontents
   
 
 <!--chapter:end:01-Introduction.Rmd-->
 
-
 # Descriptive Statistics
 
-Placeholder
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(ggpubr)
+library(boot)
+library("Hmisc")
+library(corrplot)
+library("PerformanceAnalytics")
+library(pastecs)
+library(ggplot2)
+library(class)
+library(caret)
+library(randomForest)
+library(plyr)
+library(quantreg)
+library(glmnet)
+```
 
 
 ## Dataset
+
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository (see References). The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
+
+
+**Read in Data**
+
+```{r}
+redWine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
+                sep=",",header = TRUE)
+whiteWine<-read.table("data/winequality-white.csv",stringsAsFactors = FALSE,
+                sep=";",header = TRUE)
+
+redWine$type='red'
+whiteWine$type='white'
+
+# create a field that shows whether a wine is red or white based on initial 
+# datasets
+wine <- rbind(redWine, whiteWine)
+
+str(wine)
+```
+
+
 ## Exploratory Analysis
+
 ### Descriptive Statistics
+
+In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)
+
+The table below shows descriptive statistic measurements for each of the variables in our dataset. 
+
+```{r}
+
+stat.desc(wine)
+```
+
+***Univariate Exploration***
+We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
+
+The variables for the three plots below were selected judgmentally from the dataset. 
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(alcohol))
+
+p<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(volatile.acidity))
+
+p<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+
+```{r}
+
+mu <- ddply(wine, "type", summarise, grp.mean=mean(density))
+
+p<-ggplot(wine, aes(x=density, fill=type, color=type)) +
+  geom_histogram(position="dodge")+
+  theme(legend.position="top") + 
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
+             linetype="dashed")+
+  theme(legend.position="top")
+
+p
+```
+
+***Bivariate Exploration***
+Bivariate exploration allows us to explore the relationship between two descriptive statistics in a dataset. 
+
+To better determine which variable relationships we should explore, we ran correlation analysis.  
+
+```{r}
+# ++++++++++++++++++++++++++++
+# flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat : matrix of the correlation coefficients
+# pmat : matrix of the correlation p-values
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  =(cormat)[ut],
+    p = pmat[ut]
+    )
+}
+
+# exclude the type of wine from the correlation variables 
+res2 <- rcorr(as.matrix(wine[,1:12]))
+cor.m <- flattenCorrMatrix(res2$r, res2$P)
+cor.m[order(cor.m[,3],decreasing=TRUE),]
+
+```
+
+***Visualize Correlations***
+
+```{r}
+
+# Insignificant correlations are leaved blank
+corrplot(res2$r, type="upper", order="hclust", 
+         p.mat = res2$P, sig.level = 0.01, insig = "blank")
+```
+
+Based on the correlation matrix and the correlation plots it appears that there is a strong negative correlation between alcohol and density and a strong positive correlation between residual sugar and density.  These are plotted below. 
+
+
+```{r}
+
+ggplot(wine, 
+       aes(x = alcohol, 
+           y = density, 
+           color = type)) +
+  geom_point(size = 3, 
+             alpha = .05) +
+  labs(title = "Wine Composition by alcohol, density, and type")
+```
+```{r}
+
+ggplot(wine, 
+       aes(x = residual.sugar, 
+           y = density, 
+           color = type)) +
+  geom_point(size = 3, 
+             alpha = .05) +
+  labs(title = "Wine Composition by residual.sugar, density, and type")
+```
+
 ## Test for Normality
+
+In the tests that follow, we will want to have a normal looking distribution, and we can see from the plot below that it is Normal looking.
+
+```{r}
+hist(wine$quality)
+```
+
+
+
 
 <!--chapter:end:02-DescriptiveStats.Rmd-->
 
-
 # Data Cleaning and Partitioning
 
-Placeholder
-
-
 ## Data Normalization
+Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
+```{r}
+set.seed(123)
+
+# do not include wine type in partitioned data.
+wine <-wine[,1:12]
+#Normalization
+normalize <- function(x) {
+return ((x - min(x)) / (max(x) - min(x))) }
+
+#De-Normalization
+de.normalize <- function(val){
+  x <- wine[,1:12]
+  return (val*(max(x) - min(x))+min(x))
+}
+
+#only normalize variables
+wine.normal <- as.data.frame(lapply(wine[,1:11], normalize))
+
+# add quality back 
+wine.normal$quality = wine$quality
+
+head(wine.normal)
+
+```
+
+
 ## Data Partitioning
+
+In order to determine whether our models are effective we must partition our dataset into a training and test set. We have decided to use $70\%$ of our data for training and $30\%$ for testing.
+
+```{r}
+
+
+ind <- sample(2, nrow(wine.normal), replace=TRUE, prob=c(0.7, 0.3))
+
+train <- wine.normal[ind==1, ]
+test <- wine.normal[ind==2,]
+
+```
+
 ## Comparing Results
+
+We will be comparing accuracy of each of the methods so we will set up an accuracy data frame to compare the effectiveness of each of the methods.
+
+```{r}
+accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Random Forest","Regression"))
+
+accuracy
+```
+
+
 
 <!--chapter:end:03-DataCleaning.Rmd-->
 
-
 # Random Forest 
 
-Placeholder
+Decision trees can suffer from from the problem of overfitting.  In order to help solve this problem, the Random Forest algorithm was devised.  It works by building multiple decision trees and then merging them together to form a prediction. 
+Random forest can be used to solve both classification and regression problems, however, for our analysis we will be utilizing it solve our classification problem. 
+
+Each tree within the Random Forest is grown as follows:
+
+1. If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.
+2. If there are M input variables, a number m<<M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.
+3. Each tree is grown to the largest extent possible. There is no pruning." (Breiman and Cutler)
 
 
 ## Create Random Forest Model
+
+We will start by running the randomForest function utilizing the training dataset to train the model. 
+
+```{r}
+set.seed(444)
+
+rf.train <- train
+rf.train$quality <-as.factor(rf.train$quality)
+
+rf.test <- test
+rf.test$quality <-as.factor(rf.test$quality)
+
+# quality is a function of all other variables 
+rf <- randomForest(quality~., data=rf.train)
+print(rf)
+
+```
+
+The default number of trees was utilized to run our model (500) and the number of variables tried at each split in the tree was $3$ variables.
+
+The table above shows the confusion matrix for the random forest model created with the training dataset. The out-of-bag (OOB) error is shown to be $32.91\%$. According to the class.error results, the model was most inaccurate when predicting wines with a quality of $3$ or $9$ with a $100\%$ error rate.  It was most accurate when predicting wines of value 6 with only a $22\%$ error rate. 
+
+
 ## Predicition and Confusion Matrix - Training Data
+
+The following code runs a prediction of the quality values for the training set using the random forest model created above.  
+
+As you can see, all 6 predictions in the predicted values vector are 100% accurate. This makes sense as the random forest model was built using the training data, so it has already "seen" these values. 
+
+```{r}
+
+p1 <- predict(rf, rf.train)
+p1<- droplevels(p1) #drop any unused levels
+head(p1) # predicted values
+head(rf.train$quality) # actual values
+```
+
+
+```{r}
+#install.packages('caret', dependencies = TRUE)
+
+confusionMatrix(p1, rf.train$quality )
+```
+
+Using the confusion matrix function from the caret library, we can show the accuracy of our model when predicting the quality values for our training dataset. The accuracy is 100% when utilizing the training dataset with the random forest model trained by the training dataset. 
+
 ## Predicition and Confusion Matrix - Test Data
+
+The following code runs a prediction of the quality values for the test dataset using the random forest model created with our training dataset from above.   
+
+This model was able to predict 4 out of 6 of the first values accurately. 
+
+```{r}
+
+p2 <- predict(rf, rf.test)
+p2<-droplevels(p2) # drop unused levels
+head(p2) # predicted values
+head(rf.test$quality) # actual values
+```
+
+```{r}
+confusionMatrix(p2, rf.test$quality )
+```
+
+Using the confusion matrix function from the caret library, we can show the accuracy of our model in predicting the quality values for our test dataset. The accuracy is roughly 69% when utilizing the test dataset with the random forest model trained by the training dataset. 
+
 ## Tuning our Model
+
+Now, that we have run our initial model, we can focus on fine tuning the random forest parameters in order to create a more accurate predictive model. 
+
 ### Plotting the Error Rate
+
+Plotting the error rate to the number of trees can show us where our model has more or less the same level of effectiveness and we can choose a more accurate tree number. 
+
+```{r}
+plot(rf)
+```
+The model appears to have a drop off after about 300 trees and then is more or less constant, therefore, we can adjust our tree number in the model to be 300. 
+
 ### Tuning mTry
+
+The mTry value reflects the number of variables tested at each node split. The tuneRF function can be used to determine what our mTry value should be. 
+
+```{r}
+
+set.seed(2222)
+
+t <- tuneRF(rf.train[,-12], rf.train[,12], 
+       stepFactor = 0.5, 
+       plot=TRUE,
+       ntreeTry = 100,
+       trace=TRUE,
+       improve=0.05)
+
+```
+This output indicates that our model hits its lowest error rate when the mTry value is 3, so we can adjust our model to reflect this new  value. 
+
 ## Recreate our Random Forest Model
+
+The following code reruns our model utilizing the new tuning parameters found above.
+
+```{r}
+set.seed(444)
+
+# quality is a function of all other variables 
+rf <- randomForest(quality~., data=rf.train,
+                   ntree=300,
+                   mTry=3, 
+                   importance=TRUE,
+                   proximity=TRUE)
+print(rf)
+
+```
+
+Our original OOB error rate was 32.91% and utilizing our new tuned parameters, our OOB error rate was 32.23%, so it was improved roughly 0.7%. 
+
 ## Rerun Predicition and Confusion Matrix - Training Data
+```{r}
+
+p1 <- predict(rf, rf.train)
+p1<- droplevels(p1) # drop any unused levels
+head(p1) # predicted values
+head(rf.train$quality) # actual values
+```
+
+```{r}
+
+confusionMatrix(p1, rf.train$quality )
+```
+
+Again, all of our predictions were 100% accurate as the training data had already been "seen" by the model. 
+
 ## Rerun Predicition and Confusion Matrix - Test Data
+```{r}
+
+p2 <- predict(rf, rf.test)
+p2 <- droplevels(p2) # drop any unuused levels 
+head(p2) # predicted values
+head(rf.test$quality) # actual values
+```
+
+```{r}
+confusionMatrix(p2, rf.test$quality )
+```
+The accuracy is roughly $68.24\%$ when utilizing the test dataset with the new random forest model. This is a $0.7\%$ improvement from the previous results of $68.91\%$.
+
 ## Variable Importance 
+
+We are able to see the variables that had the highest level of importance in our model by running the varImpPlot function. 
+
+```{r}
+varImpPlot(rf, 
+           main="Variable Importance")
+```
+This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 75% mean decrease in accuracy. 
+
 ## Accuracy
+
+In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison. 
+
+
+```{r}
+
+accuracy[2,1] <- confusionMatrix(p2, rf.test$quality )[["overall"]][["Accuracy"]]
+```
+
+
+
+
 
 <!--chapter:end:04-RandomForest.Rmd-->
 
-
 # K-Nearest Neighbor
 
-Placeholder
+K-Nearest Neighbor is a supervised machine learning algorithm that can be used for both classification and regression problems.  It is able to classify a new data point by comparing its variables to those variables of its "nearest neighbors". The Euclidean distance formula is used to determine which of the data points are closest to the new point. Similarly to Random Forest, KNN uses the consensus of those neighbors to predict the outcome variable for the new data point. 
 
 
 ## Data Partitioning
+Our data has already been randomly partitioned into training and test data sets, however, the KNN algorithm we are utilizing within the caret library requires that we make our quality variables a "factor" data type. 
+
+```{r}
+set.seed(444)
+
+knn.train <- train
+knn.train$quality <-as.factor(knn.train$quality)
+
+knn.test <- test
+knn.test$quality <-as.factor(knn.test$quality)
+
+str(knn.test)
+str(knn.train)
+
+```
+
+Because our data was randomly partitioned you can see there are 7 levels within quality factor in the train data, while there are only 6 levels within the quality factor in the test data. This will have to be managed later using the "droplevels" function, to find the accuracy using the confusionmatrix.
+
+
 ## Determine the k-value
+
+The k-value in the KNN algorithm determines how many of the nearest neighbors we will use to calculate our predicted quality.  There are many different methods for computing the value of K, however, caret provides a built in library function "train" to help determine what the k-value we should utilize is. 
+
+"train" utilizes k-fold cross validation to determine the accuracy of each k-value value.  For our model, we used the repeated cross-validation method which indicates using cross-validation and repeating it a number of times to ensure accuracy.  For our parameters, we chose to repeat 5 times and left the default number of folds to 10, as that has been previously found to result in a low-bias model. 
+
+Within the train function, we define the method for training our model to be "knn" for k-nearest neighbor and our tune length to be 40.  The tuneLength parameter tells the algorithm to try 40 different values of k. 
+
+```{r}
+set.seed(400)
+tc <- trainControl(method="repeatedcv",repeats = 5) #,classProbs=TRUE,summaryFunction = twoClassSummary)
+k.value <- train(quality ~ ., data = knn.train, method = "knn", trControl = tc, tuneLength=40)
+
+k.value
+
+```
+The plot below shows the accuracy of the repeated cross-validation models to the k-values from train.  We can see that the highest level of accuracy was hit at k=37 and then appears to decrease in accuracy as k increases. 
+
+```{r}
+plot(k.value)
+```
+
 ## KNN Prediction
+
+Now that we have our k-value and knn model trained, we can use it to predict our test values. In this portion of code, we will also account for the missing level from the quality factor that we found earlier, so that we can compute our confusion matrix. 
+
+
+```{r}
+knnPredict <- predict(k.value,newdata = knn.test )
+knnPredict.2<-droplevels(knnPredict)
+
+#Get the confusion matrix to see accuracy value and other parameter values
+confusionMatrix(knnPredict.2, knn.test$quality )
+```
+
+Our model was found to be about 56.75% accurate in predicting quality measures for our wine samples. 
+
 ## Accuracy
+
+In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison. 
+
+
+```{r}
+
+accuracy[1,1] <- confusionMatrix(knnPredict.2, knn.test$quality )[["overall"]][["Accuracy"]]
+```
+
+
+
+
 
 <!--chapter:end:05-KMeans_Testing.Rmd-->
 
@@ -123,7 +554,7 @@ output:
 
 ## Linear Regression
 ### What is it?
-@Website{RMSE} The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 
+@RMSE The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 
 ### Assumptions
 * Input is assumed to have a Normal distribution and are not correlated with each other.
 
@@ -303,13 +734,13 @@ $\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and rid
 Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 # Set training control
 train_cont <- trainControl(method = "repeatedcv",
                               number = 10,
                               repeats = 5,
                               search = "random",
-                              verboseIter = TRUE)
+                              verboseIter = FALSE)
 
 # Train the model
 elastic_reg <- train(quality ~ .,
@@ -318,7 +749,6 @@ elastic_reg <- train(quality ~ .,
                            preProcess = c("center", "scale"),
                            tuneLength = 10,
                            trControl = train_cont)
-
 
 
 ```
@@ -357,6 +787,7 @@ accuracy[3,1] <- acc.6
 accuracy
 ```
 
+# References
 
 <!--chapter:end:08-Results.Rmd-->
 
