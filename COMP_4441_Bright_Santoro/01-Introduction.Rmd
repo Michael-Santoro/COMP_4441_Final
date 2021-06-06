@@ -20,6 +20,6 @@ We will be using the the following statistical methods to create predictive mode
 - Random Forest
 - K-Nearest Neighbor
 
-
-
+\pagebreak
+\tableofcontents
   

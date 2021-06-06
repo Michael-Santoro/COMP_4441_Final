@@ -7,7 +7,7 @@ output:
 
 ## Linear Regression
 ### What is it?
-@Website{RMSE} The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 
+@RMSE The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 
 ### Assumptions
 * Input is assumed to have a Normal distribution and are not correlated with each other.
 
@@ -187,13 +187,13 @@ $\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and rid
 Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 # Set training control
 train_cont <- trainControl(method = "repeatedcv",
                               number = 10,
                               repeats = 5,
                               search = "random",
-                              verboseIter = TRUE)
+                              verboseIter = FALSE)
 
 # Train the model
 elastic_reg <- train(quality ~ .,
@@ -202,7 +202,6 @@ elastic_reg <- train(quality ~ .,
                            preProcess = c("center", "scale"),
                            tuneLength = 10,
                            trControl = train_cont)
-
 
 
 ```
