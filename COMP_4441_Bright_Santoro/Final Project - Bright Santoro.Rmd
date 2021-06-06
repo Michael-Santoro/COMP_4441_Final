@@ -5,7 +5,11 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
+<<<<<<< HEAD
 bibliography: book.bib
+=======
+bibliography: [book.bib]
+>>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
@@ -218,12 +222,21 @@ In the tests that follow, we will want to have a normal looking distribution, an
 ```{r}
 hist(wine$quality)
 ```
+<<<<<<< HEAD
 
 
 
 
 <!--chapter:end:02-DescriptiveStats.Rmd-->
 
+=======
+
+
+
+
+<!--chapter:end:02-DescriptiveStats.Rmd-->
+
+>>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 # Data Cleaning and Partitioning
 
 ## Data Normalization
@@ -271,6 +284,15 @@ test <- wine.normal[ind==2,]
 ## Comparing Results
 
 We will be comparing accuracy of each of the methods so we will set up an accuracy data frame to compare the effectiveness of each of the methods.
+<<<<<<< HEAD
+=======
+
+```{r}
+accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Random Forest","Regression"))
+
+accuracy
+```
+>>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 
 ```{r}
 accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Random Forest","Regression"))
@@ -278,6 +300,9 @@ accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Ra
 accuracy
 ```
 
+
+
+<!--chapter:end:03-DataCleaning.Rmd-->
 
 
 <!--chapter:end:03-DataCleaning.Rmd-->
@@ -461,10 +486,17 @@ In the code below we are adding the percentage accuracy to the accuracy datafram
 accuracy[2,1] <- confusionMatrix(p2, rf.test$quality )[["overall"]][["Accuracy"]]
 ```
 
+<<<<<<< HEAD
 
 
 
 
+=======
+
+
+
+
+>>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 <!--chapter:end:04-RandomForest.Rmd-->
 
 # K-Nearest Neighbor
