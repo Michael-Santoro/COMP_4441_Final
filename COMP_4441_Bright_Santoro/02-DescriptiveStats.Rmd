@@ -22,11 +22,9 @@ library(glmnet)
 
 ## Dataset
 
-<<<<<<< HEAD
 The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @model_wine. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red and white Vinho Verde wine samples from Portugal.
-=======
+
 The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @dataset. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
->>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 
 
 **Read in Data**
@@ -54,11 +52,9 @@ The table above shows the structure of our dataset before any sort of data manip
 
 ### Descriptive Statistics
 
-<<<<<<< HEAD
 In order to better understand our data set we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
-=======
+
 In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
->>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 
 The table below shows descriptive statistic measurements for each of the variables in our dataset. 
 
@@ -70,89 +66,84 @@ stat.desc(wine)
 
 Univariate exploration explores each variable one by one. We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
 
-The variables for the three plots below were selected judgmentally from the dataset. 
+The variables for the three plots below were selected judgmentally from the dataset to explore. 
 
 ```{r}
 
 mu <- ddply(wine, "type", summarise, grp.mean=mean(alcohol))
 
-p<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
+g<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
   geom_histogram(position="dodge")+
   theme(legend.position="top") + 
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")+
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type))+
   theme(legend.position="top")
 
-p
+g
 ```
 
-The table above shows the distribution of the alcohol variable 
+The table above shows the distribution of the alcohol variable for both red and white wines.  We can see from the plot that alcohol does not appear to be normally distributed.  The data points are primarily skewed to the left with a lower alcohol percentage. This makes sense as there are about three times as many white wine samples within our data set and white wine tends to have a lower alcohol percentage than red wine. 
 
 
 ```{r}
 
 mu <- ddply(wine, "type", summarise, grp.mean=mean(volatile.acidity))
 
-p<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
+g<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
   geom_histogram(position="dodge")+
   theme(legend.position="top") + 
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")+
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type))+
   theme(legend.position="top")
 
-p
+g
 ```
+
+Volatile acidity is the amount of acetic acid in wine.  Too high of a level of volatile acid can lead to an unpleasant, vinegar taste.
+
+The distribution of volatile acidity measurements within red wine appeared to be fairly normally distributed, while the distribution in volatile acidity within white wine was skewed harshly to the right. However, both red and white wine samples had long tails which indicate there may be some outliers in the data set with higher levels of volatile acidity than normal. 
 
 
 ```{r}
 
-mu <- ddply(wine, "type", summarise, grp.mean=mean(density))
+mu <- ddply(wine, "type", summarise, grp.mean=mean(quality))
 
-p<-ggplot(wine, aes(x=density, fill=type, color=type)) +
+g<-ggplot(wine, aes(x=quality, fill=type, color=type)) +
   geom_histogram(position="dodge")+
   theme(legend.position="top") + 
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")+
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type))+
   theme(legend.position="top")
 
-p
+g
 ```
+
+Finally, we plotted the quality, our outcome variable, of the wine samples.  As you can see from the charts above both the red and white wine samples had a normal distribution of quality values. This is important to note as the tests we will be performing require or assume normally distributed outcome variable values. 
 
 ***Bivariate Exploration***
+
 Bivariate exploration allows us to explore the relationship between two descriptive statistics in a dataset. 
 
-To better determine which variable relationships we should explore, we ran correlation analysis.  
+To better determine which variable relationships we should look more closely at, we ran a correlation analysis.  
 
 ```{r}
-# ++++++++++++++++++++++++++++
-# flattenCorrMatrix
-# ++++++++++++++++++++++++++++
-# cormat : matrix of the correlation coefficients
-# pmat : matrix of the correlation p-values
-flattenCorrMatrix <- function(cormat, pmat) {
-  ut <- upper.tri(cormat)
-  data.frame(
-    row = rownames(cormat)[row(cormat)[ut]],
-    column = rownames(cormat)[col(cormat)[ut]],
-    cor  =(cormat)[ut],
-    p = pmat[ut]
-    )
-}
 
 # exclude the type of wine from the correlation variables 
-res2 <- rcorr(as.matrix(wine[,1:12]))
-cor.m <- flattenCorrMatrix(res2$r, res2$P)
-cor.m[order(cor.m[,3],decreasing=TRUE),]
+res <- rcorr(as.matrix(wine[,1:12]))
+corr <- flattenCorrMatrix(res$r, res$P)
+corr[order(corr[,3],decreasing=TRUE),]
 
 ```
+
+From the flatted correlation matrix above, we can see that the elements with the highest correlation are:
+- Free Sulfur Dioxide and Total Sulfur Dioxide.  This is intuitive as free sulfur dioxide is a subset of the total sulfur dioxide.
+- Residual Sugar and Density. This also is intuitive as the fermentable sugars (residual sugar) can increase the density of wine. 
+
 
 ***Visualize Correlations***
 
 ```{r}
 
-# Insignificant correlations are leaved blank
-corrplot(res2$r, type="upper", order="hclust", 
-         p.mat = res2$P, sig.level = 0.01, insig = "blank")
+# Insignificant correlations are left blank
+corrplot(res$r, type="upper", order="hclust", 
+         p.mat = res$P, sig.level = 0.01, insig = "blank")
 ```
 
 Based on the correlation matrix and the correlation plots it appears that there is a strong negative correlation between alcohol and density and a strong positive correlation between residual sugar and density.  These are plotted below. 
@@ -177,16 +168,6 @@ ggplot(wine,
   geom_point(size = 3, 
              alpha = .05) +
   labs(title = "Wine Composition by residual.sugar, density, and type")
-```
-
-## Test for Normality
-
-In the tests that follow, we will want to have a normal looking distribution, and we can see from the plot below that it is Normal looking.
-
-```{r}
-g <- ggplot()+geom_freqpoly(aes(wine$quality),bins=6)
-g <- g + labs(title = "Quality Normaility", x="Residual", y="Total")
-g
 ```
 
 
