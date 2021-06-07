@@ -5,11 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-<<<<<<< HEAD
-bibliography: book.bib
-=======
 bibliography: [book.bib]
->>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
@@ -25,24 +21,28 @@ description: "This bookdown contains the write up and analysis of the COMP 4441 
 
 **Purpose**
 
-Wine is an alcoholic beverage made from fermented grape juice. (Puckette) Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma.  Though these tests are subjective, there is overlap between the observation of these characteristics and a wine's physiochemical properties.  For example, a wine's perceived acidity or tartness is based upon the pH of the wine and a wine's perceived sweetness is based upon the residual sugar of the wine.  
+
+Wine is an alcoholic beverage made from fermented grape juice. Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma. @wine_exactly_web Though these evaluations are subjective, there is an overlap between these subjective characteristics and a wines physicochemical properties. For example, a wines perceived acidity or tartness can be related to the pH of the wine and a wines perceived sweetness can be related to the residual sugar of the wine.
+
+Wine is an alcoholic beverage made from fermented grape juice. @wine_exactly_web Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma.  Though these tests are subjective, there is overlap between the observation of these characteristics and a wine's physiochemical properties.  For example, a wine's perceived acidity or tartness is based upon the pH of the wine and a wine's perceived sweetness is based upon the residual sugar of the wine.  
+
 
 The goal of our research is to determine:
 
-Can we predict the subjective quality rating of wine based solely on its physiochemical properties?
+Can we determine an accurate subjective rating of a wine based solely on its physicochemical properties?
 
-An accurate predictive model for determining an objective quality of wine would enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.   
+***Why is this important?***
+
+An accurate predictive model for determining the quality of wine will enable small wineries and vineyards, especially those from less established wine regions, to more accurately price their inventory and ensure a better return on investment.
 
 **Statistical or Analytical Method**
 
 We will be using the the following statistical methods to create predictive models for quality of wine:
 
-- Elastic Net Regression (LASSO and Ridge)
 - Random Forest
 - K-Nearest Neighbor
+- Elastic Net Regression (LASSO and Ridge)
 
-\pagebreak
-\tableofcontents
   
 
 <!--chapter:end:01-Introduction.Rmd-->
@@ -71,7 +71,9 @@ library(glmnet)
 
 ## Dataset
 
-The dataset utilized for our analysis was collected from the UCI Machine Learning Repository (see References). The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @model_wine. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red and white Vinho Verde wine samples from Portugal.
+
+The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @dataset. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
 
 
 **Read in Data**
@@ -82,113 +84,115 @@ redWine<-read.table("data/winequality-red.csv",stringsAsFactors = FALSE,
 whiteWine<-read.table("data/winequality-white.csv",stringsAsFactors = FALSE,
                 sep=";",header = TRUE)
 
+# create a field that shows whether a wine is red or white based on initial 
+# datasets
 redWine$type='red'
 whiteWine$type='white'
 
-# create a field that shows whether a wine is red or white based on initial 
-# datasets
+# merge data
 wine <- rbind(redWine, whiteWine)
 
 str(wine)
 ```
 
+The table above shows the structure of our dataset before any sort of data manipulation, munging, or cleaning. 
 
 ## Exploratory Analysis
 
 ### Descriptive Statistics
 
-In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. (“Descriptive Statistics”)
+In order to better understand our data set we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
+
+In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
 
 The table below shows descriptive statistic measurements for each of the variables in our dataset. 
 
 ```{r}
-
 stat.desc(wine)
 ```
 
 ***Univariate Exploration***
-We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
 
-The variables for the three plots below were selected judgmentally from the dataset. 
+Univariate exploration explores each variable one by one. We can use univariate exploration to explore the distribution of a single variable or desriptive statistic. 
+
+The variables for the three plots below were selected judgmentally from the dataset to explore. 
 
 ```{r}
 
 mu <- ddply(wine, "type", summarise, grp.mean=mean(alcohol))
 
-p<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
+g<-ggplot(wine, aes(x=alcohol, fill=type, color=type)) +
   geom_histogram(position="dodge")+
   theme(legend.position="top") + 
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")+
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type))+
   theme(legend.position="top")
 
-p
+g
 ```
+
+The table above shows the distribution of the alcohol variable for both red and white wines.  We can see from the plot that alcohol does not appear to be normally distributed.  The data points are primarily skewed to the left with a lower alcohol percentage. This makes sense as there are about three times as many white wine samples within our data set and white wine tends to have a lower alcohol percentage than red wine. 
+
 
 ```{r}
 
 mu <- ddply(wine, "type", summarise, grp.mean=mean(volatile.acidity))
 
-p<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
+g<-ggplot(wine, aes(x=volatile.acidity, fill=type, color=type)) +
   geom_histogram(position="dodge")+
   theme(legend.position="top") + 
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")+
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type))+
   theme(legend.position="top")
 
-p
+g
 ```
+
+Volatile acidity is the amount of acetic acid in wine.  Too high of a level of volatile acid can lead to an unpleasant, vinegar taste.
+
+The distribution of volatile acidity measurements within red wine appeared to be fairly normally distributed, while the distribution in volatile acidity within white wine was skewed harshly to the right. However, both red and white wine samples had long tails which indicate there may be some outliers in the data set with higher levels of volatile acidity than normal. 
 
 
 ```{r}
 
-mu <- ddply(wine, "type", summarise, grp.mean=mean(density))
+mu <- ddply(wine, "type", summarise, grp.mean=mean(quality))
 
-p<-ggplot(wine, aes(x=density, fill=type, color=type)) +
+g<-ggplot(wine, aes(x=quality, fill=type, color=type)) +
   geom_histogram(position="dodge")+
   theme(legend.position="top") + 
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")+
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=type))+
   theme(legend.position="top")
 
-p
+g
 ```
+
+Finally, we plotted the quality, our outcome variable, of the wine samples.  As you can see from the charts above both the red and white wine samples had a normal distribution of quality values. This is important to note as the tests we will be performing require or assume normally distributed outcome variable values. 
 
 ***Bivariate Exploration***
+
 Bivariate exploration allows us to explore the relationship between two descriptive statistics in a dataset. 
 
-To better determine which variable relationships we should explore, we ran correlation analysis.  
+To better determine which variable relationships we should look more closely at, we ran a correlation analysis.  
 
 ```{r}
-# ++++++++++++++++++++++++++++
-# flattenCorrMatrix
-# ++++++++++++++++++++++++++++
-# cormat : matrix of the correlation coefficients
-# pmat : matrix of the correlation p-values
-flattenCorrMatrix <- function(cormat, pmat) {
-  ut <- upper.tri(cormat)
-  data.frame(
-    row = rownames(cormat)[row(cormat)[ut]],
-    column = rownames(cormat)[col(cormat)[ut]],
-    cor  =(cormat)[ut],
-    p = pmat[ut]
-    )
-}
 
 # exclude the type of wine from the correlation variables 
-res2 <- rcorr(as.matrix(wine[,1:12]))
-cor.m <- flattenCorrMatrix(res2$r, res2$P)
-cor.m[order(cor.m[,3],decreasing=TRUE),]
+res <- rcorr(as.matrix(wine[,1:12]))
+corr <- flattenCorrMatrix(res$r, res$P)
+corr[order(corr[,3],decreasing=TRUE),]
 
 ```
+
+From the flatted correlation matrix above, we can see that the elements with the highest correlation are:
+- Free Sulfur Dioxide and Total Sulfur Dioxide.  This is intuitive as free sulfur dioxide is a subset of the total sulfur dioxide.
+- Residual Sugar and Density. This also is intuitive as the fermentable sugars (residual sugar) can increase the density of wine. 
+
 
 ***Visualize Correlations***
 
 ```{r}
 
-# Insignificant correlations are leaved blank
-corrplot(res2$r, type="upper", order="hclust", 
-         p.mat = res2$P, sig.level = 0.01, insig = "blank")
+# Insignificant correlations are left blank
+corrplot(res$r, type="upper", order="hclust", 
+         p.mat = res$P, sig.level = 0.01, insig = "blank")
 ```
 
 Based on the correlation matrix and the correlation plots it appears that there is a strong negative correlation between alcohol and density and a strong positive correlation between residual sugar and density.  These are plotted below. 
@@ -215,28 +219,11 @@ ggplot(wine,
   labs(title = "Wine Composition by residual.sugar, density, and type")
 ```
 
-## Test for Normality
-
-In the tests that follow, we will want to have a normal looking distribution, and we can see from the plot below that it is Normal looking.
-
-```{r}
-hist(wine$quality)
-```
-<<<<<<< HEAD
-
 
 
 
 <!--chapter:end:02-DescriptiveStats.Rmd-->
 
-=======
-
-
-
-
-<!--chapter:end:02-DescriptiveStats.Rmd-->
-
->>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 # Data Cleaning and Partitioning
 
 ## Data Normalization
@@ -284,15 +271,6 @@ test <- wine.normal[ind==2,]
 ## Comparing Results
 
 We will be comparing accuracy of each of the methods so we will set up an accuracy data frame to compare the effectiveness of each of the methods.
-<<<<<<< HEAD
-=======
-
-```{r}
-accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Random Forest","Regression"))
-
-accuracy
-```
->>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 
 ```{r}
 accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Random Forest","Regression"))
@@ -300,9 +278,6 @@ accuracy <- data.frame(Accuracy=c(rep(NA,times=3)),row.names = c("K-Nearest","Ra
 accuracy
 ```
 
-
-
-<!--chapter:end:03-DataCleaning.Rmd-->
 
 
 <!--chapter:end:03-DataCleaning.Rmd-->
@@ -486,17 +461,10 @@ In the code below we are adding the percentage accuracy to the accuracy datafram
 accuracy[2,1] <- confusionMatrix(p2, rf.test$quality )[["overall"]][["Accuracy"]]
 ```
 
-<<<<<<< HEAD
 
 
 
 
-=======
-
-
-
-
->>>>>>> c6ba8f8fb2255ffc2bbc363a5f68884fb9ea5b13
 <!--chapter:end:04-RandomForest.Rmd-->
 
 # K-Nearest Neighbor
@@ -810,7 +778,7 @@ accuracy[3,1] <- acc.6
 ```
 
 
-<!--chapter:end:03-LassoRegression.Rmd-->
+<!--chapter:end:06-LassoRegression.Rmd-->
 
 # Results
 
@@ -821,7 +789,7 @@ accuracy
 
 # References
 
-<!--chapter:end:08-Results.Rmd-->
+<!--chapter:end:07-Results.Rmd-->
 
 # References
 
@@ -840,5 +808,5 @@ Stephanie Glen. "RMSE: Root Mean Square Error" From StatisticsHowTo.com: Element
 
 Breiman, Leo, and Adele Cutler. “Random Forests.” Berkeley Statistics, www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm. Accessed 30 May 2021.
 
-<!--chapter:end:07-References.Rmd-->
+<!--chapter:end:08-References.Rmd-->
 
