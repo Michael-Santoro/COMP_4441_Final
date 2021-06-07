@@ -167,7 +167,6 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>2.2.1</b> Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#test-for-normality"><i class="fa fa-check"></i><b>2.3</b> Test for Normality</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-cleaning-and-partitioning.html"><a href="data-cleaning-and-partitioning.html"><i class="fa fa-check"></i><b>3</b> Data Cleaning and Partitioning</a>
 <ul>
@@ -203,9 +202,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="lasso-regression.html"><a href="lasso-regression.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear Regression</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="lasso-regression.html"><a href="lasso-regression.html#what-is-it"><i class="fa fa-check"></i><b>6.1.1</b> What is it?</a></li>
-<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.2</b> Single Variable</a></li>
-<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.3</b> Multiple Variables</a></li>
-<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.4</b> Less Variables</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lasso-regression.html"><a href="lasso-regression.html#assumptions"><i class="fa fa-check"></i><b>6.1.2</b> Assumptions</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lasso-regression.html"><a href="lasso-regression.html#single-variable"><i class="fa fa-check"></i><b>6.1.3</b> Single Variable</a></li>
+<li class="chapter" data-level="6.1.4" data-path="lasso-regression.html"><a href="lasso-regression.html#multiple-variables"><i class="fa fa-check"></i><b>6.1.4</b> Multiple Variables</a></li>
+<li class="chapter" data-level="6.1.5" data-path="lasso-regression.html"><a href="lasso-regression.html#less-variables"><i class="fa fa-check"></i><b>6.1.5</b> Less Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="lasso-regression.html"><a href="lasso-regression.html#ridge-regression"><i class="fa fa-check"></i><b>6.2</b> Ridge Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="lasso-regression.html"><a href="lasso-regression.html#lasso-regression-1"><i class="fa fa-check"></i><b>6.3</b> Lasso Regression</a>
@@ -216,7 +216,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>7</b> Results</a></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
-<li class="chapter" data-level="9" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -245,22 +244,22 @@ Random forest can be used to solve both classification and regression problems, 
 <ol style="list-style-type: decimal">
 <li>If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.</li>
 <li>If there are M input variables, a number m&lt;&lt;M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.</li>
-<li>Each tree is grown to the largest extent possible. There is no pruning." (Breiman and Cutler)</li>
+<li>Each tree is grown to the largest extent possible. There is no pruning." <span class="citation"><a href="#ref-random_forests" role="doc-biblioref">Breiman and Cutler</a> (<a href="#ref-random_forests" role="doc-biblioref">n.d.</a>)</span></li>
 </ol>
 <div id="create-random-forest-model" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Create Random Forest Model</h2>
 <p>We will start by running the randomForest function utilizing the training dataset to train the model.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="random-forest.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
-<span id="cb22-2"><a href="random-forest.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="random-forest.html#cb22-3" aria-hidden="true" tabindex="-1"></a>rf.train <span class="ot">&lt;-</span> train</span>
-<span id="cb22-4"><a href="random-forest.html#cb22-4" aria-hidden="true" tabindex="-1"></a>rf.train<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(rf.train<span class="sc">$</span>quality)</span>
-<span id="cb22-5"><a href="random-forest.html#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="random-forest.html#cb22-6" aria-hidden="true" tabindex="-1"></a>rf.test <span class="ot">&lt;-</span> test</span>
-<span id="cb22-7"><a href="random-forest.html#cb22-7" aria-hidden="true" tabindex="-1"></a>rf.test<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(rf.test<span class="sc">$</span>quality)</span>
-<span id="cb22-8"><a href="random-forest.html#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="random-forest.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
-<span id="cb22-10"><a href="random-forest.html#cb22-10" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>rf.train)</span>
-<span id="cb22-11"><a href="random-forest.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="random-forest.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb21-2"><a href="random-forest.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="random-forest.html#cb21-3" aria-hidden="true" tabindex="-1"></a>rf.train <span class="ot">&lt;-</span> train</span>
+<span id="cb21-4"><a href="random-forest.html#cb21-4" aria-hidden="true" tabindex="-1"></a>rf.train<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(rf.train<span class="sc">$</span>quality)</span>
+<span id="cb21-5"><a href="random-forest.html#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="random-forest.html#cb21-6" aria-hidden="true" tabindex="-1"></a>rf.test <span class="ot">&lt;-</span> test</span>
+<span id="cb21-7"><a href="random-forest.html#cb21-7" aria-hidden="true" tabindex="-1"></a>rf.test<span class="sc">$</span>quality <span class="ot">&lt;-</span><span class="fu">as.factor</span>(rf.test<span class="sc">$</span>quality)</span>
+<span id="cb21-8"><a href="random-forest.html#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="random-forest.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
+<span id="cb21-10"><a href="random-forest.html#cb21-10" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>rf.train)</span>
+<span id="cb21-11"><a href="random-forest.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ##  randomForest(formula = quality ~ ., data = rf.train) 
@@ -285,18 +284,18 @@ Random forest can be used to solve both classification and regression problems, 
 <h2><span class="header-section-number">4.2</span> Predicition and Confusion Matrix - Training Data</h2>
 <p>The following code runs a prediction of the quality values for the training set using the random forest model created above.</p>
 <p>As you can see, all 6 predictions in the predicted values vector are 100% accurate. This makes sense as the random forest model was built using the training data, so it has already “seen” these values.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="random-forest.html#cb24-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.train)</span>
-<span id="cb24-2"><a href="random-forest.html#cb24-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co">#drop any unused levels</span></span>
-<span id="cb24-3"><a href="random-forest.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="random-forest.html#cb23-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.train)</span>
+<span id="cb23-2"><a href="random-forest.html#cb23-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co">#drop any unused levels</span></span>
+<span id="cb23-3"><a href="random-forest.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
 <pre><code>##  1  3  6  7  9 10 
 ##  5  5  5  5  7  5 
 ## Levels: 3 4 5 6 7 8 9</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="random-forest.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="random-forest.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
 <pre><code>## [1] 5 5 5 5 7 5
 ## Levels: 3 4 5 6 7 8 9</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="random-forest.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;caret&#39;, dependencies = TRUE)</span></span>
-<span id="cb28-2"><a href="random-forest.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="random-forest.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, rf.train<span class="sc">$</span>quality )</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="random-forest.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;caret&#39;, dependencies = TRUE)</span></span>
+<span id="cb27-2"><a href="random-forest.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="random-forest.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, rf.train<span class="sc">$</span>quality )</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -322,40 +321,31 @@ Random forest can be used to solve both classification and regression problems, 
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
-## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
-## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-##                      Class: 9
-## Sensitivity          1.000000
-## Specificity          1.000000
-## Pos Pred Value       1.000000
-## Neg Pred Value       1.000000
-## Prevalence           0.001096
-## Detection Rate       0.001096
-## Detection Prevalence 0.001096
-## Balanced Accuracy    1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
 <p>Using the confusion matrix function from the caret library, we can show the accuracy of our model when predicting the quality values for our training dataset. The accuracy is 100% when utilizing the training dataset with the random forest model trained by the training dataset.</p>
 </div>
 <div id="predicition-and-confusion-matrix---test-data" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Predicition and Confusion Matrix - Test Data</h2>
 <p>The following code runs a prediction of the quality values for the test dataset using the random forest model created with our training dataset from above.</p>
 <p>This model was able to predict 4 out of 6 of the first values accurately.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="random-forest.html#cb30-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.test)</span>
-<span id="cb30-2"><a href="random-forest.html#cb30-2" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">&lt;-</span><span class="fu">droplevels</span>(p2) <span class="co"># drop unused levels</span></span>
-<span id="cb30-3"><a href="random-forest.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="random-forest.html#cb29-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.test)</span>
+<span id="cb29-2"><a href="random-forest.html#cb29-2" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">&lt;-</span><span class="fu">droplevels</span>(p2) <span class="co"># drop unused levels</span></span>
+<span id="cb29-3"><a href="random-forest.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
 <pre><code>##  2  4  5  8 11 16 
 ##  5  5  5  5  5  5 
 ## Levels: 3 4 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="random-forest.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="random-forest.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
 <pre><code>## [1] 5 6 5 7 5 5
 ## Levels: 3 4 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="random-forest.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, rf.test<span class="sc">$</span>quality )</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="random-forest.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, rf.test<span class="sc">$</span>quality )</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -397,21 +387,21 @@ Random forest can be used to solve both classification and regression problems, 
 <div id="plotting-the-error-rate" class="section level3" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Plotting the Error Rate</h3>
 <p>Plotting the error rate to the number of trees can show us where our model has more or less the same level of effectiveness and we can choose a more accurate tree number.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="random-forest.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rf)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="random-forest.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rf)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 The model appears to have a drop off after about 300 trees and then is more or less constant, therefore, we can adjust our tree number in the model to be 300.</p>
 </div>
 <div id="tuning-mtry" class="section level3" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Tuning mTry</h3>
 <p>The mTry value reflects the number of variables tested at each node split. The tuneRF function can be used to determine what our mTry value should be.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="random-forest.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2222</span>)</span>
-<span id="cb37-2"><a href="random-forest.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="random-forest.html#cb37-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">tuneRF</span>(rf.train[,<span class="sc">-</span><span class="dv">12</span>], rf.train[,<span class="dv">12</span>], </span>
-<span id="cb37-4"><a href="random-forest.html#cb37-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">stepFactor =</span> <span class="fl">0.5</span>, </span>
-<span id="cb37-5"><a href="random-forest.html#cb37-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot=</span><span class="cn">TRUE</span>,</span>
-<span id="cb37-6"><a href="random-forest.html#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ntreeTry =</span> <span class="dv">100</span>,</span>
-<span id="cb37-7"><a href="random-forest.html#cb37-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">trace=</span><span class="cn">TRUE</span>,</span>
-<span id="cb37-8"><a href="random-forest.html#cb37-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">improve=</span><span class="fl">0.05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="random-forest.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2222</span>)</span>
+<span id="cb36-2"><a href="random-forest.html#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="random-forest.html#cb36-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">tuneRF</span>(rf.train[,<span class="sc">-</span><span class="dv">12</span>], rf.train[,<span class="dv">12</span>], </span>
+<span id="cb36-4"><a href="random-forest.html#cb36-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">stepFactor =</span> <span class="fl">0.5</span>, </span>
+<span id="cb36-5"><a href="random-forest.html#cb36-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot=</span><span class="cn">TRUE</span>,</span>
+<span id="cb36-6"><a href="random-forest.html#cb36-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ntreeTry =</span> <span class="dv">100</span>,</span>
+<span id="cb36-7"><a href="random-forest.html#cb36-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">trace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb36-8"><a href="random-forest.html#cb36-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">improve=</span><span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## mtry = 3  OOB error = 33.26% 
 ## Searching left ...
 ## mtry = 6     OOB error = 34.36% 
@@ -419,22 +409,22 @@ The model appears to have a drop off after about 300 trees and then is more or l
 ## Searching right ...
 ## mtry = 1     OOB error = 33.46% 
 ## -0.005928854 0.05</code></pre>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 This output indicates that our model hits its lowest error rate when the mTry value is 3, so we can adjust our model to reflect this new value.</p>
 </div>
 </div>
 <div id="recreate-our-random-forest-model" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Recreate our Random Forest Model</h2>
 <p>The following code reruns our model utilizing the new tuning parameters found above.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="random-forest.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
-<span id="cb39-2"><a href="random-forest.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="random-forest.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
-<span id="cb39-4"><a href="random-forest.html#cb39-4" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>rf.train,</span>
-<span id="cb39-5"><a href="random-forest.html#cb39-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ntree=</span><span class="dv">300</span>,</span>
-<span id="cb39-6"><a href="random-forest.html#cb39-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">mTry=</span><span class="dv">3</span>, </span>
-<span id="cb39-7"><a href="random-forest.html#cb39-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">importance=</span><span class="cn">TRUE</span>,</span>
-<span id="cb39-8"><a href="random-forest.html#cb39-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">proximity=</span><span class="cn">TRUE</span>)</span>
-<span id="cb39-9"><a href="random-forest.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="random-forest.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb38-2"><a href="random-forest.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="random-forest.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quality is a function of all other variables </span></span>
+<span id="cb38-4"><a href="random-forest.html#cb38-4" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality<span class="sc">~</span>., <span class="at">data=</span>rf.train,</span>
+<span id="cb38-5"><a href="random-forest.html#cb38-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ntree=</span><span class="dv">300</span>,</span>
+<span id="cb38-6"><a href="random-forest.html#cb38-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">mTry=</span><span class="dv">3</span>, </span>
+<span id="cb38-7"><a href="random-forest.html#cb38-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">importance=</span><span class="cn">TRUE</span>,</span>
+<span id="cb38-8"><a href="random-forest.html#cb38-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">proximity=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-9"><a href="random-forest.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ##  randomForest(formula = quality ~ ., data = rf.train, ntree = 300,      mTry = 3, importance = TRUE, proximity = TRUE) 
@@ -456,16 +446,16 @@ This output indicates that our model hits its lowest error rate when the mTry va
 </div>
 <div id="rerun-predicition-and-confusion-matrix---training-data" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Rerun Predicition and Confusion Matrix - Training Data</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="random-forest.html#cb41-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.train)</span>
-<span id="cb41-2"><a href="random-forest.html#cb41-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co"># drop any unused levels</span></span>
-<span id="cb41-3"><a href="random-forest.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="random-forest.html#cb40-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.train)</span>
+<span id="cb40-2"><a href="random-forest.html#cb40-2" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p1) <span class="co"># drop any unused levels</span></span>
+<span id="cb40-3"><a href="random-forest.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p1) <span class="co"># predicted values</span></span></code></pre></div>
 <pre><code>##  1  3  6  7  9 10 
 ##  5  5  5  5  7  5 
 ## Levels: 3 4 5 6 7 8 9</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="random-forest.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="random-forest.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.train<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
 <pre><code>## [1] 5 5 5 5 7 5
 ## Levels: 3 4 5 6 7 8 9</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="random-forest.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, rf.train<span class="sc">$</span>quality )</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="random-forest.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p1, rf.train<span class="sc">$</span>quality )</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -491,38 +481,29 @@ This output indicates that our model hits its lowest error rate when the mTry va
 ## 
 ## Statistics by Class:
 ## 
-##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8
-## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
-## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
-## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298
-## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000
-##                      Class: 9
-## Sensitivity          1.000000
-## Specificity          1.000000
-## Pos Pred Value       1.000000
-## Neg Pred Value       1.000000
-## Prevalence           0.001096
-## Detection Rate       0.001096
-## Detection Prevalence 0.001096
-## Balanced Accuracy    1.000000</code></pre>
+##                      Class: 3 Class: 4 Class: 5 Class: 6 Class: 7 Class: 8 Class: 9
+## Sensitivity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Specificity          1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Pos Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Neg Pred Value       1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000
+## Prevalence           0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Rate       0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Detection Prevalence 0.004163  0.03309   0.3326   0.4327   0.1665   0.0298 0.001096
+## Balanced Accuracy    1.000000  1.00000   1.0000   1.0000   1.0000   1.0000 1.000000</code></pre>
 <p>Again, all of our predictions were 100% accurate as the training data had already been “seen” by the model.</p>
 </div>
 <div id="rerun-predicition-and-confusion-matrix---test-data" class="section level2" number="4.7">
 <h2><span class="header-section-number">4.7</span> Rerun Predicition and Confusion Matrix - Test Data</h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="random-forest.html#cb47-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.test)</span>
-<span id="cb47-2"><a href="random-forest.html#cb47-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p2) <span class="co"># drop any unuused levels </span></span>
-<span id="cb47-3"><a href="random-forest.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="random-forest.html#cb46-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, rf.test)</span>
+<span id="cb46-2"><a href="random-forest.html#cb46-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(p2) <span class="co"># drop any unuused levels </span></span>
+<span id="cb46-3"><a href="random-forest.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p2) <span class="co"># predicted values</span></span></code></pre></div>
 <pre><code>##  2  4  5  8 11 16 
 ##  5  5  5  5  5  5 
 ## Levels: 3 4 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="random-forest.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="random-forest.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rf.test<span class="sc">$</span>quality) <span class="co"># actual values</span></span></code></pre></div>
 <pre><code>## [1] 5 6 5 7 5 5
 ## Levels: 3 4 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="random-forest.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, rf.test<span class="sc">$</span>quality )</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="random-forest.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(p2, rf.test<span class="sc">$</span>quality )</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -561,16 +542,22 @@ This output indicates that our model hits its lowest error rate when the mTry va
 <div id="variable-importance" class="section level2" number="4.8">
 <h2><span class="header-section-number">4.8</span> Variable Importance</h2>
 <p>We are able to see the variables that had the highest level of importance in our model by running the varImpPlot function.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="random-forest.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf, </span>
-<span id="cb53-2"><a href="random-forest.html#cb53-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="random-forest.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf, </span>
+<span id="cb52-2"><a href="random-forest.html#cb52-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
+<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 75% mean decrease in accuracy.</p>
 </div>
 <div id="accuracy" class="section level2" number="4.9">
 <h2><span class="header-section-number">4.9</span> Accuracy</h2>
 <p>In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="random-forest.html#cb54-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(p2, rf.test<span class="sc">$</span>quality )[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="random-forest.html#cb53-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(p2, rf.test<span class="sc">$</span>quality )[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-random_forests" class="csl-entry">
+Breiman, Leo, and Adele Cutler. n.d. <span>“Random Forests.”</span> <a href="https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.html">www.stat.berkeley.edu/~breiman/RandomForests/cc_home.html</a>.
 </div>
 </div>
             </section>

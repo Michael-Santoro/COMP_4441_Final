@@ -1,18 +1,17 @@
 # Random Forest 
 
-Decision trees can suffer from from the problem of overfitting.  In order to help solve this problem, the Random Forest algorithm was devised.  It works by building multiple decision trees and then merging them together to form a prediction. 
-Random forest can be used to solve both classification and regression problems, however, for our analysis we will be utilizing it solve our classification problem. 
+The Random Forest modeling technique is a supervised machine learning algorithm that works by utilizing the outcome of multiple decision trees to make a prediction for a data point. It can be used to solve both classification and regression problems, however, for our analysis we utilized it to help solve our research question of classifying the quality of wine samples from 1-10. The algorithm can be tuned by a user by inputting a particular number of trees and variables to be tested at each split in the tree, in order to make it more precise.
 
-Each tree within the Random Forest is grown as follows:
+"Each tree within the Random Forest is grown as follows:
 
 1. If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.
 2. If there are M input variables, a number m<<M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.
-3. Each tree is grown to the largest extent possible. There is no pruning." (Breiman and Cutler)
+3. Each tree is grown to the largest extent possible. There is no pruning." @random_forests
 
 
 ## Create Random Forest Model
 
-We will start by running the randomForest function utilizing the training dataset to train the model. 
+We will start by running the randomForest function with our training dataset used to train the model. 
 
 ```{r}
 set.seed(444)

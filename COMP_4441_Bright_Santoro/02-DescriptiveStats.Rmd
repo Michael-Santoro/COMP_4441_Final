@@ -24,8 +24,6 @@ library(glmnet)
 
 The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @model_wine. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red and white Vinho Verde wine samples from Portugal.
 
-The dataset utilized for our analysis was collected from the UCI Machine Learning Repository @dataset. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.
-
 
 **Read in Data**
 
@@ -54,7 +52,6 @@ The table above shows the structure of our dataset before any sort of data manip
 
 In order to better understand our data set we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
 
-In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. @descrip_stat
 
 The table below shows descriptive statistic measurements for each of the variables in our dataset. 
 

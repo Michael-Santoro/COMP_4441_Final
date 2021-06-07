@@ -1,7 +1,9 @@
 # Data Cleaning and Partitioning
 
 ## Data Normalization
-Our dataset already contains only predictive values and output, so we do not need to remove any descriptive columns.  We must normalize the values within the dataset to avoid any bias and remove the output variable (quality) since it's the prediction. 
+
+Our dataset only contains input variables and outcome variable, so there was no need to remove descriptive data elements.  However, we did normalize the input variables within the dataset to avoid any bias.
+
 ```{r}
 set.seed(123)
 

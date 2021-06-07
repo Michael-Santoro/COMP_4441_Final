@@ -4,9 +4,6 @@
 
 **Purpose**
 
-
-Wine is an alcoholic beverage made from fermented grape juice. Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma. @wine_exactly_web Though these evaluations are subjective, there is an overlap between these subjective characteristics and a wines physicochemical properties. For example, a wines perceived acidity or tartness can be related to the pH of the wine and a wines perceived sweetness can be related to the residual sugar of the wine.
-
 Wine is an alcoholic beverage made from fermented grape juice. @wine_exactly_web Generally, a wine's quality is determined by taste, smell, and visual tests performed by wine experts, sommeliers. These tests grade the wine on subjective measures: Acidity, Sweetness, Alcohol, Tannin and Aroma.  Though these tests are subjective, there is overlap between the observation of these characteristics and a wine's physiochemical properties.  For example, a wine's perceived acidity or tartness is based upon the pH of the wine and a wine's perceived sweetness is based upon the residual sugar of the wine.  
 
 

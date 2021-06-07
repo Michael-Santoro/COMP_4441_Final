@@ -1,19 +1,16 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
 # Lasso Regression
 
 ## Linear Regression
 ### What is it?
-@RMSE The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. 
+The simplest form of regression is linear regression, which assumes that the predictors have a linear relationship with the target variable. @regression_r\
+
 ### Assumptions
-* Input is assumed to have a Normal distribution and are not correlated with each other.
+Input is assumed to have a Normal distribution and are not correlated with each other.
 
 We saw in the Descriptive Stats section that visually this factor had a strong correlation with quality.
 
-With these assumptions being true we can model quality with the following equation.
+With these assumptions being true we can model quality with the following equation. @elastic_net
 
 $$ q = a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_2nx_n + b + \epsilon$$
 Where $a_1, a_2, \dots, a_n$ are coefficients from the model. $x_1, x_2, \dots, x_n$ are the input variables to the model. $b$ is a factor of the model representing the y-intercept and $q$ is equal to the quality output. Finally, $\epsilon$ is the error.
@@ -27,7 +24,7 @@ lr.1 <- lm(quality~alcohol, data = train)
 summary(lr.1)
 ```
 Focusing on the p-value above we can tell that it is unlikely that by chance we will observe a relationship between alcohol and quality. Which fits our standard threshold of $5\%$.
-We will use the Root Mean Square Error (RMSE) to compare the results of each of the models. (Glenn) The Root Mean Square Error (RMSE) is the standard deviation of the residuals (prediction errors). Residuals are a measure of how far from the regression line data points are; RMSE is a measure of how spread out these residuals are. In other words, it tells you how concentrated the data is around the line of best fit. We are looking for a value very close to zero here as the formula is as follows:
+We will use the Root Mean Square Error (RMSE) to compare the results of each of the models. @RMSE The Root Mean Square Error (RMSE) is the standard deviation of the residuals (prediction errors). Residuals are a measure of how far from the regression line data points are; RMSE is a measure of how spread out these residuals are. In other words, it tells you how concentrated the data is around the line of best fit. We are looking for a value very close to zero here as the formula is as follows:
 
 $$RMSE = \sqrt{\frac{\sum_{i=1}^{N}(predicted_i - actual_i)^2}{N}}$$
 
@@ -38,7 +35,7 @@ RMSE.1 <- RMSE(p.1,test$quality)
 RMSE.1
 ```
 
-Since we will be comparing results to other discrette statistical methods we now calculate an accuracy measure.
+Since we will be comparing results to other discrete statistical methods we now calculate an accuracy measure.
 ```{r}
 
 rp.1<-round(p.1)
@@ -73,7 +70,7 @@ mean(rp.2==test$quality)
 
 
 ### Less Variables
-In the code block below we will input all of the variables and examine the output.
+In the code block below we will input a subset of the variables and examine the output.
 
 ```{r}
 lr.3 <- lm(quality~ volatile.acidity + citric.acid + chlorides + free.sulfur.dioxide + sulphates + alcohol, data = train)
@@ -95,14 +92,14 @@ mean(rp.3==test$quality)
 
 Ridge regression is an extension of linear regression where the loss function is modified to minimize the complexity of the model. This modification is done by adding a penalty parameter that is equivalent to the square of the magnitude of the coefficients. If we re-write the OLS in Matrix for below:
 $$X_tX\beta = X_tY$$
-To solbe for the $\beta$ terms to obtain the estimation model, we obtain the following.
+To solve for the $\beta$ terms to obtain the estimation model, we obtain the following.
 
 $$\beta = (X^{'}X)^{-1}X^{'}Y$$
 
 Ridge regression modifies the above by adding a small value of $\lambda$, to the diagonal elements of the correlation matrix.
 $$\beta = (R+\lambda I)^{-1}X^{'}Y$$
 
-We need to find an optimal value for the $lambda$ factor. The 'glmnet' feature makes this easy for us. It does not accept a data frame though so we need to make a matrix of the the input variables. The other thing that the chunk below is doing is creating a vector of $\lambda$ values that we want to try. Finally, we plot the 
+We need to find an optimal value for the $lambda$ factor. The 'glmnet' feature makes this easy for us. It does not accept a data frame though so we need to make a matrix of the the input variables. The other thing that the chunk below is doing is creating a vector of $\lambda$ values that we want to try.
 
 ```{r}
 qual <- train$quality
@@ -113,7 +110,7 @@ lambdas <- 10^seq(3, -2, by = -.1)
 ridge_reg <- cv.glmnet(train.mat, qual, alpha = 0, lambda = lambdas)
 plot(ridge_reg)
 ```
-The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.
+/ The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.
 
 ```{r}
 opt_lambda <- ridge_reg$lambda.min
@@ -147,7 +144,7 @@ mean(rp.4==test$quality)
 
 ## Lasso Regression
 
-The method for LASSO regression is much similar to the above.
+The method for LASSO regression is much similar to the above code wise although it is completing something different. Lasso regression, or the Least Absolute Shrinkage and Selection Operator, is also a modification of linear regression. In lasso, the loss function is modified to minimize the complexity of the model by limiting the sum of the absolute values of the model coefficients. @regression_r
 
 ```{r}
 lambdas <- 10^seq(2, -3, by = -.1)
@@ -184,7 +181,7 @@ mean(rp.5==test$quality)
 $\lambda$ is defined once and $\alpha$ where lasso is scaled by $\alpha$ and ridge penalty is scaled by $(1-\alpha$).
 
 ### Elastic Net Regression
-Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.
+Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.The first line of code creates a training control object train_cont which specifies how the repeated cross validation will take place. The second line builds the elastic regression model in which a range of possible alpha and lambda values are tested and their optimum value is selected. @regression_r
 
 
 ```{r, echo=FALSE, message=FALSE}
