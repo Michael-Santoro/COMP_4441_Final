@@ -24,7 +24,7 @@
 <meta name="author" content="Emma Bright and Michael Santoro" />
 
 
-<meta name="date" content="2021-06-06" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -383,17 +383,21 @@ To solve for the <span class="math inline">\(\beta\)</span> terms to obtain the 
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="lasso-regression.html#cb85-1" aria-hidden="true" tabindex="-1"></a>qual <span class="ot">&lt;-</span> train<span class="sc">$</span>quality</span>
 <span id="cb85-2"><a href="lasso-regression.html#cb85-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span><span class="fu">colnames</span>(train)</span>
 <span id="cb85-3"><a href="lasso-regression.html#cb85-3" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> cols[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cols)<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb85-4"><a href="lasso-regression.html#cb85-4" aria-hidden="true" tabindex="-1"></a>train.mat <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span> <span class="fu">select</span>(cols) <span class="sc">%&gt;%</span> <span class="fu">data.matrix</span>()</span>
-<span id="cb85-5"><a href="lasso-regression.html#cb85-5" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
-<span id="cb85-6"><a href="lasso-regression.html#cb85-6" aria-hidden="true" tabindex="-1"></a>ridge_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(train.mat, qual, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">lambda =</span> lambdas)</span>
-<span id="cb85-7"><a href="lasso-regression.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge_reg)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-41-1.png" width="672" />
-The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="lasso-regression.html#cb86-1" aria-hidden="true" tabindex="-1"></a>opt_lambda <span class="ot">&lt;-</span> ridge_reg<span class="sc">$</span>lambda.min</span>
-<span id="cb86-2"><a href="lasso-regression.html#cb86-2" aria-hidden="true" tabindex="-1"></a>opt_lambda</span></code></pre></div>
+<span id="cb85-4"><a href="lasso-regression.html#cb85-4" aria-hidden="true" tabindex="-1"></a>train.mat <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span> <span class="fu">select</span>(cols) <span class="sc">%&gt;%</span> <span class="fu">data.matrix</span>()</span></code></pre></div>
+<pre><code>## Note: Using an external vector in selections is ambiguous.
+## i Use `all_of(cols)` instead of `cols` to silence this message.
+## i See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+## This message is displayed once per session.</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="lasso-regression.html#cb87-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
+<span id="cb87-2"><a href="lasso-regression.html#cb87-2" aria-hidden="true" tabindex="-1"></a>ridge_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(train.mat, qual, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">lambda =</span> lambdas)</span>
+<span id="cb87-3"><a href="lasso-regression.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge_reg)</span></code></pre></div>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+/ The lowest point in the curve indicates the optimal lambda: the log value of lambda that best minimized the error in cross-validation. This can be pulled out of the glmnet output.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="lasso-regression.html#cb88-1" aria-hidden="true" tabindex="-1"></a>opt_lambda <span class="ot">&lt;-</span> ridge_reg<span class="sc">$</span>lambda.min</span>
+<span id="cb88-2"><a href="lasso-regression.html#cb88-2" aria-hidden="true" tabindex="-1"></a>opt_lambda</span></code></pre></div>
 <pre><code>## [1] 0.01</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="lasso-regression.html#cb88-1" aria-hidden="true" tabindex="-1"></a>ridge_model <span class="ot">&lt;-</span> ridge_reg<span class="sc">$</span>glmnet.fit</span>
-<span id="cb88-2"><a href="lasso-regression.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ridge_model)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="lasso-regression.html#cb90-1" aria-hidden="true" tabindex="-1"></a>ridge_model <span class="ot">&lt;-</span> ridge_reg<span class="sc">$</span>glmnet.fit</span>
+<span id="cb90-2"><a href="lasso-regression.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ridge_model)</span></code></pre></div>
 <pre><code>##           Length Class     Mode   
 ## a0         51    -none-    numeric
 ## beta      561    dgCMatrix S4     
@@ -408,37 +412,37 @@ The lowest point in the curve indicates the optimal lambda: the log value of lam
 ## call        5    -none-    call   
 ## nobs        1    -none-    numeric</code></pre>
 <p>Next, we prepare our test data for prediction.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="lasso-regression.html#cb90-1" aria-hidden="true" tabindex="-1"></a>test.mat <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span> <span class="fu">select</span>(cols) <span class="sc">%&gt;%</span> <span class="fu">data.matrix</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="lasso-regression.html#cb92-1" aria-hidden="true" tabindex="-1"></a>test.mat <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span> <span class="fu">select</span>(cols) <span class="sc">%&gt;%</span> <span class="fu">data.matrix</span>()</span></code></pre></div>
 <p>Next, we find the RMSE of the ridge regression.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="lasso-regression.html#cb91-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(ridge_model, <span class="at">s =</span> opt_lambda, <span class="at">newx =</span> test.mat)</span>
-<span id="cb91-2"><a href="lasso-regression.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="lasso-regression.html#cb91-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.4</span>,test<span class="sc">$</span>quality)</span>
-<span id="cb91-4"><a href="lasso-regression.html#cb91-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.4</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="lasso-regression.html#cb93-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(ridge_model, <span class="at">s =</span> opt_lambda, <span class="at">newx =</span> test.mat)</span>
+<span id="cb93-2"><a href="lasso-regression.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="lasso-regression.html#cb93-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.4</span>,test<span class="sc">$</span>quality)</span>
+<span id="cb93-4"><a href="lasso-regression.html#cb93-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.4</span></span></code></pre></div>
 <pre><code>## [1] 0.7314353</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="lasso-regression.html#cb93-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.4</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.4</span>)</span>
-<span id="cb93-2"><a href="lasso-regression.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rp<span class="fl">.4</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="lasso-regression.html#cb95-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.4</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.4</span>)</span>
+<span id="cb95-2"><a href="lasso-regression.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rp<span class="fl">.4</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
 <pre><code>## [1] 0.5390585</code></pre>
 </div>
 <div id="lasso-regression-1" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Lasso Regression</h2>
-<p>The method for LASSO regression is much similar to the above code wise although it is completing something different. Lasso regression, or the Least Absolute Shrinkage and Selection Operator, is also a modification of linear regression. In lasso, the loss function is modified to minimize the complexity of the model by limiting the sum of the absolute values of the model coefficients.@regression_r</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="lasso-regression.html#cb95-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
-<span id="cb95-2"><a href="lasso-regression.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-3"><a href="lasso-regression.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting alpha = 1 implements lasso regression</span></span>
-<span id="cb95-4"><a href="lasso-regression.html#cb95-4" aria-hidden="true" tabindex="-1"></a>lasso_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(train.mat, qual, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> lambdas)</span>
-<span id="cb95-5"><a href="lasso-regression.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso_reg)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="lasso-regression.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best </span></span>
-<span id="cb96-2"><a href="lasso-regression.html#cb96-2" aria-hidden="true" tabindex="-1"></a>lambda_best <span class="ot">&lt;-</span> lasso_reg<span class="sc">$</span>lambda.min </span>
-<span id="cb96-3"><a href="lasso-regression.html#cb96-3" aria-hidden="true" tabindex="-1"></a>lambda_best</span></code></pre></div>
+<p>The method for LASSO regression is much similar to the above code wise although it is completing something different. Lasso regression, or the Least Absolute Shrinkage and Selection Operator, is also a modification of linear regression. In lasso, the loss function is modified to minimize the complexity of the model by limiting the sum of the absolute values of the model coefficients. <span class="citation"><a href="#ref-regression_r" role="doc-biblioref">Singh</a> (<a href="#ref-regression_r" role="doc-biblioref">n.d.</a>)</span></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="lasso-regression.html#cb97-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="at">by =</span> <span class="sc">-</span>.<span class="dv">1</span>)</span>
+<span id="cb97-2"><a href="lasso-regression.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="lasso-regression.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting alpha = 1 implements lasso regression</span></span>
+<span id="cb97-4"><a href="lasso-regression.html#cb97-4" aria-hidden="true" tabindex="-1"></a>lasso_reg <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(train.mat, qual, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> lambdas)</span>
+<span id="cb97-5"><a href="lasso-regression.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso_reg)</span></code></pre></div>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="lasso-regression.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best </span></span>
+<span id="cb98-2"><a href="lasso-regression.html#cb98-2" aria-hidden="true" tabindex="-1"></a>lambda_best <span class="ot">&lt;-</span> lasso_reg<span class="sc">$</span>lambda.min </span>
+<span id="cb98-3"><a href="lasso-regression.html#cb98-3" aria-hidden="true" tabindex="-1"></a>lambda_best</span></code></pre></div>
 <pre><code>## [1] 0.001</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="lasso-regression.html#cb98-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_reg, <span class="at">s =</span> lambda_best, <span class="at">newx =</span> test.mat)</span>
-<span id="cb98-2"><a href="lasso-regression.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="lasso-regression.html#cb98-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.5</span>,test<span class="sc">$</span>quality)</span>
-<span id="cb98-4"><a href="lasso-regression.html#cb98-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="lasso-regression.html#cb100-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_reg, <span class="at">s =</span> lambda_best, <span class="at">newx =</span> test.mat)</span>
+<span id="cb100-2"><a href="lasso-regression.html#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="lasso-regression.html#cb100-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.5</span>,test<span class="sc">$</span>quality)</span>
+<span id="cb100-4"><a href="lasso-regression.html#cb100-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.5</span></span></code></pre></div>
 <pre><code>## [1] 0.7315071</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="lasso-regression.html#cb100-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.5</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.5</span>)</span>
-<span id="cb100-2"><a href="lasso-regression.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rp<span class="fl">.5</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="lasso-regression.html#cb102-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.5</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.5</span>)</span>
+<span id="cb102-2"><a href="lasso-regression.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rp<span class="fl">.5</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
 <pre><code>## [1] 0.5395758</code></pre>
 <div id="features-of-the-glmnet-package" class="section level3" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Features of the ‘glmnet’ Package</h3>
@@ -446,21 +450,22 @@ The lowest point in the curve indicates the optimal lambda: the log value of lam
 </div>
 <div id="elastic-net-regression" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Elastic Net Regression</h3>
-<p>Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.The first line of code creates a training control object train_cont which specifies how the repeated cross validation will take place. The second line builds the elastic regression model in which a range of possible alpha and lambda values are tested and their optimum value is selected.@regression_r</p>
-<pre><code>## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo, : There were missing values in resampled performance measures.</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="lasso-regression.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best tuning parameter</span></span>
-<span id="cb103-2"><a href="lasso-regression.html#cb103-2" aria-hidden="true" tabindex="-1"></a>elastic_reg<span class="sc">$</span>bestTune</span></code></pre></div>
+<p>Elastic net regression combines the properties of ridge and lasso regression. So, we need a technique to cycle through find the most optimal limiting factors.The first line of code creates a training control object train_cont which specifies how the repeated cross validation will take place. The second line builds the elastic regression model in which a range of possible alpha and lambda values are tested and their optimum value is selected. <span class="citation"><a href="#ref-regression_r" role="doc-biblioref">Singh</a> (<a href="#ref-regression_r" role="doc-biblioref">n.d.</a>)</span></p>
+<pre><code>## Warning in nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo, : There were missing values in resampled
+## performance measures.</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="lasso-regression.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Best tuning parameter</span></span>
+<span id="cb105-2"><a href="lasso-regression.html#cb105-2" aria-hidden="true" tabindex="-1"></a>elastic_reg<span class="sc">$</span>bestTune</span></code></pre></div>
 <pre><code>##       alpha      lambda
 ## 6 0.8902916 0.001641559</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="lasso-regression.html#cb105-1" aria-hidden="true" tabindex="-1"></a>elastic_reg <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(train.mat , qual, <span class="at">alpha =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">1</span>], <span class="at">lambda =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="lasso-regression.html#cb106-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(elastic_reg, <span class="at">s =</span> elastic_reg<span class="sc">$</span>bestTune, <span class="at">newx =</span> test.mat)</span>
-<span id="cb106-2"><a href="lasso-regression.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-3"><a href="lasso-regression.html#cb106-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.6</span>,test<span class="sc">$</span>quality)</span>
-<span id="cb106-4"><a href="lasso-regression.html#cb106-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="lasso-regression.html#cb107-1" aria-hidden="true" tabindex="-1"></a>elastic_reg <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(train.mat , qual, <span class="at">alpha =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">1</span>], <span class="at">lambda =</span> elastic_reg<span class="sc">$</span>bestTune[<span class="dv">1</span>,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lasso-regression.html#cb108-1" aria-hidden="true" tabindex="-1"></a>p<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">predict</span>(elastic_reg, <span class="at">s =</span> elastic_reg<span class="sc">$</span>bestTune, <span class="at">newx =</span> test.mat)</span>
+<span id="cb108-2"><a href="lasso-regression.html#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-3"><a href="lasso-regression.html#cb108-3" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(p<span class="fl">.6</span>,test<span class="sc">$</span>quality)</span>
+<span id="cb108-4"><a href="lasso-regression.html#cb108-4" aria-hidden="true" tabindex="-1"></a>RMSE<span class="fl">.6</span></span></code></pre></div>
 <pre><code>## [1] 0.7314186</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lasso-regression.html#cb108-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.6</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.6</span>)</span>
-<span id="cb108-2"><a href="lasso-regression.html#cb108-2" aria-hidden="true" tabindex="-1"></a>acc<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">mean</span>(rp<span class="fl">.6</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lasso-regression.html#cb109-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> acc<span class="fl">.6</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="lasso-regression.html#cb110-1" aria-hidden="true" tabindex="-1"></a>rp<span class="fl">.6</span><span class="ot">&lt;-</span><span class="fu">round</span>(p<span class="fl">.6</span>)</span>
+<span id="cb110-2"><a href="lasso-regression.html#cb110-2" aria-hidden="true" tabindex="-1"></a>acc<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">mean</span>(rp<span class="fl">.6</span><span class="sc">==</span>test<span class="sc">$</span>quality)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lasso-regression.html#cb111-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> acc<span class="fl">.6</span></span></code></pre></div>
 
 </div>
 </div>
@@ -526,7 +531,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Final Project - Bright Santoro.pdf", "Final Project - Bright Santoro.epub"],
+"download": ["FinalProject-Bright Santoro.pdf", "FinalProject-Bright Santoro.epub"],
 "toc": {
 "collapse": "subsection"
 }

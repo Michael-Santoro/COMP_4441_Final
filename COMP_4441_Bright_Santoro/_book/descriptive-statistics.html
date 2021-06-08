@@ -24,7 +24,7 @@
 <meta name="author" content="Emma Bright and Michael Santoro" />
 
 
-<meta name="date" content="2021-06-06" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -241,7 +241,6 @@ div.csl-indent {
 <div id="dataset" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Dataset</h2>
 <p>The dataset utilized for our analysis was collected from the UCI Machine Learning Repository <span class="citation"><a href="#ref-model_wine" role="doc-biblioref">P. Cortez and Reis.</a> (<a href="#ref-model_wine" role="doc-biblioref">2009</a>)</span>. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red and white Vinho Verde wine samples from Portugal.</p>
-<p>The dataset utilized for our analysis was collected from the UCI Machine Learning Repository <span class="citation"><a href="#ref-dataset" role="doc-biblioref"><span>“Wine Quality Data Set”</span></a> (<a href="#ref-dataset" role="doc-biblioref">n.d.</a>)</span>. The dataset consists of 12 elements, 11 physiochemical properties and 1 subjective quality measurement, for both red Vinho Verde wine samples from Portugal.</p>
 <p><strong>Read in Data</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descriptive-statistics.html#cb1-1" aria-hidden="true" tabindex="-1"></a>redWine<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/winequality-red.csv&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb1-2"><a href="descriptive-statistics.html#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
@@ -278,39 +277,38 @@ div.csl-indent {
 <div id="descriptive-statistics-1" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Descriptive Statistics</h3>
 <p>In order to better understand our data set we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. <span class="citation"><a href="#ref-descrip_stat" role="doc-biblioref"><span>“Descriptive Statistics”</span></a> (<a href="#ref-descrip_stat" role="doc-biblioref">n.d.</a>)</span></p>
-<p>In order to better understand our dataset we performed some initial descriptive statistics. A descriptive statistic is a summary level statistic, such as mean or median, that describes a variable or feature of a dataset. Descriptive statistics is the processing of analyzing the descriptive statistic taken from your dataset. <span class="citation"><a href="#ref-descrip_stat" role="doc-biblioref"><span>“Descriptive Statistics”</span></a> (<a href="#ref-descrip_stat" role="doc-biblioref">n.d.</a>)</span></p>
 <p>The table below shows descriptive statistic measurements for each of the variables in our dataset.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat.desc</span>(wine)</span></code></pre></div>
-<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar    chlorides free.sulfur.dioxide total.sulfur.dioxide      density           pH    sulphates      alcohol
-## nbr.val       6.497000e+03     6.497000e+03 6.497000e+03   6.497000e+03 6.497000e+03        6.497000e+03         6.497000e+03 6.497000e+03 6.497000e+03 6.497000e+03 6.497000e+03
-## nbr.null      0.000000e+00     0.000000e+00 1.510000e+02   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
-## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00 0.000000e+00        0.000000e+00         0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
-## min           3.800000e+00     8.000000e-02 0.000000e+00   6.000000e-01 9.000000e-03        1.000000e+00         6.000000e+00 9.871100e-01 2.720000e+00 2.200000e-01 8.000000e+00
-## max           1.590000e+01     1.580000e+00 1.660000e+00   6.580000e+01 6.110000e-01        2.890000e+02         4.400000e+02 1.038980e+00 4.010000e+00 2.000000e+00 1.490000e+01
-## range         1.210000e+01     1.500000e+00 1.660000e+00   6.520000e+01 6.020000e-01        2.880000e+02         4.340000e+02 5.187000e-02 1.290000e+00 1.780000e+00 6.900000e+00
-## sum           4.687785e+04     2.206810e+03 2.070160e+03   3.536470e+04 3.640520e+02        1.983230e+05         7.519925e+05 6.462544e+03 2.091060e+04 3.451650e+03 6.816523e+04
-## median        7.000000e+00     2.900000e-01 3.100000e-01   3.000000e+00 4.700000e-02        2.900000e+01         1.180000e+02 9.948900e-01 3.210000e+00 5.100000e-01 1.030000e+01
-## mean          7.215307e+00     3.396660e-01 3.186332e-01   5.443235e+00 5.603386e-02        3.052532e+01         1.157446e+02 9.946966e-01 3.218501e+00 5.312683e-01 1.049180e+01
-## SE.mean       1.608399e-02     2.042536e-03 1.802862e-03   5.902692e-02 4.346387e-04        2.202050e-01         7.012292e-01 3.720255e-05 1.994780e-03 1.846136e-03 1.479718e-02
-## CI.mean.0.95  3.152992e-02     4.004042e-03 3.534204e-03   1.157122e-01 8.520349e-04        4.316744e-01         1.374640e+00 7.292924e-05 3.910426e-03 3.619034e-03 2.900735e-02
-## var           1.680740e+00     2.710517e-02 2.111728e-02   2.263670e+01 1.227353e-03        3.150412e+02         3.194720e+03 8.992040e-06 2.585252e-02 2.214319e-02 1.422561e+00
-## std.dev       1.296434e+00     1.646365e-01 1.453179e-01   4.757804e+00 3.503360e-02        1.774940e+01         5.652185e+01 2.998673e-03 1.607872e-01 1.488059e-01 1.192712e+00
-## coef.var      1.796783e-01     4.847011e-01 4.560663e-01   8.740764e-01 6.252220e-01        5.814648e-01         4.883326e-01 3.014661e-03 4.995717e-02 2.800955e-01 1.136804e-01
-##                   quality type
-## nbr.val      6.497000e+03   NA
-## nbr.null     0.000000e+00   NA
-## nbr.na       0.000000e+00   NA
-## min          3.000000e+00   NA
-## max          9.000000e+00   NA
-## range        6.000000e+00   NA
-## sum          3.780200e+04   NA
-## median       6.000000e+00   NA
-## mean         5.818378e+00   NA
-## SE.mean      1.083390e-02   NA
-## CI.mean.0.95 2.123801e-02   NA
-## var          7.625748e-01   NA
-## std.dev      8.732553e-01   NA
-## coef.var     1.500857e-01   NA</code></pre>
+<pre><code>##              fixed.acidity volatile.acidity  citric.acid residual.sugar    chlorides free.sulfur.dioxide
+## nbr.val       6.497000e+03     6.497000e+03 6.497000e+03   6.497000e+03 6.497000e+03        6.497000e+03
+## nbr.null      0.000000e+00     0.000000e+00 1.510000e+02   0.000000e+00 0.000000e+00        0.000000e+00
+## nbr.na        0.000000e+00     0.000000e+00 0.000000e+00   0.000000e+00 0.000000e+00        0.000000e+00
+## min           3.800000e+00     8.000000e-02 0.000000e+00   6.000000e-01 9.000000e-03        1.000000e+00
+## max           1.590000e+01     1.580000e+00 1.660000e+00   6.580000e+01 6.110000e-01        2.890000e+02
+## range         1.210000e+01     1.500000e+00 1.660000e+00   6.520000e+01 6.020000e-01        2.880000e+02
+## sum           4.687785e+04     2.206810e+03 2.070160e+03   3.536470e+04 3.640520e+02        1.983230e+05
+## median        7.000000e+00     2.900000e-01 3.100000e-01   3.000000e+00 4.700000e-02        2.900000e+01
+## mean          7.215307e+00     3.396660e-01 3.186332e-01   5.443235e+00 5.603386e-02        3.052532e+01
+## SE.mean       1.608399e-02     2.042536e-03 1.802862e-03   5.902692e-02 4.346387e-04        2.202050e-01
+## CI.mean.0.95  3.152992e-02     4.004042e-03 3.534204e-03   1.157122e-01 8.520349e-04        4.316744e-01
+## var           1.680740e+00     2.710517e-02 2.111728e-02   2.263670e+01 1.227353e-03        3.150412e+02
+## std.dev       1.296434e+00     1.646365e-01 1.453179e-01   4.757804e+00 3.503360e-02        1.774940e+01
+## coef.var      1.796783e-01     4.847011e-01 4.560663e-01   8.740764e-01 6.252220e-01        5.814648e-01
+##              total.sulfur.dioxide      density           pH    sulphates      alcohol      quality type
+## nbr.val              6.497000e+03 6.497000e+03 6.497000e+03 6.497000e+03 6.497000e+03 6.497000e+03   NA
+## nbr.null             0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   NA
+## nbr.na               0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   NA
+## min                  6.000000e+00 9.871100e-01 2.720000e+00 2.200000e-01 8.000000e+00 3.000000e+00   NA
+## max                  4.400000e+02 1.038980e+00 4.010000e+00 2.000000e+00 1.490000e+01 9.000000e+00   NA
+## range                4.340000e+02 5.187000e-02 1.290000e+00 1.780000e+00 6.900000e+00 6.000000e+00   NA
+## sum                  7.519925e+05 6.462544e+03 2.091060e+04 3.451650e+03 6.816523e+04 3.780200e+04   NA
+## median               1.180000e+02 9.948900e-01 3.210000e+00 5.100000e-01 1.030000e+01 6.000000e+00   NA
+## mean                 1.157446e+02 9.946966e-01 3.218501e+00 5.312683e-01 1.049180e+01 5.818378e+00   NA
+## SE.mean              7.012292e-01 3.720255e-05 1.994780e-03 1.846136e-03 1.479718e-02 1.083390e-02   NA
+## CI.mean.0.95         1.374640e+00 7.292924e-05 3.910426e-03 3.619034e-03 2.900735e-02 2.123801e-02   NA
+## var                  3.194720e+03 8.992040e-06 2.585252e-02 2.214319e-02 1.422561e+00 7.625748e-01   NA
+## std.dev              5.652185e+01 2.998673e-03 1.607872e-01 1.488059e-01 1.192712e+00 8.732553e-01   NA
+## coef.var             4.883326e-01 3.014661e-03 4.995717e-02 2.800955e-01 1.136804e-01 1.500857e-01   NA</code></pre>
 <p><strong><em>Univariate Exploration</em></strong></p>
 <p>Univariate exploration explores each variable one by one. We can use univariate exploration to explore the distribution of a single variable or desriptive statistic.</p>
 <p>The variables for the three plots below were selected judgmentally from the dataset to explore.</p>
@@ -324,7 +322,7 @@ div.csl-indent {
 <span id="cb5-8"><a href="descriptive-statistics.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="descriptive-statistics.html#cb5-9" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>The table above shows the distribution of the alcohol variable for both red and white wines. We can see from the plot that alcohol does not appear to be normally distributed. The data points are primarily skewed to the left with a lower alcohol percentage. This makes sense as there are about three times as many white wine samples within our data set and white wine tends to have a lower alcohol percentage than red wine.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics.html#cb7-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">ddply</span>(wine, <span class="st">&quot;type&quot;</span>, summarise, <span class="at">grp.mean=</span><span class="fu">mean</span>(volatile.acidity))</span>
 <span id="cb7-2"><a href="descriptive-statistics.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -336,7 +334,7 @@ div.csl-indent {
 <span id="cb7-8"><a href="descriptive-statistics.html#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="descriptive-statistics.html#cb7-9" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Volatile acidity is the amount of acetic acid in wine. Too high of a level of volatile acid can lead to an unpleasant, vinegar taste.</p>
 <p>The distribution of volatile acidity measurements within red wine appeared to be fairly normally distributed, while the distribution in volatile acidity within white wine was skewed harshly to the right. However, both red and white wine samples had long tails which indicate there may be some outliers in the data set with higher levels of volatile acidity than normal.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics.html#cb9-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">ddply</span>(wine, <span class="st">&quot;type&quot;</span>, summarise, <span class="at">grp.mean=</span><span class="fu">mean</span>(quality))</span>
@@ -349,7 +347,7 @@ div.csl-indent {
 <span id="cb9-8"><a href="descriptive-statistics.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="descriptive-statistics.html#cb9-9" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Finally, we plotted the quality, our outcome variable, of the wine samples. As you can see from the charts above both the red and white wine samples had a normal distribution of quality values. This is important to note as the tests we will be performing require or assume normally distributed outcome variable values.</p>
 <p><strong><em>Bivariate Exploration</em></strong></p>
 <p>Bivariate exploration allows us to explore the relationship between two descriptive statistics in a dataset.</p>
@@ -432,7 +430,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="descriptive-statistics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Insignificant correlations are left blank</span></span>
 <span id="cb13-2"><a href="descriptive-statistics.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(res<span class="sc">$</span>r, <span class="at">type=</span><span class="st">&quot;upper&quot;</span>, <span class="at">order=</span><span class="st">&quot;hclust&quot;</span>, </span>
 <span id="cb13-3"><a href="descriptive-statistics.html#cb13-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">p.mat =</span> res<span class="sc">$</span>P, <span class="at">sig.level =</span> <span class="fl">0.01</span>, <span class="at">insig =</span> <span class="st">&quot;blank&quot;</span>)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Based on the correlation matrix and the correlation plots it appears that there is a strong negative correlation between alcohol and density and a strong positive correlation between residual sugar and density. These are plotted below.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descriptive-statistics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine, </span>
 <span id="cb14-2"><a href="descriptive-statistics.html#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> alcohol, </span>
@@ -441,7 +439,7 @@ div.csl-indent {
 <span id="cb14-5"><a href="descriptive-statistics.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, </span>
 <span id="cb14-6"><a href="descriptive-statistics.html#cb14-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
 <span id="cb14-7"><a href="descriptive-statistics.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wine Composition by alcohol, density, and type&quot;</span>)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="descriptive-statistics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wine, </span>
 <span id="cb15-2"><a href="descriptive-statistics.html#cb15-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> residual.sugar, </span>
 <span id="cb15-3"><a href="descriptive-statistics.html#cb15-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> density, </span>
@@ -449,7 +447,7 @@ div.csl-indent {
 <span id="cb15-5"><a href="descriptive-statistics.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, </span>
 <span id="cb15-6"><a href="descriptive-statistics.html#cb15-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
 <span id="cb15-7"><a href="descriptive-statistics.html#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wine Composition by residual.sugar, density, and type&quot;</span>)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -461,9 +459,6 @@ div.csl-indent {
 </div>
 <div id="ref-model_wine" class="csl-entry">
 P. Cortez, F. Almeida, A. Cerdeira, and J. Reis. 2009. <em>Modeling Wine Preferences by Data Mining from Physiochemical Properties. In Decision Support Systems</em>. Elsevier.
-</div>
-<div id="ref-dataset" class="csl-entry">
-<span>“Wine Quality Data Set.”</span> n.d. Accessed May 20, 2021. <a href="https://archive.ics.uci.edu/ml/datasets/wine+quality">https://archive.ics.uci.edu/ml/datasets/wine+quality</a>.
 </div>
 </div>
             </section>
@@ -515,7 +510,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Final Project - Bright Santoro.pdf", "Final Project - Bright Santoro.epub"],
+"download": ["FinalProject-Bright Santoro.pdf", "FinalProject-Bright Santoro.epub"],
 "toc": {
 "collapse": "subsection"
 }

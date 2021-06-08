@@ -24,7 +24,7 @@
 <meta name="author" content="Emma Bright and Michael Santoro" />
 
 
-<meta name="date" content="2021-06-06" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,9 +238,8 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="random-forest" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Random Forest</h1>
-<p>Decision trees can suffer from from the problem of overfitting. In order to help solve this problem, the Random Forest algorithm was devised. It works by building multiple decision trees and then merging them together to form a prediction.
-Random forest can be used to solve both classification and regression problems, however, for our analysis we will be utilizing it solve our classification problem.</p>
-<p>Each tree within the Random Forest is grown as follows:</p>
+<p>The Random Forest modeling technique is a supervised machine learning algorithm that works by utilizing the outcome of multiple decision trees to make a prediction for a data point. It can be used to solve both classification and regression problems, however, for our analysis we utilized it to help solve our research question of classifying the quality of wine samples from 1-10. The algorithm can be tuned by a user by inputting a particular number of trees and variables to be tested at each split in the tree, in order to make it more precise.</p>
+<p>"Each tree within the Random Forest is grown as follows:</p>
 <ol style="list-style-type: decimal">
 <li>If the number of cases in the training set is N, sample N cases at random - but with replacement, from the original data. This sample will be the training set for growing the tree.</li>
 <li>If there are M input variables, a number m&lt;&lt;M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.</li>
@@ -248,7 +247,7 @@ Random forest can be used to solve both classification and regression problems, 
 </ol>
 <div id="create-random-forest-model" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Create Random Forest Model</h2>
-<p>We will start by running the randomForest function utilizing the training dataset to train the model.</p>
+<p>We will start by running the randomForest function with our training dataset used to train the model.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="random-forest.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
 <span id="cb21-2"><a href="random-forest.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="random-forest.html#cb21-3" aria-hidden="true" tabindex="-1"></a>rf.train <span class="ot">&lt;-</span> train</span>
@@ -388,7 +387,7 @@ Random forest can be used to solve both classification and regression problems, 
 <h3><span class="header-section-number">4.4.1</span> Plotting the Error Rate</h3>
 <p>Plotting the error rate to the number of trees can show us where our model has more or less the same level of effectiveness and we can choose a more accurate tree number.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="random-forest.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rf)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 The model appears to have a drop off after about 300 trees and then is more or less constant, therefore, we can adjust our tree number in the model to be 300.</p>
 </div>
 <div id="tuning-mtry" class="section level3" number="4.4.2">
@@ -409,7 +408,7 @@ The model appears to have a drop off after about 300 trees and then is more or l
 ## Searching right ...
 ## mtry = 1     OOB error = 33.46% 
 ## -0.005928854 0.05</code></pre>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 This output indicates that our model hits its lowest error rate when the mTry value is 3, so we can adjust our model to reflect this new value.</p>
 </div>
 </div>
@@ -544,7 +543,7 @@ This output indicates that our model hits its lowest error rate when the mTry va
 <p>We are able to see the variables that had the highest level of importance in our model by running the varImpPlot function.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="random-forest.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf, </span>
 <span id="cb52-2"><a href="random-forest.html#cb52-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 This tells us that alcohol has the greatest importance in our model. Removing this variable would result in a 75% mean decrease in accuracy.</p>
 </div>
 <div id="accuracy" class="section level2" number="4.9">
@@ -609,7 +608,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Final Project - Bright Santoro.pdf", "Final Project - Bright Santoro.epub"],
+"download": ["FinalProject-Bright Santoro.pdf", "FinalProject-Bright Santoro.epub"],
 "toc": {
 "collapse": "subsection"
 }

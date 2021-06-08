@@ -24,7 +24,7 @@
 <meta name="author" content="Emma Bright and Michael Santoro" />
 
 
-<meta name="date" content="2021-06-06" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="k-nearest-neighbor" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> K-Nearest Neighbor</h1>
-<p>K-Nearest Neighbor is a supervised machine learning algorithm that can be used for both classification and regression problems. It is able to classify a new data point by comparing its variables to those variables of its “nearest neighbors.” The Euclidean distance formula is used to determine which of the data points are closest to the new point. Similarly to Random Forest, KNN uses the consensus of those neighbors to predict the outcome variable for the new data point.</p>
+<p>K-Nearest Neighbor (KNN) is another supervised machine learning algorithm that can classify a new data point by comparing the data points variable or factors to the variables or factors of its “nearest neighbors.” KNN is also able to solve both classification and regression problems, however, we utilized it to solve our research question of classifying the quality of wine samples from 1-10. The algorithm for KNN determines a data points “nearest neighbors” by computing the Euclidean distance between the points. Then, similarly to Random Forest, KNN uses the consensus of those neighbors to predict the outcome variable for the new data point. <span class="citation"><a href="#ref-knn" role="doc-biblioref">Lateef</a> (<a href="#ref-knn" role="doc-biblioref">n.d.</a>)</span></p>
 <div id="data-partitioning-1" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Data Partitioning</h2>
 <p>Our data has already been randomly partitioned into training and test data sets, however, the KNN algorithm we are utilizing within the caret library requires that we make our quality variables a “factor” data type.</p>
@@ -347,7 +347,7 @@ div.csl-indent {
 ## The final value used for the model was k = 31.</code></pre>
 <p>The plot below shows the accuracy of the repeated cross-validation models to the k-values from train. We can see that the highest level of accuracy was hit at k=37 and then appears to decrease in accuracy as k increases.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="k-nearest-neighbor.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k.value)</span></code></pre></div>
-<p><img src="Final-Project---Bright-Santoro_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="FinalProject-Bright-Santoro_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="knn-prediction" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> KNN Prediction</h2>
@@ -358,7 +358,8 @@ div.csl-indent {
 <span id="cb61-4"><a href="k-nearest-neighbor.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the confusion matrix to see accuracy value and other parameter values</span></span>
 <span id="cb61-5"><a href="k-nearest-neighbor.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(knnPredict<span class="fl">.2</span>, knn.test<span class="sc">$</span>quality )</span></code></pre></div>
 <pre><code>## Warning in levels(reference) != levels(data): longer object length is not a multiple of shorter object length</code></pre>
-<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are not in the same order for reference and data. Refactoring data to match.</code></pre>
+<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are not in the same order for reference and data.
+## Refactoring data to match.</code></pre>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -399,8 +400,15 @@ div.csl-indent {
 <p>In the code below we are adding the percentage accuracy to the accuracy dataframe for later model comparison.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="k-nearest-neighbor.html#cb65-1" aria-hidden="true" tabindex="-1"></a>accuracy[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(knnPredict<span class="fl">.2</span>, knn.test<span class="sc">$</span>quality )[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
 <pre><code>## Warning in levels(reference) != levels(data): longer object length is not a multiple of shorter object length</code></pre>
-<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are not in the same order for reference and data. Refactoring data to match.</code></pre>
+<pre><code>## Warning in confusionMatrix.default(knnPredict.2, knn.test$quality): Levels are not in the same order for reference and data.
+## Refactoring data to match.</code></pre>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-knn" class="csl-entry">
+Lateef, Zulaikha. n.d. <span>“KNN Algorithm: A Practical Implementation of KNN Algorithm in r.”</span> <a href="https://www.edureka.co/blog/knn-algorithm-in-r/">https://www.edureka.co/blog/knn-algorithm-in-r/</a>.
 </div>
 </div>
             </section>
@@ -452,7 +460,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Final Project - Bright Santoro.pdf", "Final Project - Bright Santoro.epub"],
+"download": ["FinalProject-Bright Santoro.pdf", "FinalProject-Bright Santoro.epub"],
 "toc": {
 "collapse": "subsection"
 }
