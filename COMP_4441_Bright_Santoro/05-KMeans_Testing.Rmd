@@ -1,6 +1,6 @@
 # K-Nearest Neighbor
 
-K-Nearest Neighbor (KNN) is another supervised machine learning algorithm that can classify a new data point by comparing the data points variable or factors to the variables or factors of its "nearest neighbors". KNN is also able to solve both classification and regression problems, however, we utilized it to solve our research question of classifying the quality of wine samples from 1-10. The algorithm for KNN determines a data points "nearest neighbors" by computing the Euclidean distance between the points. Then, similarly to Random Forest, KNN uses the consensus of those neighbors to predict the outcome variable for the new data point.
+K-Nearest Neighbor (KNN) is another supervised machine learning algorithm that can classify a new data point by comparing the data points variable or factors to the variables or factors of its "nearest neighbors". KNN is also able to solve both classification and regression problems, however, we utilized it to solve our research question of classifying the quality of wine samples from 1-10. The algorithm for KNN determines a data points "nearest neighbors" by computing the Euclidean distance between the points. Then, similarly to Random Forest, KNN uses the consensus of those neighbors to predict the outcome variable for the new data point. @knn
 
 
 ## Data Partitioning
